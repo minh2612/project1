@@ -42,7 +42,7 @@ class ProjectController extends Controller
         $this->AuthAdmin();
         $all_task= DB::table('tbl_task')->get();
 
-        $all_project= DB::table('tbl_project')->join('tbl_e','tbl_project.project_admin','=','tbl_e.e_id')->paginate(10);
+        $all_project= DB::table('tbl_project')->join('tbl_e','tbl_project.project_admin','=','tbl_e.e_id')->get();
 
 
         $all_employee=DB::table('tbl_employee_project')
@@ -50,7 +50,7 @@ class ProjectController extends Controller
         ->join('tbl_e','tbl_employee_project.employee_id','=','tbl_e.e_id')->get();
 
 
-        $manager_project = view('all_project',compact('all_project'))->with('all_project', $all_project)->with('all_employee',  $all_employee)->with('all_task',$all_task);
+        $manager_project = view('all_project')->with('all_project', $all_project)->with('all_employee',  $all_employee)->with('all_task',$all_task);
         return view('admin_layout')->with('all_project', $manager_project);
     }
     
@@ -63,13 +63,13 @@ class ProjectController extends Controller
 
 	public function info_task($project_id){
         $this->AuthAdmin();
-       $info_task= DB::table('tbl_task')->where('project_id',$project_id)->paginate(5);
+       $info_task= DB::table('tbl_task')->where('project_id',$project_id)->get();
 
        $all_user= DB::table('tbl_employee_task')
         ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
         ->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->get();
 
-        $manager_task = view('info_task', compact('info_task'))->with('info_task', $info_task)->with('all_user', $all_user);
+        $manager_task = view('info_task')->with('info_task', $info_task)->with('all_user', $all_user);
         return view('admin_layout')->with('info_task', $manager_task);
    	}
 
