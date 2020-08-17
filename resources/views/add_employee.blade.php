@@ -45,6 +45,13 @@
 			        <input class="form-control" type="email" name="e_email" id="example-email-input">
 			    </div>
 			</div>
+
+			<div class="form-group row">
+			    <label for="example-tel-input" class="col-sm-2 col-form-label">Mật khẩu</label>
+			    <div class="col-sm-4">
+			        <input class="form-control" type="password" name="e_password" id="example-tel-input">
+			    </div>
+			</div>
 		
 			<div class="form-group row">
 			    <label for="example-tel-input" class="col-sm-2 col-form-label">Địa chỉ</label>
