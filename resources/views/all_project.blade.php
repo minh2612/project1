@@ -119,10 +119,7 @@
                     </tr>
                 @endforeach                 
                 </tbody>
-            </table>
-             <div class="text-center">
-                {{ $all_project->appends(['sort' => 'project_id'])->links() }}
-            </div>  
+            </table> 
         </div>
     </div><!-- container fluid -->
 
