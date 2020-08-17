@@ -44,6 +44,7 @@ class PositionController extends Controller
      
         $data = array();
         $data['position_name']= $request->position_name;
+        $data['position_note']= $request->position_note;
         
               $this->validate($request,
         [
@@ -71,7 +72,17 @@ class PositionController extends Controller
         return Redirect::to('add-position');
         }
     
- 
+     public function detail_position($position_id){
+        $this->AuthAdmin();
+
+        //$this->AuthLogin();
+        $detail_position = DB::table('tbl_position')->where('position_id',$position_id)->get();
+        $detail_employee = DB::table('tbl_e')->where('position_id',$position_id)->get();
+        
+        $manager_position  = view('detail_position')->with('detail_position',$detail_position)->with('position_id',$position_id);
+        return view('admin_layout')->with('detail_position', $manager_position);
+
+    }
     public function edit_position($position_id){
         $this->AuthAdmin();
         $edit_position= DB::table('tbl_position')->where('position_id', $position_id)->get();
