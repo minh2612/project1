@@ -42,6 +42,8 @@
                     <td>
                         <a href="{{URL::to('/edit-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
+                        <a href="{{URL::to('/detail-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-edit"></i>    
                         <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-trash-alt"></i>          
                      </td>
