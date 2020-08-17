@@ -83,6 +83,7 @@ Route::get('/add-position','PositionController@add_position');
 Route::get('/all-position','PositionController@all_position');
 Route::post('/save-position','PositionController@save_position');
 Route::get('/edit-position/{position_id}', 'PositionController@edit_position');
+Route::get('/detail-position/{position_id}', 'PositionController@detail_position');
 Route::get('/delete-position/{position_id}', 'PositionController@delete_position');
 Route::post('/update-position/{position_id}', 'PositionController@update_position');
 
