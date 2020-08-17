@@ -24,10 +24,35 @@
                 <!-- end page-title-box -->
             </div>
         </div> 
+        
+        <script>
+       
+
+                         
+function showPreview(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("image1");
+    preview.src = src;
+    preview.style.fontSize ="1px";
+  }
+}
+</script>
         <!-- end page title -->
         @foreach($edit_employee as $key=> $employee)
         <form role="form" action="{{URL::to('/update-employee/'.$employee->e_id)}}" method="post" enctype="multipart/form-data">
-        	{{csrf_field()}}     	
+        	{{csrf_field()}}     
+        	<div class="form-group row">
+			    <label for="example-name-input" class="col-sm-2 col-form-label">Ảnh</label>
+			    <div class="col-sm-4">
+			        <img src="{{ URL::to('/public/avatar/'.$employee->e_avatar)}}" height="100" width="100" class="img-thumbnail">@php echo" ====>"; @endphp 
+			        <input name="e_avatar" height="100" width="100" class="img-thumbnail" type="file"  onchange="showPreview(event);"/>
+
+			    
+                <img id="image1";>
+                         
+			    </div>
+			</div>	
 			<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Tên nhân viên</label>
 			    <div class="col-sm-4">
@@ -44,6 +69,12 @@
 			    <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
 			    <div class="col-sm-4">
 			        <input class="form-control" value="{{$employee->e_password}}" type="password" name="e_password" id="example-password-input">
+			    </div>
+			</div>
+			<div class="form-group row">
+			    <label for="example-tel-input" class="col-sm-2 col-form-label">Chứng minh thư</label>
+			    <div class="col-sm-4">
+			        <input class="form-control" value="{{$employee->e_cmnd}}" type="text" name="e_cmnd" id="example-tel-input">
 			    </div>
 			</div>
 			<div class="form-group row">
