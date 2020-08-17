@@ -33,6 +33,14 @@
                     <input class="form-control" type="text" name="position_name" id="example-name-input">
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Mô tả</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="position_note" id="example-name-input">
+                </div>
+            </div>
+
              <ul>
                 @foreach($errors->all() as $error)
                      <li>{{$error}}</li>
