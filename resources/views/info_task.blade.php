@@ -83,10 +83,7 @@
                     </tr>
                 @endforeach                 
                 </tbody>
-            </table>
-            <div class="text-center">
-                {{ $info_task->appends(['sort' => 'task_id'])->links() }}
-            </div>  
+            </table> 
         </div>
     </div><!-- container fluid -->
 
