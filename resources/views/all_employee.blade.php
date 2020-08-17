@@ -51,9 +51,6 @@
                 @endforeach                   
                 </tbody>
             </table>
-            <div class="text-center">
-                {{ $all_employee->appends(['sort' => 'e_id'])->links() }}
-            </div> 
 
         </div>
     </div><!-- container fluid -->
