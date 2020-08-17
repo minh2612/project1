@@ -13,6 +13,7 @@
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('assets/css/icons.css')}}"  rel="stylesheet" type="text/css">
         <link href="{{asset('assets/css/style.css')}}"  rel="stylesheet" type="text/css">
+        <link href="{{asset('plugins/datatables/dataTables.bootstrap4.min.css')}}"  rel="stylesheet" type="text/css">
         <link href="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css')}}" rel="stylesheet" />
         <script src="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js')}}"></script>
     </head>
@@ -150,6 +151,11 @@
         <script src="{{asset('assets/js/waves.js')}}"></script>
         <script src="{{asset('assets/js/jquery.nicescroll.js')}}"></script>
         <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+        <!-- Required datatable js -->
+        <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+        <!-- Datatable init js -->
+        <script src="{{asset('assets/pages/datatables.init.js')}}"></script>    
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
     </body>
