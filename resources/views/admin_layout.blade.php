@@ -16,6 +16,9 @@
         <link href="{{asset('plugins/datatables/dataTables.bootstrap4.min.css')}}"  rel="stylesheet" type="text/css">
         <link href="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css')}}" rel="stylesheet" />
         <script src="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js')}}"></script>
+        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="jquery.form.js"></script>
     </head>
 
     <body class="fixed-left">
