@@ -39,8 +39,8 @@ class EmployeeController extends Controller
         $all_employee = DB::table('tbl_e')
         ->join('tbl_position','tbl_position.position_id','=','tbl_e.position_id')
         ->join('tbl_department','tbl_department.department_id','=','tbl_e.department_id')
-        ->orderby('tbl_e.department_id','desc')->paginate(10);;
-        $manager_employee  = view('all_employee', compact('all_employee'))->with('all_employee',$all_employee);
+        ->orderby('tbl_e.department_id','desc')->get();
+        $manager_employee  = view('all_employee')->with('all_employee',$all_employee);
         return view('admin_layout')->with('all_employee', $manager_employee);
 
     }
