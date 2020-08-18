@@ -75,6 +75,7 @@ Route::post('/update-salary-table/{salary_table_id}', 'SalaryTableController@upd
 Route::get('/add-department','DepartmentController@add_department');
 Route::get('/all-department','DepartmentController@all_department');
 Route::post('/save-department','DepartmentController@save_department');
+Route::get('/detail-department/{department_id}', 'DepartmentController@detail_department');
 Route::get('/edit-department/{department_id}', 'DepartmentController@edit_department');
 Route::get('/delete-department/{department_id}', 'DepartmentController@delete_department');
 Route::post('/update-department/{department_id}', 'DepartmentController@update_department');
