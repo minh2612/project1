@@ -66,7 +66,18 @@ class DepartmentController extends Controller
         return Redirect::to('add-department');
     }
 
- 
+   public function detail_department($department_id){
+        $this->AuthAdmin();
+
+        //$this->AuthLogin();
+        $detail_department = DB::table('tbl_department')->where('department_id',$department_id)->get();
+        $detail_employee = DB::table('tbl_e')->where('department_id',$department_id)->get();
+    
+        
+        $manager_department  = view('detail_department')->with('detail_department',$detail_department)->with('detail_employee',$detail_employee);
+        return view('admin_layout')->with('detail_department', $manager_department);
+
+    }
     public function edit_department($department_id){
         $this->AuthAdmin();
         $edit_department= DB::table('tbl_department')->where('department_id', $department_id)->get();
