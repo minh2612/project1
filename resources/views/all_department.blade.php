@@ -40,6 +40,8 @@
                     <td>#</td>
                     <td>{{$department->department_name}}</td>
                     <td>
+                          <a href="{{URL::to('/detail-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
                         <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">
