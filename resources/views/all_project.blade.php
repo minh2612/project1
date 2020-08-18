@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="page-content-wrapper ">
+<div class="page-content-wrapper container">
 
     <div class="container-fluid">
         <div class="row">
@@ -26,7 +26,7 @@
         </div> 
         <!-- end page title -->     
         <div class="table-responsive">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-bordered dt-responsive nowrap container" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>Tên dự án</th>
@@ -35,11 +35,9 @@
                         <th>Người tham gia</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
-                        <th>Ghi chú</th>
                         <th>Công việc cần xử lý</th>
                         <th>Công việc đã hoàn thành</th>
                         <th>Công việc chưa hoàn thành</th>
-                        <th>Danh sách công việc</th>
                         <th>Hành động</th>
                         <th>Trạng thái</th>
                     </tr>
@@ -58,7 +56,6 @@
                             @endforeach</td>                    
                         <td>{{$project->project_start}}</td>
                         <td>{{$project->project_end}}</td>
-                        <td>{{$project->project_node}}</td>
                         
                         @php
                             $i = 0;
@@ -95,14 +92,11 @@
                         @endforeach
                         <td>{{$i2}}</td>
                         
-                        <td>
-                        <a href="{{URL::to('/add-task/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-plus-circle"></i>
-                        <a href="{{URL::to('/info-task/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-tasks"></i>    
-                        </td>
+                        
 
                         <td>
+                        <a href="{{URL::to('/info-task/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
                         <a onclick="return confirm('Bạn có chắc là muốn xóa dự án này ko?')" href="{{URL::to('/delete-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
