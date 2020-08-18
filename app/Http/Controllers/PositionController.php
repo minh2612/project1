@@ -16,9 +16,9 @@ class PositionController extends Controller
     public function AuthAdmin(){
         $admin_id = Session::get('e_id');
         $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
-         $id1=$id->is_admin;
+         
 
-        if($admin_id && $id1==1){
+        if($admin_id && $id->is_admin==1){
             return Redirect::to('admin-dashboard');
         }else{
             return Redirect::to('/')->send();
@@ -49,9 +49,7 @@ class PositionController extends Controller
               $this->validate($request,
         [
                        
-            'position_name' => 'bail|required|unique:tbl_position',
-            
-            
+            'position_name' => 'bail|required|unique:tbl_position', 
                 
         ],
 
@@ -78,8 +76,9 @@ class PositionController extends Controller
         //$this->AuthLogin();
         $detail_position = DB::table('tbl_position')->where('position_id',$position_id)->get();
         $detail_employee = DB::table('tbl_e')->where('position_id',$position_id)->get();
+    
         
-        $manager_position  = view('detail_position')->with('detail_position',$detail_position)->with('position_id',$position_id);
+        $manager_position  = view('detail_position')->with('detail_position',$detail_position)->with('detail_employee',$detail_employee);
         return view('admin_layout')->with('detail_position', $manager_position);
 
     }
