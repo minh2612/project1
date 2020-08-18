@@ -40,10 +40,11 @@
                         <td>{{ $employee->department_name }}</td>
                      
                         <td>
+                             <a href="{{URL::to('/detail-employee/'.$employee->e_id)}}" class="active styling-edit" ui-toggle-class="">
+                                <i class="fa fa-eye"></i>  
                             <a href="{{URL::to('/edit-employee/'.$employee->e_id)}}" class="active styling-edit" ui-toggle-class="">
                                 <i class="fa fa-edit"></i>
-                              <a href="{{URL::to('/detail-employee/'.$employee->e_id)}}" class="active styling-edit" ui-toggle-class="">
-                                <i class="fa fa-edit"></i>  
+                             
                             <a onclick="return confirm('Bạn có chắc là muốn xóa nhân viên này ko?')" href="{{URL::to('/delete-employee/'.$employee->e_id)}}" class="active styling-edit" ui-toggle-class="">
                                 <i class="fa fa-trash-alt"></i>
                         </td>
