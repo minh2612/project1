@@ -8,7 +8,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Chi tiết nhân viên</h4>
+                            <h4 class="page-title m-0">Chi tiết chức vụ</h4>
                         </div>
                         <!-- end col -->
                     </div>
@@ -29,15 +29,21 @@
                             <th>Tên phòng ban</th>  
                             <th>{{ $position->position_name}}</th>
                        </tr>
-                      
+
                         <tr>
                             <th>Mô tả</th>  
                             <th>{{ $position->position_note}}</th>
                        </tr>
-                       
-                        
-                    
-                @endforeach                   
+                       <tr>
+                        <th>Danh sách nhân viên</th>
+                       <th> @foreach($detail_employee as $key => $employee)
+                            
+                          <li>{{ $employee->e_name}}</li><br>
+                       @endforeach  </th>
+                     </tr>
+                @endforeach    
+                
+
                 </tbody>
             </table>
            
