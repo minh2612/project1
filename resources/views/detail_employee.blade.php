@@ -19,7 +19,7 @@
         </div> 
         <!-- end page title -->    	
 		<div class="table-responsive">
-            <table id="datatable" class="table table-hover " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-hover " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 
                     	
                  @foreach($detail_employee as $key => $employee)
