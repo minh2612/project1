@@ -29,13 +29,14 @@ class ProjectController extends Controller
         return view('add_project')->with('e',$e);      
     }
 
-    public function add_task($project_id){
+    public function add_task(){
         $this->AuthAdmin();
         
         $e=DB::table('tbl_e')->get();
-        $project_id= DB::table('tbl_project')->where('project_id',$project_id)->get();
+        $project_id= DB::table('tbl_project')->get();
         return view('add_task')->with('e',$e)->with('project_id',$project_id);      
     }
+
 
     public function all_project()
     {
@@ -54,6 +55,37 @@ class ProjectController extends Controller
         return view('admin_layout')->with('all_project', $manager_project);
     }
     
+    public function all_task()
+    {
+        $this->AuthAdmin();
+        $all_task= DB::table('tbl_task')->get();
+
+        $all_project= DB::table('tbl_project')->join('tbl_e','tbl_project.project_admin','=','tbl_e.e_id')->get();
+
+
+        $all_employee=DB::table('tbl_employee_project')
+        ->join('tbl_project','tbl_project.project_id','=','tbl_employee_project.project_id')
+        ->join('tbl_e','tbl_employee_project.employee_id','=','tbl_e.e_id')->get();
+
+
+        $manager_task = view('all_task')->with('all_project', $all_project)->with('all_employee',  $all_employee)->with('all_task',$all_task);
+        return view('admin_layout')->with('all_task', $manager_task);
+    }
+
+    public function detail_project($project_id){
+        $this->AuthAdmin();
+
+        //$this->AuthLogin();
+        $detail_project = DB::table('tbl_project')
+        ->join('tbl_position','tbl_position.position_id','=','tbl_e.position_id')
+        ->join('tbl_department','tbl_department.department_id','=','tbl_e.department_id')
+        ->orderby('tbl_e.department_id','desc')->where('e_id',$e_id)->get();
+
+        
+        $manager_project  = view('detail_project')->with('detail_project',$detail_employee);
+        return view('admin_layout')->with('detail_project', $manager_project);
+
+    }
     public function delete_project($project_id){
         $this->AuthAdmin();
         DB::table('tbl_project')->where('project_id', $project_id)->delete();
@@ -250,7 +282,7 @@ class ProjectController extends Controller
            
             DB::table('tbl_task')->where('task_id',$task_id)->delete();
             Session::put('message','Xóa công việc thành công');
-            return Redirect::to('info-task/'.$id->project_id);
+            return Redirect::to('all-task/');
  	}
 
 }
