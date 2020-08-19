@@ -90,6 +90,13 @@
                                     <li><a href="{{URL::to('/all-position')}}">Danh sách chức vụ</a></li>
                                 </ul>
                             </li>    
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{URL::to('/add-customer')}}">Thêm khách hàng</a></li>
+                                    <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
+                                </ul>
+                            </li> 
                         </ul>
                     </div>
                     <div class="clearfix"></div>
