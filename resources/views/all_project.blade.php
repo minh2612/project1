@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="page-content-wrapper container">
+<div class="page-content-wrapper ">
 
     <div class="container-fluid">
         <div class="row">
@@ -26,13 +26,13 @@
         </div> 
         <!-- end page title -->     
         <div class="table-responsive">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap container" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>Tên dự án</th>
                         
-                        <th>Người giao</th>
-                        <th>Người tham gia</th>
+                        <th>Tên khách hàng</th>
+                        <th>Người quản lý dự án</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
                         <th>Công việc cần xử lý</th>
@@ -48,7 +48,7 @@
             
                         <td>{{$project->project_name}}</td>
                        
-                        <td>{{$project->e_name}}</td>
+                        <td>#</td>
                         <td>@foreach($all_employee as $key => $value) 
                             @if($project->project_name==$value->project_name)
                             {{$value->e_name}}<br>
@@ -95,7 +95,7 @@
                         
 
                         <td>
-                        <a href="{{URL::to('/info-task/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                        <a href="{{URL::to('/detail-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
@@ -113,7 +113,8 @@
                     </tr>
                 @endforeach                 
                 </tbody>
-            </table> 
+            </table>
+
         </div>
     </div><!-- container fluid -->
 
