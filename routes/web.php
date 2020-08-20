@@ -53,7 +53,7 @@ Route::get('/delete-task/{task_id}', 'ProjectController@delete_task');
 Route::get('/sm-task', 'ProjectController@sm_task');
 
 Route::post('/save-project','ProjectController@save_project');
-Route::post('/save-task/{product_id}', 'ProjectController@save_task');
+Route::post('/save-task', 'ProjectController@save_task');
 Route::post('/update-project/{project_id}', 'ProjectController@update_project');
 Route::post('/update-task/{task_id}', 'ProjectController@update_task');
 
