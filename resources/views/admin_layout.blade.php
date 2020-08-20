@@ -44,7 +44,7 @@
                 <div class="sidebar-inner slimscrollleft">
                     <div id="sidebar-menu">
                         <ul>
-                              
+                           
                             <li class="menu-title">Main</li>
                             <li>
                                 <a href="{{URL::to('/admin-dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
@@ -56,6 +56,8 @@
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
                                 </ul>
                             </li>
+                              
+                         
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -63,7 +65,8 @@
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
                                 </ul>
                             </li> 
-                                                     
+                          
+                                      
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-wallet"></i> <span> Quản lý lương </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -106,7 +109,7 @@
 
                             
 
-                           
+                      
 
 
                         </ul>
