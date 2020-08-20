@@ -40,7 +40,7 @@
 			    </div>
 			</div>
         	  <div class="form-group row">
-			    <label for="example-name-input" height="100" width="100" class="col-sm-2 col-form-label">Ảnh</label>
+			    <label for="example-name-input" class="col-sm-2 col-form-label">Ảnh</label>
 			    <div class="col-sm-4">
 			        <input class="form-control" type="file" name="customer_avatar" id="example-name-input">
 			    </div>
