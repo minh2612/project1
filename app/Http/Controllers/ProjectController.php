@@ -8,7 +8,7 @@ use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
-use CarbonCarbon;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -26,15 +26,15 @@ class ProjectController extends Controller
     public function add_project(){
         $this->AuthAdmin();
         $e=DB::table('tbl_e')->get();
-        return view('add_project')->with('e',$e);      
+        $customer= DB::table('tbl_customer')->get();
+        return view('add_project')->with('e',$e)->with('customer',$customer);      
     }
 
     public function add_task(){
         $this->AuthAdmin();
-        
         $e=DB::table('tbl_e')->get();
-        $project_id= DB::table('tbl_project')->get();
-        return view('add_task')->with('e',$e)->with('project_id',$project_id);      
+        $project= DB::table('tbl_project')->get();
+        return view('add_task')->with('e',$e)->with('project',$project);      
     }
 
 
@@ -42,16 +42,16 @@ class ProjectController extends Controller
     {
         $this->AuthAdmin();
         $all_task= DB::table('tbl_task')->get();
+        $all_project= DB::table('tbl_project')->get();
+        $all_customer= DB::table('tbl_customer')->get();
+        $all_employee= DB::table('tbl_e')->get();
 
-        $all_project= DB::table('tbl_project')->join('tbl_e','tbl_project.project_admin','=','tbl_e.e_id')->get();
+        // $all_employee=DB::table('tbl_employee_project')
+        // ->join('tbl_project','tbl_project.project_id','=','tbl_employee_project.project_id')
+        // ->join('tbl_e','tbl_employee_project.employee_id','=','tbl_e.e_id')->get();
 
 
-        $all_employee=DB::table('tbl_employee_project')
-        ->join('tbl_project','tbl_project.project_id','=','tbl_employee_project.project_id')
-        ->join('tbl_e','tbl_employee_project.employee_id','=','tbl_e.e_id')->get();
-
-
-        $manager_project = view('all_project')->with('all_project', $all_project)->with('all_employee',  $all_employee)->with('all_task',$all_task);
+        $manager_project = view('all_project')->with('all_project', $all_project)->with('all_customer',  $all_customer)->with('all_task',$all_task)->with('all_employee',$all_employee);
         return view('admin_layout')->with('all_project', $manager_project);
     }
     
@@ -59,16 +59,12 @@ class ProjectController extends Controller
     {
         $this->AuthAdmin();
         $all_task= DB::table('tbl_task')->get();
-
-        $all_project= DB::table('tbl_project')->join('tbl_e','tbl_project.project_admin','=','tbl_e.e_id')->get();
-
-
-        $all_employee=DB::table('tbl_employee_project')
-        ->join('tbl_project','tbl_project.project_id','=','tbl_employee_project.project_id')
-        ->join('tbl_e','tbl_employee_project.employee_id','=','tbl_e.e_id')->get();
+        $all_project= DB::table('tbl_project')->get();
+        $all_employee=DB::table('tbl_employee_task')
+        ->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->get();
 
 
-        $manager_task = view('all_task')->with('all_project', $all_project)->with('all_employee',  $all_employee)->with('all_task',$all_task);
+        $manager_task = view('all_task')->with('all_employee',  $all_employee)->with('all_task',$all_task)->with('all_project',  $all_project);
         return view('admin_layout')->with('all_task', $manager_task);
     }
 
@@ -76,13 +72,9 @@ class ProjectController extends Controller
         $this->AuthAdmin();
 
         //$this->AuthLogin();
-        $detail_project = DB::table('tbl_project')
-        ->join('tbl_position','tbl_position.position_id','=','tbl_e.position_id')
-        ->join('tbl_department','tbl_department.department_id','=','tbl_e.department_id')
-        ->orderby('tbl_e.department_id','desc')->where('e_id',$e_id)->get();
+        $detail_project = DB::table('tbl_project')->get();
 
-        
-        $manager_project  = view('detail_project')->with('detail_project',$detail_employee);
+        $manager_project  = view('detail_project')->with('detail_project',$detail_project);
         return view('admin_layout')->with('detail_project', $manager_project);
 
     }
@@ -112,28 +104,40 @@ class ProjectController extends Controller
         return view('admin_layout')->with('sm_task', $manager_sm);
    	}
 
-   	public function save_task(Request $request,$project_id){
+   	public function save_task(Request $request){
         $this->AuthAdmin();
         
         
         $data =array();
         $data1=array();
         $data['task_name'] = $request->task_name;
-        $data['task_admin'] = $request->task_admin;
         $data['task_start'] = $request->task_start;
         $data['task_end'] = $request->task_end;
         $data['task_note'] = $request->task_note;
-        $data['task_status'] = $request->task_status;
-        $data['project_id']=$project_id;
+        
+        if($request->task_start<=Carbon::now('Asia/Ho_Chi_Minh')){
+        $data['task_status'] = 1;
+    }
+    else{
+        $data['task_status'] = 0;
+    }
+        $data['project_id']=$request->project_id;
+        $get_image= $request->file('task_file');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public',  $new_image);
+            $data['task_file'] = $new_image;
+        }
         $id=DB::table('tbl_task')->insertGetId($data);
        foreach($request->employee_task as  $value) {
-             $data1['project_id']=$project_id;
              $data1['task_id']= $id;
              $data1['employee_id']= $value;
              DB::table('tbl_employee_task')->insert($data1);
          }
         Session::put('message','Thêm công việc thành công');
-        return Redirect::to('add-task/'.$project_id);
+        return Redirect::to('all-task/');
   
    	}
 
@@ -148,11 +152,9 @@ class ProjectController extends Controller
          $this->validate($request,
          [
             'project_name' => 'bail|required|unique:tbl_project',
-            'project_admin' => 'bail|required',
+            'project_manager' => 'bail|required',
             'project_start' => 'bail|required',
             'project_end' => 'bail|required|after:project_start',
-            'project_status' => 'bail|required',
-            'project_node' => 'bail|required|min:10',
           
             
         ],
@@ -168,49 +170,33 @@ class ProjectController extends Controller
 
         [
             'project_name' => 'Tên dự án',
-            'project_admin' => 'Người giao',
+            'project_manager' => 'Người giao',
             'project_start' => 'Ngày bắt đầu',
             'project_end' => 'Ngày kết thúc',
-            'project_status' => 'Tình trạng',
-            'project_node' => 'Ghi chú',
-            
             
         ]
 
     );
         $data['project_name'] = $request->project_name;
-        $data['project_admin'] = $request->project_admin;
+        $data['project_manager'] = $request->project_manager;
         $data['project_start'] = $request->project_start;
         $data['project_end'] = $request->project_end;
         $data['project_node'] = $request->project_node;
-        $data['project_status']=$request->project_status;
+        $data['project_status']=0;
+        $data['customer_id']=$request->customer_id;
+        $data['project_file']=$request->project_file;
+        $get_image= $request->file('project_file');
        // $data1['employee_id']=$request->employee_project;
-        
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public',  $new_image);
+            $data['project_file'] = $new_image;
+        }
 
         $id=DB::table('tbl_project')->insertGetId($data);
-       foreach($request->employee_project as  $value) {
-            $data1['project_id']=$id;
-            $data1['employee_id']=$value;
-            DB::table('tbl_employee_project')->insert($data1);
-        }
         Session::put('message','Thêm dự án thành công');
-        return Redirect::to('all-project');
-    }
-
-    public function unactive_project($project_id){
-        $this->AuthAdmin();
-        //$this->AuthLogin();
-        DB::table('tbl_project')->where('project_id',$project_id)->update(['project_status'=>0]);
-        Session::put('message','Dự án đã bắt đầu hoạt động');
-        return Redirect::to('all-project');
-
-    }
-
-    public function active_project($project_id){
-        $this->AuthAdmin();
-        //$this->AuthLogin();
-        DB::table('tbl_project')->where('project_id',$project_id)->update(['project_status'=>1]);
-        Session::put('message','Tạm ngưng dự án thành công');
         return Redirect::to('all-project');
     }
    
@@ -219,15 +205,15 @@ class ProjectController extends Controller
         $this->AuthAdmin();
         //$this->AuthLogin();
         DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>1]);
-        return Redirect::to('info-task');
+        return Redirect::to('all-task');
 
     }
 
     public function submit_task($task_id){
-        $this->AuthAdmin();
+     
         //$this->AuthLogin();
          DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>2]);
-        return Redirect::to('info-task');
+        return Redirect::to('all-task');
  	}
 
    	public function end_task($task_id){
