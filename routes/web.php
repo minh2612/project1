@@ -84,6 +84,7 @@ Route::get('/detail-position/{position_id}', 'PositionController@detail_position
 Route::get('/delete-position/{position_id}', 'PositionController@delete_position');
 Route::post('/update-position/{position_id}', 'PositionController@update_position');
 
+
 //Admin-customer-group
 Route::get('/add-customer-group','CustomerController@add_customer_group');
 Route::get('/all-customer-group','CustomerController@all_customer_group');
@@ -92,6 +93,16 @@ Route::get('/edit-customer-group/{group_id}', 'CustomerController@edit_customer_
 Route::get('/detail-customer-group/{group_id}', 'CustomerController@detail_customer_group');
 Route::get('/delete-customer-group/{group_id}', 'CustomerController@delete_customer_group');
 Route::post('/update-customer-group/{group_id}', 'CustomerController@update_customer_group');
+
+//Admin-Customer
+Route::get('/add-customer','CustomerController@add_customer');
+Route::get('/all-customer','CustomerController@all_customer');
+Route::post('/save-customer', 'CustomerController@save_customer');
+Route::get('/edit-customer/{customer_id}', 'CustomerController@edit_customer');
+Route::get('/detail-customer/{customer_id}', 'CustomerController@detail_customer');
+Route::get('/delete-customer/{customer_id}', 'CustomerController@delete_customer');
+Route::post('/update-customer/{customer_id}', 'CustomerController@update_customer');
+
 
 //Users
 
