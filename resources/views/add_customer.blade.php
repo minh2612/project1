@@ -45,7 +45,7 @@
 			        <input class="form-control" type="email" name="customer_email" id="example-email-input">
 			    </div>
 			</div>
-        	  
+
 			<div class="form-group row">
 			    <label for="example-tel-input" class="col-sm-2 col-form-label">Năm sinh</label>
 			    <div class="col-sm-4">

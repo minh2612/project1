@@ -44,6 +44,7 @@
                 <div class="sidebar-inner slimscrollleft">
                     <div id="sidebar-menu">
                         <ul>
+                              
                             <li class="menu-title">Main</li>
                             <li>
                                 <a href="{{URL::to('/admin-dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
@@ -61,6 +62,7 @@
                                     <li><a href="{{URL::to('/add-project')}}">Thêm dự án</a></li>
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
                                 </ul>
+
                             </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -69,6 +71,7 @@
                                     <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
                                 </ul>
                             </li>                              
+
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-wallet"></i> <span> Quản lý lương </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -83,13 +86,16 @@
                                     <li><a href="{{URL::to('/all-department')}}">Danh sách phòng ban</a></li>
                                 </ul>
                             </li>
+                            
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý chức vụ </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/add-position')}}">Thêm chức vụ</a></li>
                                     <li><a href="{{URL::to('/all-position')}}">Danh sách chức vụ</a></li>
                                 </ul>
-                            </li>    
+
+                            </li> 
+                             </li>    
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -97,6 +103,20 @@
                                     <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
                                 </ul>
                             </li> 
+
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý nhóm khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{URL::to('/add-customer-group')}}">Thêm nhóm khách hàng</a></li>
+                                    <li><a href="{{URL::to('/all-customer-group')}}">Danh sách nhóm khách hàng</a></li>
+                                </ul>
+                            </li> 
+
+                            
+
+                           
+
+
                         </ul>
                     </div>
                     <div class="clearfix"></div>

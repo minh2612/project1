@@ -30,6 +30,7 @@
                 <thead>
                     <tr>
                         <th>Tên dự án</th>
+
                         
                         <th>Tên khách hàng</th>
                         <th>Người quản lý dự án</th>
@@ -38,6 +39,7 @@
                         <th>Công việc<br>cần xử lý</th>
                         <th>Công việc<br>đã hoàn thành</th>
                         <th>Công việc<br>chưa hoàn thành</th>
+
                         <th>Hành động</th>
                         <th>Trạng thái</th>
                     </tr>

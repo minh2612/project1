@@ -12,26 +12,17 @@ use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
-    public function AuthAdmin(){
-        $admin_id = Session::get('e_id');
-        $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
-         $id1=$id->is_admin;
-
-        if($admin_id && $id1==1){
-            return Redirect::to('admin-dashboard');
-        }else{
-            return Redirect::to('/')->send();
-        }
-    }
+  
     public function add_project(){
-        $this->AuthAdmin();
+      
         $e=DB::table('tbl_e')->get();
         $customer= DB::table('tbl_customer')->get();
         return view('add_project')->with('e',$e)->with('customer',$customer);      
     }
 
+
     public function add_task(){
-        $this->AuthAdmin();
+
         $e=DB::table('tbl_e')->get();
         $project= DB::table('tbl_project')->get();
         return view('add_task')->with('e',$e)->with('project',$project);      
@@ -40,7 +31,7 @@ class ProjectController extends Controller
 
     public function all_project()
     {
-        $this->AuthAdmin();
+
         $all_task= DB::table('tbl_task')->get();
         $all_project= DB::table('tbl_project')->get();
         $all_customer= DB::table('tbl_customer')->get();
@@ -57,7 +48,7 @@ class ProjectController extends Controller
     
     public function all_task()
     {
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
         $all_task= DB::table('tbl_task')->get();
         $all_project= DB::table('tbl_project')->get();
         $all_employee=DB::table('tbl_employee_task')
@@ -69,7 +60,7 @@ class ProjectController extends Controller
     }
 
     public function detail_project($project_id){
-        $this->AuthAdmin();
+        //this->AuthAdmin();
 
         //$this->AuthLogin();
         $detail_project = DB::table('tbl_project')->get();
@@ -79,14 +70,14 @@ class ProjectController extends Controller
 
     }
     public function delete_project($project_id){
-        $this->AuthAdmin();
+   
         DB::table('tbl_project')->where('project_id', $project_id)->delete();
         Session::put('message', 'Xóa dự án thành công');
         return Redirect::to('all-project');
     }
 
 	public function info_task($project_id){
-        $this->AuthAdmin();
+      
        $info_task= DB::table('tbl_task')->where('project_id',$project_id)->get();
 
        $all_user= DB::table('tbl_employee_task')
@@ -98,14 +89,16 @@ class ProjectController extends Controller
    	}
 
    	public function sm_task(){
-        $this->AuthAdmin();
+        
        $sm_task= DB::table('tbl_task')->where('task_status',2)->get();
         $manager_sm = view('sm_task')->with('sm_task', $sm_task);
         return view('admin_layout')->with('sm_task', $manager_sm);
    	}
 
+
    	public function save_task(Request $request){
-        $this->AuthAdmin();
+       //$this->AuthAdmin();
+
         
         
         $data =array();
@@ -144,8 +137,8 @@ class ProjectController extends Controller
  
 
     public function save_project(Request $request){
-        $this->AuthAdmin();
-        // $this->AuthLogin();
+       
+        
         $data = array();
         $data1=array();
 
@@ -199,10 +192,12 @@ class ProjectController extends Controller
         Session::put('message','Thêm dự án thành công');
         return Redirect::to('all-project');
     }
+
+
    
     
     public function start_task($task_id){
-        $this->AuthAdmin();
+    
         //$this->AuthLogin();
         DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>1]);
         return Redirect::to('all-task');
@@ -210,14 +205,14 @@ class ProjectController extends Controller
     }
 
     public function submit_task($task_id){
-     
+
         //$this->AuthLogin();
          DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>2]);
         return Redirect::to('all-task');
  	}
 
    	public function end_task($task_id){
-        $this->AuthAdmin();
+    
         //$this->AuthLogin();
          DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>3]);
          $project=  DB::table('tbl_task')->first();
@@ -226,7 +221,7 @@ class ProjectController extends Controller
  	}
 
     public function refuse_task($task_id){
-        $this->AuthAdmin();
+       
         //$this->AuthLogin();
          DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>4]);
          $project=  DB::table('tbl_task')->first();
@@ -235,7 +230,7 @@ class ProjectController extends Controller
  	}
 
    	public function edit_task($task_id){
-        $this->AuthAdmin();
+   
         $edit_task=DB::table('tbl_task')->where('task_id',$task_id)->get();
         $manager_task = view('edit_task')->with('edit_task',$edit_task);
 
@@ -244,7 +239,7 @@ class ProjectController extends Controller
    	}
 
    	public function update_task(Request $request,$task_id){
-        $this->AuthAdmin();
+
         $data = array();
         $data['task_name'] = $request->task_name;
         $data['task_admin'] = $request->task_admin;

@@ -44,13 +44,13 @@
 
                                     <h4 class="text-muted float-left font-18 mt-4">Sign In</h4>
                                     <div>
-                                        <a href="{{URL::to('/log_in1')}}" class="logo logo-admin"><img src="assets/images/logo_dark.png" height="28" alt="logo"></a>
+                                        <a href="" class="logo logo-admin"><img src="assets/images/logo_dark.png" height="28" alt="logo"></a>
 
                                     
                                     </div>
                                 </div>
                                 <div class="p-2">
-                                    <form class="form-horizontal m-t-20" method="post" action="{{URL::to('/log_in1')}}">
+                                    <form class="form-horizontal m-t-20" method="post" action="{{URL::to('/login')}}">
                                         {{ csrf_field() }}
                                    
                                         <div class="form-group row">
@@ -86,7 +86,11 @@
                                                 <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
                                             </div>
                                         </div>
-          
+                                          <div>
+                                       
+
+                                    
+                                    </div>
                                     </form>
                                     <?php
                                         $message= Session::get('message');

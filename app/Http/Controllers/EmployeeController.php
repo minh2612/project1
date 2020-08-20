@@ -5,27 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use Auth;
+use App\Admin;
+use App\Roles;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
 class EmployeeController extends Controller
 {
-  public function AuthAdmin(){
-        $admin_id = Session::get('e_id');
-        $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
-         $id1=$id->is_admin;
 
-        if($admin_id && $id1==1){
-            return Redirect::to('admin-dashboard');
-        }else{
-            return Redirect::to('/')->send();
-        }
-    }
 
     public function add_employee()
     {
-        $this->AuthAdmin();
+        
         $e_department = DB::table('tbl_department')->orderby('department_id','desc')->get(); 
         $e_position = DB::table('tbl_position')->orderby('position_id','desc')->get(); 
        
@@ -34,19 +27,34 @@ class EmployeeController extends Controller
     }
 
     public function all_employee(){
-        $this->AuthAdmin();
-        //$this->AuthLogin();
-        $all_employee = DB::table('tbl_e')
-        ->join('tbl_position','tbl_position.position_id','=','tbl_e.position_id')
-        ->join('tbl_department','tbl_department.department_id','=','tbl_e.department_id')
-        ->orderby('tbl_e.department_id','desc')->get();
+       
+        
+        $all_employee = Admin::with('roles')->orderBy('e_id','DESC')->get();
+
         $manager_employee  = view('all_employee')->with('all_employee',$all_employee);
         return view('admin_layout')->with('all_employee', $manager_employee);
 
     }
 
+    public function assign_roles(Request $request){
+       $data = $request->all();
+        $user = Admin::where('e_email',$data['e_email'])->first();
+      
+        $user->roles()->detach();
+        if($request['admin_role']){
+           $user->roles()->attach(Roles::where('name','admin')->first());     
+        }
+        if($request['manager_role']){
+           $user->roles()->attach(Roles::where('name','manager')->first());     
+        }
+        if($request['user_role']){
+           $user->roles()->attach(Roles::where('name','user')->first());     
+        }
+        return redirect()->back()->with('message','Cấp quyền thành công');
+    }
+
      public function detail_employee($e_id){
-        $this->AuthAdmin();
+        
 
         //$this->AuthLogin();
         $detail_employee = DB::table('tbl_e')
@@ -62,7 +70,7 @@ class EmployeeController extends Controller
 
 
     public function save_employee(Request $request){
-        $this->AuthAdmin();
+      
             $this->validate($request,
         [
              'e_avatar' => 'bail|required',
@@ -133,7 +141,7 @@ class EmployeeController extends Controller
     }
    
     public function edit_employee($e_id){
-        $this->AuthAdmin();
+        
         // $this->AuthLogin();
 
         $e_department = DB::table('tbl_department')->get(); 
@@ -148,13 +156,12 @@ class EmployeeController extends Controller
     }
 
     public function update_employee(Request $request, $e_id){
-        $this->AuthAdmin();
+        
         // $this->AuthLogin();
             $this->validate($request,
         [
                        
             'e_email' => 'bail|email|min:5|max:25',
-            'e_password' =>'bail|min:5|max:50',
             'e_phone' => 'bail|alpha_num',
             
                 
@@ -211,7 +218,7 @@ class EmployeeController extends Controller
     }
 
     public function delete_employee($e_id){
-        $this->AuthAdmin();
+       
         //$this->AuthLogin();
         DB::table('tbl_e')->where('e_id',$e_id)->delete();
         Session::put('message','Xóa sản phẩm thành công');
