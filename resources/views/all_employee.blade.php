@@ -35,6 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     
                 @foreach($all_employee as $key => $user)
             <form action="{{url('/assign-roles')}}" method="POST">
@@ -47,6 +48,21 @@
                         <i class="fa fa-eye"></i>  
                     <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
                         <i class="fa fa-edit"></i>
+
+                    <!--  @php
+                        $i=0;
+                        @endphp
+                @foreach($all_employee as $key => $employee)
+                @php
+                        $i++;
+                        @endphp
+                    <tr>
+                        <td>{{$i}}</td>
+                        <td>{{ $employee->e_name }}</td>
+                        <td>{{ $employee->e_email }}</td>
+                        <td>{{ $employee->position_name}}</td>
+                        <td>{{ $employee->department_name }}</td>
+
                      
                     <a onclick="return confirm('Bạn có chắc là muốn xóa nhân viên này ko?')" href="{{URL::to('/delete-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
                         <i class="fa fa-trash-alt"></i>
