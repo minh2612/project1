@@ -43,30 +43,33 @@
 			<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Tên khách hàng</label>
 		        <div class="col-sm-4">
-		            <select class="form-control"  name="customer">
-                        <option value="Khách hàng"></option>      
+		            <select class="form-control"  name="customer_id">
+                        @foreach($customer as $key => $customer1)
+                        <option value="{{$customer1 ->customer_id}}">{{$customer1 ->customer_name}}</option>
+                        @endforeach    
 		            </select>
 		        </div>
 		    </div>
+            
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Người quản lý dự án</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="task_admin">
+                    <select class="form-control" name="project_manager">
                         @foreach($e as $key => $e1)
-                        <option value="{{$e1 ->e_name}}">{{$e1 ->e_name}}</option>
+                        <option value="{{$e1 ->e_id}}">{{$e1 ->e_name}}</option>
                         @endforeach       
                     </select>
                 </div>
             </div>
 			<div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <input class="form-control" type="date" name="project_start" id="today">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <input class="form-control" type="date" name="project_end">
                 </div>
             </div>			
@@ -76,6 +79,12 @@
                     <textarea required class="form-control" name="project_node" rows="5"></textarea>
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">File đính kèm</label>
+                <div class="col-sm-4">
+                    <input type="file" name="project_file">
+                </div>
+            </div>  
             <ul>
                @foreach ($errors->all() as $error)
                     <li>{{$error }}</li>
