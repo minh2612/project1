@@ -31,9 +31,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                     @php
+                        $i=0;
+                        @endphp
                 @foreach($all_employee as $key => $employee)
+                @php
+                        $i++;
+                        @endphp
                     <tr>
-                        <td>#</td>
+                        <td>{{$i}}</td>
                         <td>{{ $employee->e_name }}</td>
                         <td>{{ $employee->e_email }}</td>
                         <td>{{ $employee->position_name}}</td>
