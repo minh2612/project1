@@ -11,26 +11,16 @@ session_start();
 
 class CustomerGroupController extends Controller
 {
-    public function AuthAdmin(){
-        $admin_id = Session::get('e_id');
-        $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
-         $id1=$id->is_admin;
-
-        if($admin_id && $id1==1){
-            return Redirect::to('admin-dashboard');
-        }else{
-            return Redirect::to('/')->send();
-        }
-    }
+    
 
     public function add_customer_group()
     {
-        $this->AuthAdmin();
+       // $this->AuthAdmin();
         return view('add_customer_group');     
     }
 
     public function all_customer_group(){
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
         $all_customer_group= DB::table('tbl_customer_group')->get();
         $manager_customer_group = view('all_customer_group')->with('all_customer_group', $all_customer_group);
         return view('admin_layout')->with('all_customer_group', $manager_customer_group);
@@ -38,7 +28,7 @@ class CustomerGroupController extends Controller
         }
 
     public function save_customer_group(Request $request){
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
         $data = array();
         $data['customer_group_name']= $request->customer_group_name;
               $this->validate($request,
@@ -67,7 +57,7 @@ class CustomerGroupController extends Controller
     }
 
    public function detail_customer_group($customer_group_id){
-        $this->AuthAdmin();
+      //  $this->AuthAdmin();
 
         //$this->AuthLogin();
         $detail_customer_group = DB::table('tbl_customer_group')->where('customer_group_id',$customer_group_id)->get();
@@ -79,14 +69,14 @@ class CustomerGroupController extends Controller
 
     }
     public function edit_customer_group($customer_group_id){
-        $this->AuthAdmin();
+       // $this->AuthAdmin();
         $edit_customer_group= DB::table('tbl_customer_group')->where('customer_group_id', $customer_group_id)->get();
         $manager_customer_group = view('edit_customer_group')->with('edit_customer_group', $edit_customer_group);
         return view('admin_layout')->with('edit_customer_group', $manager_customer_group);
     }
 
     public function update_customer_group(Request $request, $customer_group_id){
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
         $data = array();
         $data['customer_group_name']= $request->customer_group_name;
         DB::table('tbl_customer_group')->where('customer_group_id', $customer_group_id)->update($data);
@@ -95,7 +85,7 @@ class CustomerGroupController extends Controller
     }
 
     public function delete_customer_group($customer_group_id){
-        $this->AuthAdmin();
+       // $this->AuthAdmin();
         DB::table('tbl_customer_group')->where('customer_group_id', $customer_group_id)->delete();
         Session::put('message', 'Xóa thành công');
         return Redirect::to('all-customer-group');
