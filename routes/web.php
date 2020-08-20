@@ -86,6 +86,7 @@ Route::get('/delete-position/{position_id}', 'PositionController@delete_position
 Route::post('/update-position/{position_id}', 'PositionController@update_position');
 
 
+
 //Admin-customer-group
 Route::get('/add-customer-group','CustomerController@add_customer_group');
 Route::get('/all-customer-group','CustomerController@all_customer_group');
