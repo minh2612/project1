@@ -14,14 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 //Home
 Route::get('/','HomeController@index');
-
-Route::post('/log_in1','HomeController@login');
+Route::post('/login','HomeController@login');
 Route::get('/admin-dashboard', 'HomeController@show_dashboard');
-//Admin
 Route::get('/logout', 'HomeController@logout');
-Route::get('/trang-admin','HomeController@trang_admin');
-
-Route::get('/user-dashboard','HomeController@user_dashboard');
+Route::post('assign-roles','EmployeeController@assign_roles');
 
 //Admin-Employee
 Route::get('/add-employee','EmployeeController@add_employee');
@@ -88,6 +84,15 @@ Route::get('/detail-position/{position_id}', 'PositionController@detail_position
 Route::get('/delete-position/{position_id}', 'PositionController@delete_position');
 Route::post('/update-position/{position_id}', 'PositionController@update_position');
 
+//Admin-customer-group
+Route::get('/add-customer-group','CustomerController@add_customer_group');
+Route::get('/all-customer-group','CustomerController@all_customer_group');
+Route::post('/save-customer-group','CustomerController@save_customer_group');
+Route::get('/edit-customer-group/{group_id}', 'CustomerController@edit_customer_group');
+Route::get('/detail-customer-group/{group_id}', 'CustomerController@detail_customer_group');
+Route::get('/delete-customer-group/{group_id}', 'CustomerController@delete_customer_group');
+Route::post('/update-customer-group/{group_id}', 'CustomerController@update_customer_group');
+
 //Users
 
 Route::get('/loading-task','UserProject@loading_task');
@@ -104,4 +109,10 @@ Route::get('/users-show-employee','UsersController@show_employee');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@home')->name('home');
+
+//auth role
+// Route::get('/register-auth','AuthController@register_auth');
+// Route::post('/register','AuthController@register');
+
+
 
