@@ -129,7 +129,7 @@ class CustomerController extends Controller
             $get_image->move('public/avatar',  $new_image);
             $data['customer_avatar'] = $new_image;
             DB::table('tbl_customer')->insert($data);
-            Session::put('message','Thêm nhân viên thành công');
+            Session::put('message','Thêm khách hàng thành công');
              return Redirect::to('add-customer');
         }
    
@@ -217,12 +217,12 @@ class CustomerController extends Controller
                     $get_image->move('public/avatar',$new_image);
                     $data['customer_avatar'] = $new_image;
                     DB::table('tbl_customer')->where('customer_id',$customer_id)->update($data);
-                    Session::put('message','Cập nhật nhân viên thành công');
+                    Session::put('message','Cập nhật khách hàng thành công');
                     return Redirect::to('all-customer');
         }
         else{
         DB::table('tbl_customer')->where('customer_id',$customer_id)->update($data);
-        Session::put('message','Cập nhật sản phẩm thành công');
+        Session::put('message','Cập nhật thông tin thành công');
         return Redirect::to('all-customer');
     }
     }
@@ -231,7 +231,7 @@ class CustomerController extends Controller
         $this->AuthAdmin();
         //$this->AuthLogin();
         DB::table('tbl_customer')->where('customer_id',$customer_id)->delete();
-        Session::put('message','Xóa sản phẩm thành công');
+        Session::put('message','Xóa khách hàng thành công');
         return Redirect::to('all-customer');
     }
 }
