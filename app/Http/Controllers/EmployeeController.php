@@ -14,21 +14,11 @@ session_start();
 
 class EmployeeController extends Controller
 {
-  public function AuthAdmin(){
-        $admin_id = Auth::user()->e_id;
-        $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
-         $id1=$id->is_admin;
 
-        if($admin_id && $id1==1){
-            return Redirect::to('admin-dashboard');
-        }else{
-            return Redirect::to('/')->send();
-        }
-    }
 
     public function add_employee()
     {
-        $this->AuthAdmin();
+        
         $e_department = DB::table('tbl_department')->orderby('department_id','desc')->get(); 
         $e_position = DB::table('tbl_position')->orderby('position_id','desc')->get(); 
        
@@ -38,7 +28,7 @@ class EmployeeController extends Controller
 
     public function all_employee(){
        
-        //$this->AuthLogin();
+        
         $all_employee = Admin::with('roles')->orderBy('e_id','DESC')->get();
 
         $manager_employee  = view('all_employee')->with('all_employee',$all_employee);
@@ -64,7 +54,7 @@ class EmployeeController extends Controller
     }
 
      public function detail_employee($e_id){
-        $this->AuthAdmin();
+        
 
         //$this->AuthLogin();
         $detail_employee = DB::table('tbl_e')
@@ -80,7 +70,7 @@ class EmployeeController extends Controller
 
 
     public function save_employee(Request $request){
-        $this->AuthAdmin();
+      
             $this->validate($request,
         [
              'e_avatar' => 'bail|required',
@@ -151,7 +141,7 @@ class EmployeeController extends Controller
     }
    
     public function edit_employee($e_id){
-        $this->AuthAdmin();
+        
         // $this->AuthLogin();
 
         $e_department = DB::table('tbl_department')->get(); 
@@ -166,7 +156,7 @@ class EmployeeController extends Controller
     }
 
     public function update_employee(Request $request, $e_id){
-        $this->AuthAdmin();
+        
         // $this->AuthLogin();
             $this->validate($request,
         [
@@ -228,7 +218,7 @@ class EmployeeController extends Controller
     }
 
     public function delete_employee($e_id){
-        $this->AuthAdmin();
+       
         //$this->AuthLogin();
         DB::table('tbl_e')->where('e_id',$e_id)->delete();
         Session::put('message','Xóa sản phẩm thành công');
