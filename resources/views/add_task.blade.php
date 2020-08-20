@@ -39,20 +39,20 @@
 			        <input class="form-control" type="text" name="task_name">
 			    </div>
 			</div>
-			<div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Người giao </label>
-		        <div class="col-sm-4">
-		            <select class="form-control"  name="task_admin" id="task_admin">
-                        @foreach($e as $key => $e1)
-                        <option value="{{$e1 ->e_name}}">{{$e1 ->e_name}}</option>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tên dự án</label>
+                <div class="col-sm-4">
+                    <select class="form-control"  name="project_id" >
+                        @foreach($project as $key => $project1)
+                        <option value="{{$project1 ->project_id}}">{{$project1 ->project_name}}</option>
                         @endforeach       
-		            </select>
-		        </div>
-		    </div>
+                    </select>
+                </div>
+            </div>
 			<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Người nhận</label>
 		        <div class="col-sm-4">
-		            <select multiple="true" class="form-control select2 js-example-basic-single" name="employee_task[]" id="employee_task">
+		            <select multiple="true" class="form-control select2 js-example-basic-single" name="employee_task[]" >
 	                    @foreach($e as $key => $e1)
 	                    <option value="{{$e1 ->e_id}}">{{$e1 ->e_name}}</option>
 	                    @endforeach       
@@ -74,13 +74,13 @@
 			<div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-sm-4">
-                    <textarea required class="form-control" name="task_node" rows="5"></textarea>
+                    <textarea required class="form-control" name="task_note" rows="5"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-2">
-                    <input  type="file" name="file">
+                    <input  type="file" name="task_file">
                 </div>
             </div>  
             <button type="submit" name="add_task" class="btn btn-success waves-effect waves-light">Thêm công việc</button>
