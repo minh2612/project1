@@ -12,21 +12,21 @@ session_start();
 
 class CustomerController extends Controller
 {
-    public function AuthAdmin(){
-        $admin_id = Session::get('e_id');
-        $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
-         $id1=$id->is_admin;
+    // public function AuthAdmin(){
+    //     $admin_id = Session::get('e_id');
+    //     $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
+    //      $id1=$id->is_admin;
 
-        if($admin_id && $id1==1){
-            return Redirect::to('admin-dashboard');
-        }else{
-            return Redirect::to('/')->send();
-        }
-    }
+    //     if($admin_id && $id1==1){
+    //         return Redirect::to('admin-dashboard');
+    //     }else{
+    //         return Redirect::to('/')->send();
+    //     }
+    // }
 
     public function add_customer()
     {
-        $this->AuthAdmin();
+      //  $this->AuthAdmin();
         $customer_employee = DB::table('tbl_e')->orderby('e_id','desc')->get(); 
         $customer_groups = DB::table('tbl_customer_group')->orderby('customer_group_id','desc')->get(); 
        
@@ -35,7 +35,7 @@ class CustomerController extends Controller
     }
 
     public function all_customer(){
-        $this->AuthAdmin();
+       // $this->AuthAdmin();
         //$this->AuthLogin();
         $all_customer = DB::table('tbl_customer')
         ->join('tbl_e','tbl_e.e_id','=','tbl_customer.e_id')
@@ -47,7 +47,7 @@ class CustomerController extends Controller
     }
 
      public function detail_customer($customer_id){
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
 
         //$this->AuthLogin();
         $detail_customer = DB::table('tbl_customer')
@@ -63,7 +63,7 @@ class CustomerController extends Controller
 
 
     public function save_customer(Request $request){
-        $this->AuthAdmin();
+       // $this->AuthAdmin();
             $this->validate($request,
         [
             'customer_avatar' => 'bail|required',
@@ -136,7 +136,7 @@ class CustomerController extends Controller
     }
    
     public function edit_customer($customer_id){
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
         // $this->AuthLogin();
 
         $customer_employee = DB::table('tbl_e')->orderby('e_id','desc')->get(); 
@@ -151,7 +151,7 @@ class CustomerController extends Controller
     }
 
     public function update_customer(Request $request, $customer_id){
-        $this->AuthAdmin();
+       // $this->AuthAdmin();
         // $this->AuthLogin();
             $this->validate($request,
          [
@@ -228,7 +228,7 @@ class CustomerController extends Controller
     }
 
     public function delete_customer($customer_id){
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
         //$this->AuthLogin();
         DB::table('tbl_customer')->where('customer_id',$customer_id)->delete();
         Session::put('message','Xóa khách hàng thành công');
