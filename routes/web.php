@@ -79,6 +79,7 @@ Route::get('/detail-department/{department_id}', 'DepartmentController@detail_de
 Route::get('/edit-department/{department_id}', 'DepartmentController@edit_department');
 Route::get('/delete-department/{department_id}', 'DepartmentController@delete_department');
 Route::post('/update-department/{department_id}', 'DepartmentController@update_department');
+
 //Admin-Position
 Route::get('/add-position','PositionController@add_position');
 Route::get('/all-position','PositionController@all_position');
@@ -96,6 +97,15 @@ Route::get('/edit-customer/{customer_id}', 'CustomerController@edit_customer');
 Route::get('/detail-customer/{customer_id}', 'CustomerController@detail_customer');
 Route::get('/delete-customer/{customer_id}', 'CustomerController@delete_customer');
 Route::post('/update-customer/{customer_id}', 'CustomerController@update_customer');
+
+//Admin-Customer-Group
+Route::get('/add-customer-group','CustomerGroupController@add_customer_group');
+Route::get('/all-customer-group','CustomerGroupController@all_customer_group');
+Route::post('/save-customer-group','CustomerGroupController@save_customer_group');
+Route::get('/detail-customer-group/{customer_group_id}', 'CustomerGroupController@detail_customer_group');
+Route::get('/edit-customer-group/{customer_group_id}', 'CustomerGroupController@edit_customer_group');
+Route::get('/delete-customer-group/{customer_group_id}', 'CustomerGroupController@delete_customer_group');
+Route::post('/update-customer-group/{customer_group_id}', 'CustomerGroupController@update_customer_group');
 
 //Users
 
