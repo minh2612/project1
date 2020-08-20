@@ -154,7 +154,6 @@ class EmployeeController extends Controller
         [
                        
             'e_email' => 'bail|email|min:5|max:25',
-            'e_password' =>'bail|min:5|max:50',
             'e_phone' => 'bail|alpha_num',
             
                 
