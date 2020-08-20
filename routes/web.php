@@ -20,13 +20,15 @@ Route::get('/logout', 'HomeController@logout');
 Route::post('assign-roles','EmployeeController@assign_roles');
 
 //Admin-Employee
-Route::get('/add-employee','EmployeeController@add_employee');
+//Route::group(['middleware' => 'roles', 'roles'=>['admin','author']], function () {
+Route::get('/add-employee','EmployeeController@add_employee')->middleware('auth.roles');
 Route::get('/all-employee','EmployeeController@all_employee');
 Route::post('/save-employee', 'EmployeeController@save_employee');
 Route::get('/edit-employee/{e_id}', 'EmployeeController@edit_employee');
 Route::get('/detail-employee/{e_id}', 'EmployeeController@detail_employee');
 Route::get('/delete-employee/{e_id}', 'EmployeeController@delete_employee');
 Route::post('/update-employee/{e_id}', 'EmployeeController@update_employee');
+//});
 //Admin-Project
 Route::get('/add-project','ProjectController@add_project');
 Route::get('/edit-project/{project_id}', 'ProjectController@edit_project');
