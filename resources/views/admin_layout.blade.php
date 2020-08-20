@@ -64,9 +64,21 @@
                                     <li><a href="{{URL::to('/add-project')}}">Thêm dự án</a></li>
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
                                 </ul>
-                            </li> 
+                           </li> 
                           
                                       
+
+
+                           
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{URL::to('/add-task')}}">Thêm công việc</a></li>
+                                    <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
+                                </ul>
+                            </li>                              
+
+
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-wallet"></i> <span> Quản lý lương </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -92,7 +104,7 @@
                             </li> 
                              </li>    
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/add-customer')}}">Thêm khách hàng</a></li>
                                     <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
@@ -190,5 +202,8 @@
         <script src="{{asset('assets/pages/datatables.init.js')}}"></script>    
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
+        <script type="text/javascript">
+        document.querySelector("#today").valueAsDate = new Date();
+        </script>
     </body>
 </html>

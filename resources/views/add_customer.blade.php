@@ -26,7 +26,13 @@
         </div> 
         <!-- end page title -->
         <form role="form" action="{{URL::to('/save-customer')}}" method="post" enctype="multipart/form-data">
-        	{{csrf_field()}}  
+        	{{csrf_field()}}
+        	<div class="form-group row">
+			    <label for="example-name-input" height="100" width="100" class="col-sm-2 col-form-label">Ảnh</label>
+			    <div class="col-sm-2">
+			        <input type="file" name="customer_avatar">
+			    </div>
+			</div> 	  
         	<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Tên khách hàng</label>
 			    <div class="col-sm-4">
@@ -39,13 +45,7 @@
 			        <input class="form-control" type="email" name="customer_email" id="example-email-input">
 			    </div>
 			</div>
-        	  <div class="form-group row">
-			    <label for="example-name-input" class="col-sm-2 col-form-label">Ảnh</label>
-			    <div class="col-sm-4">
-			        <input class="form-control" type="file" name="customer_avatar" id="example-name-input">
-			    </div>
-			</div> 	
-			
+
 			<div class="form-group row">
 			    <label for="example-tel-input" class="col-sm-2 col-form-label">Năm sinh</label>
 			    <div class="col-sm-4">
@@ -77,7 +77,7 @@
 
 	    	<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Người tạo</label>
-		        <div class="col-sm-2">
+		        <div class="col-sm-4">
 		            <select class="form-control" name="e_id">
                     @foreach($customer_employee as $key => $employee)
                     <option value="{{$employee->e_id}}">{{$employee->e_name}}</option>
@@ -87,7 +87,7 @@
 		    </div>
 	    	<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Nhóm khách hàng</label>
-		        <div class="col-sm-2">
+		        <div class="col-sm-4">
 		            <select class="form-control" name="customer_group_id">
                     @foreach($customer_groups as $key => $customer_group)
                     <option value="{{$customer_group->customer_group_id}}">{{$customer_group->customer_group_name}}</option>

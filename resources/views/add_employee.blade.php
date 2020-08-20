@@ -27,10 +27,10 @@
         <!-- end page title -->
         <form role="form" action="{{URL::to('/save-employee')}}" method="post" enctype="multipart/form-data">
         	{{csrf_field()}}  
-        	  <div class="form-group row">
+        	<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Ảnh</label>
-			    <div class="col-sm-4">
-			        <input class="form-control" type="file" name="e_avatar" id="example-name-input">
+			    <div class="col-sm-2">
+			        <input type="file" name="e_avatar">
 			    </div>
 			</div> 	
 			<div class="form-group row">
@@ -80,7 +80,7 @@
 
 	    	<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Phòng ban</label>
-		        <div class="col-sm-2">
+		        <div class="col-sm-4">
 		            <select class="form-control" name="department_id">
                     @foreach($e_department as $key => $department)
                     <option value="{{$department->department_id}}">{{$department->department_name}}</option>
@@ -90,7 +90,7 @@
 		    </div>
 	    	<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Chức vụ</label>
-		        <div class="col-sm-2">
+		        <div class="col-sm-4">
 		            <select class="form-control" name="position_id">
                     @foreach($e_position as $key => $position)
                     <option value="{{$position->position_id}}">{{$position->position_name}}</option>
