@@ -8,7 +8,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Chi tiết nhân viên</h4>
+                            <h4 class="page-title m-0">Chi tiết dự án</h4>
                         </div>
                         <!-- end col -->
                     </div>
@@ -17,51 +17,37 @@
                 <!-- end page-title-box -->
             </div>
         </div> 
-        <!-- end page title -->    	
-		<div class="table-responsive">
+        <!-- end page title -->     
+    <div class="table-responsive">
             <table id="datatable" class="table table-hover " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 
-                    	
-                 @foreach($detail_employee as $key => $employee)
-                  
-                         <tr>
-                            <th>Avatar</th>  
-                            <td><img src="{{ URL::to('/public/avatar/'.$employee->e_avatar)}}" height="100" width="100" class="img-thumbnail">
-
-                       </tr>
-                
+                      
+                 @foreach($detail_project as $key => $project)
+                               
                        <tr>
-                            <th>Tên nhân viên</th>  
-                            <th>{{ $employee->e_name}}</th>
+                            <th>Tên dự án</th>  
+                            <th>{{ $project>project_name}}</th>
                        </tr>
                         <tr>
-                            <th>Email</th>  
-                            <th>{{ $employee->e_email}}</th>
+                            <th>Tên khách hàng</th>  
+                            <th>{{ $project->customer_name}}</th>
                        </tr>
                         <tr>
-                            <th>Chứng minh thư</th>  
-                            <th>{{ $employee->e_cmnd}}</th>
+                            <th>Người quản lý dự án</th>  
+                            <th>{{ $project->e_name}}</th>
                        </tr>
                         <tr>
-                            <th>Địa chỉ</th>  
-                            <th>{{ $employee->e_address}}</th>
+                            <th>Ngày bắt đầu</th>  
+                            <th>{{ $project->project_start}}</th>
+                       </tr>
+                        <tr>
+                            <th>Ngày kết thúc</th>  
+                            <th>{{ $project->project_end}}</th>
                        </tr>
                        <tr>
-                            <th>Số điện thoại</th>  
-                            <th>{{ $employee->e_phone}}</th>
-                       </tr>
-                       <tr>
-                            <th>Giới tính</th>  
-                            <th>{{ $employee->e_sex}}</th>
-                       </tr>
-                       <tr>
-                            <th>Chức vụ</th>  
-                            <th>{{ $employee->position_name}}</th>
-                       </tr>
-                       <tr>
-                            <th>Phòng ban</th>  
-                            <th>{{ $employee->department_name }}</th>
-                       </tr>
+                            <th>Các công việc cần làm</th>  
+                            <th>{{ $project->project_end}}</th>
+                       </tr> 
                         
                     
                 @endforeach                   
