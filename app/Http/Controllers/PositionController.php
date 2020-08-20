@@ -14,7 +14,7 @@ session_start();
 class PositionController extends Controller
 {
     public function AuthAdmin(){
-        $admin_id = Session::get('e_id');
+       $admin_id = Auth::user()->e_id;
         $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
          
 
@@ -32,7 +32,7 @@ class PositionController extends Controller
     }
 
     public function all_position(){
-        $this->AuthAdmin();
+        //$this->AuthAdmin();
         $all_position= DB::table('tbl_position')->get();
         $manager_position = view('all_position')->with('all_position', $all_position);
         return view('admin_layout')->with('all_position', $manager_position);
