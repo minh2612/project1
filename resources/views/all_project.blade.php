@@ -35,9 +35,9 @@
                         <th>Người quản lý dự án</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
-                        <th>Công việc cần xử lý</th>
-                        <th>Công việc đã hoàn thành</th>
-                        <th>Công việc chưa hoàn thành</th>
+                        <th>Công việc<br>cần xử lý</th>
+                        <th>Công việc<br>đã hoàn thành</th>
+                        <th>Công việc<br>chưa hoàn thành</th>
                         <th>Hành động</th>
                         <th>Trạng thái</th>
                     </tr>
@@ -47,13 +47,17 @@
                     <tr>
             
                         <td>{{$project->project_name}}</td>
-                       
-                        <td>#</td>
+    
+                        <td>@foreach($all_customer as $key => $value) 
+                            @if($project->customer_id==$value->customer_id)
+                            {{$value->customer_name}}<br>
+                            @endif
+                            @endforeach</td>
                         <td>@foreach($all_employee as $key => $value) 
-                            @if($project->project_name==$value->project_name)
+                            @if($project->project_manager==$value->e_id)
                             {{$value->e_name}}<br>
                             @endif
-                            @endforeach</td>                    
+                            @endforeach</td>                      
                         <td>{{$project->project_start}}</td>
                         <td>{{$project->project_end}}</td>
                         
