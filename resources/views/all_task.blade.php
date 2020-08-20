@@ -31,8 +31,7 @@
                     <tr>
                         <th>Tên công việc</th>
                         <th>Tên dự án</th>
-                        <th>Người giao</th>
-                        <th>Người nhận</th>
+                        <th>Người làm</th>
                         <th>Deadline</th>
                         <th>Ghi chú</th>
                         <th>Trạng thái</th>
@@ -44,23 +43,55 @@
                     <tr>
             
                         <td>{{$task->task_name}}</td>
-                        <td>{{$task->project_id}}</td>
-                        <td>#</td>
-                        <td>#</td>                
+                        <td>@foreach($all_project as $key => $value) 
+                            @if($task->project_id==$value->project_id)
+                            {{$value->project_name}}<br>
+                            @endif
+                            @endforeach</td>
+                        <td>@foreach($all_employee as $key => $value) 
+                            @if($task->task_id==$value->task_id)
+                            {{$value->e_name}}<br>
+                            @endif
+                            @endforeach</td>            
                         <td>{{$task->task_end}}</td>
                         <td>{{$task->task_note}}</td>
                         <td>
-                        <a href="{{URL::to('/info-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
+                        <a href="{{URL::to('/detail-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
                         <a onclick="return confirm('Bạn có chắc là muốn xóa công việc này ko?')" href="{{URL::to('/delete-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-trash-alt"></i>
                         </td>
-                         <td><span class="text-ellipsis">
-                            <button type="button" style="width:130px;" class="btn btn-success waves-effect waves-light">Hoàn thành</button>
-                            <button type="button" style="width:130px;" class="btn btn-light waves-effect waves-light">Đang chạy</button>
-                        </span></td>      
+                        <td>
+                            <span class="text-ellipsis">
+                            <?php
+                            if($task->task_status==0){
+                            ?>
+                                <a href="{{URL::to('/start-task/'.$task->task_id)}}"><button type="button"  style="width:130px;" class="btn btn-primary waves-effect waves-light">Chưa hoạt động</button></a>
+                            <?php
+                            }
+
+                            if($task->task_status==1){
+                            ?>
+                                <a href="{{URL::to('/submit-task/'.$task->task_id)}}"><button type="button" style="width:130px;" class="btn btn-info waves-effect waves-light">Đang làm</button></a>
+                            <?php
+                            }
+
+                            if($task->task_status==2){
+                            ?>
+                               <button type="button" style="width:130px;" class="btn btn-danger waves-effect waves-light">Đang đợi duyệt</button>
+                            <?php
+                            }
+
+                            if($task->task_status==3){
+                            ?>
+                                <button style="width:130px;" type="button" class="btn btn-success waves-effect waves-light">Hoàn tất</button>
+                            <?php
+                            }
+                            ?>
+                            </span>
+                        </td>      
                     </tr>
                 @endforeach                 
                 </tbody>
