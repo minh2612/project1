@@ -27,7 +27,7 @@
         <!-- end page title -->
         <form role="form" action="{{URL::to('/save-employee')}}" method="post" enctype="multipart/form-data">
         	{{csrf_field()}}  
-        	  <div class="form-group row">
+        	<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Ảnh</label>
 			    <div class="col-sm-2">
 			        <input type="file" name="e_avatar">
