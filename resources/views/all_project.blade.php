@@ -30,14 +30,13 @@
                 <thead>
                     <tr>
                         <th>Tên dự án</th>
-                        
                         <th>Người giao</th>
                         <th>Người tham gia</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
-                        <th>Công việc cần xử lý</th>
-                        <th>Công việc đã hoàn thành</th>
-                        <th>Công việc chưa hoàn thành</th>
+                        <th>Công việc<br> cần xử lý</th>
+                        <th>Công việc<br> đã xong</th>
+                        <th>Công việc<br> chưa xong</th>
                         <th>Hành động</th>
                         <th>Trạng thái</th>
                     </tr>

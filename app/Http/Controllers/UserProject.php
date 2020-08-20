@@ -12,7 +12,7 @@ class UserProject extends Controller
 {
     
     public function AuthUser(){
-        $admin_id = Session::get('e_id');
+        $admin_id = Auth::user()->e_id;
         $id=DB::table('tbl_e')->where('e_id',$admin_id)->first();
          $id1=$id->is_admin;
 
