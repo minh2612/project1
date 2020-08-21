@@ -13,14 +13,15 @@
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-department/')}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fas fa-plus-circle fa-2x"></i></a> 
-                            </div>
+                            <p>&nbsp;</p>
                             <?php
                                 $message= Session::get('message');
                                  if($message){
                                       echo '<span class="text-alert">'.$message.'</span>';
                                       Session::put('message', null);
                                     }
-                            ?>                            
+                            ?>
+                            </div>                            
                         </div>
                         <!-- end col -->
                     </div>
@@ -51,8 +52,6 @@
                     <td>{{$i}}</td>
                     <td>{{$department->department_name}}</td>
                     <td>
-                        <a href="{{URL::to('/add-department/')}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-plus"></i>
                           <a href="{{URL::to('/detail-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">
