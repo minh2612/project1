@@ -8,8 +8,12 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Chi tiết dự án</h4>
-                            <button href="{{URL::to('/add-task')}}" type="button" class="btn btn-success waves-effect waves-light">Thêm công việc</button>
+                            <div class="row">
+                                <h4 class="page-title m-0">Chi tiết dự án</h4>
+                                <p>&nbsp;</p>
+                                <a href="{{URL::to('/add-task/')}}" class="active styling-edit" ui-toggle-class="">
+                                <i class="fas fa-plus-circle fa-2x"></i></a>
+                            </div>   
                             <?php
                                 $message= Session::get('message');
                                  if($message){
