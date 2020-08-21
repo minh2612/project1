@@ -53,13 +53,21 @@
             
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Người quản lý dự án</label>
+
                 <div class="col-sm-4">
-                    <select class="form-control" name="project_manager">
-                        @foreach($e as $key => $e1)
+                    
+                    <select multiple="true" class="form-control select2 js-example-basic-single" name="employee_task[]" >
+                       @foreach($e as $key => $e1)
+                        @foreach($role as  $r)
+                        @if($e1->e_id == $r->admin_e_id )
                         <option value="{{$e1 ->e_id}}">{{$e1 ->e_name}}</option>
-                        @endforeach       
+                        @endif
+                        @endforeach     
+                        @endforeach 
                     </select>
+                    
                 </div>
+                 
             </div>
 			<div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
