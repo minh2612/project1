@@ -8,14 +8,19 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
+                            <div class="row">
                             <h4 class="page-title m-0">Danh sách chức vụ</h4>
+                            <p>&nbsp;</p>
+                            <a href="{{URL::to('/add-position/')}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fas fa-plus-circle fa-2x"></i></a>    
+                            </div>
                             <?php
                                 $message= Session::get('message');
                                  if($message){
                                       echo '<span class="text-alert">'.$message.'</span>';
                                       Session::put('message', null);
                                     }
-                            ?>                            
+                            ?>                       
                         </div>
                         <!-- end col -->
                     </div>
@@ -46,8 +51,6 @@
                     <td>{{$i}}</td>
                     <td>{{$position->position_name}}</td>
                     <td>
-                        <a href="{{URL::to('/add-position/')}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-plus"></i>
                           <a href="{{URL::to('/detail-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
