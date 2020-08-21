@@ -59,13 +59,23 @@ class ProjectController extends Controller
         return view('admin_layout')->with('all_task', $manager_task);
     }
 
-    public function detail_project($project_id){
+    public function detail_task($task_id){
         //this->AuthAdmin();
 
         //$this->AuthLogin();
-        $detail_project = DB::table('tbl_project')->get();
+        $detail_task = DB::table('tbl_task')->join('tbl_project','tbl_project.project_id','=','tbl_task.project_id')->where('task_id',$task_id)->get();
+        $employee = DB::table('tbl_employee_task')->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->where('task_id',$task_id)->get();
+        $manager_task  = view('detail_task')->with('detail_task',$detail_task)->with('employee',$employee);
+        return view('admin_layout')->with('detail_task', $manager_task);
 
-        $manager_project  = view('detail_project')->with('detail_project',$detail_project);
+    }
+
+    public function detail_project($project_id){
+        //this->AuthAdmin();
+        //$this->AuthLogin();
+        $all_task= DB::table('tbl_task')->join('tbl_project','tbl_project.project_id','=','tbl_task.project_id')->where('tbl_task.project_id',$project_id)->get();
+        $employee = DB::table('tbl_employee_task')->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->where('tbl_task.project_id',$project_id)->get();
+        $manager_project  = view('detail_project')->with('all_task',$all_task)->with('employee',$employee);
         return view('admin_layout')->with('detail_project', $manager_project);
 
     }
@@ -232,20 +242,30 @@ class ProjectController extends Controller
    	public function edit_task($task_id){
    
         $edit_task=DB::table('tbl_task')->where('task_id',$task_id)->get();
-        $manager_task = view('edit_task')->with('edit_task',$edit_task);
+        $project=DB::table('tbl_project')->get();
+        $manager_task = view('edit_task')->with('edit_task',$edit_task)->with('project', $project);
 
         return view('admin_layout')->with('edit_task', $manager_task);
 
    	}
 
+    public function edit_project($project_id){
+   
+        $edit_project=DB::table('tbl_project')->where('project_id',$project_id)->get();       
+        $customer=DB::table('tbl_customer')->get();
+        $employee=DB::table('tbl_e')->get();
+        $manager_project = view('edit_project')->with('edit_project',$edit_project)->with('customer',$customer)->with('employee',$employee);
+        return view('admin_layout')->with('edit_project', $manager_project);
+
+    }
+
    	public function update_task(Request $request,$task_id){
 
         $data = array();
         $data['task_name'] = $request->task_name;
-        $data['task_admin'] = $request->task_admin;
-        $data['task_start'] = $request->task_start;
+        $data['project_id'] = $request->project_name;
         $data['task_end'] = $request->task_end;
-        $data['task_status'] = $request->task_status; 
+        $data['task_note'] = $request->task_note;
         if( $request->task_name==""){
             Session::put('message','Mời nhập đầy đủ thông tin');
              return Redirect::to('edit-task/'.$task_id);
@@ -253,9 +273,27 @@ class ProjectController extends Controller
         else{
         DB::table('tbl_task')->where('task_id',$task_id)->update($data);
         Session::put('message','Cập nhật  công việc thành công');
-        return Redirect::to('edit-task/'.$task_id); 
+        return Redirect::to('all-task/'); 
         }  
    	}
+    public function update_project(Request $request,$project_id){
+
+        $data = array();
+        $data['project_name'] = $request->project_name;
+        $data['customer_id'] = $request->customer_id;
+        $data['project_manager'] = $request->project_manager;
+        $data['project_end'] = $request->project_end;
+        $data['project_node'] = $request->project_node;
+        if( $request->project_name==""){
+            Session::put('message','Mời nhập đầy đủ thông tin');
+             return Redirect::to('edit-project/'.$project_id);
+        } 
+        else{
+        DB::table('tbl_project')->where('project_id',$project_id)->update($data);
+        Session::put('message','Cập nhật dự án thành công');
+        return Redirect::to('all-project/'); 
+        }  
+    }
    
     public function delete_task($task_id){
            $id= DB::table('tbl_task')->first();
