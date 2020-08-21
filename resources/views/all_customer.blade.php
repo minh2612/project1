@@ -47,6 +47,8 @@
                         <td>{{ $customer->customer_code }}</td>
                         <td>{{ $customer->e_name}}</td>
                         <td>
+                            <a href="{{URL::to('/add-customer/')}}" class="active styling-edit" ui-toggle-class="">
+                                <i class="fa fa-plus"></i>  
                              <a href="{{URL::to('/detail-customer/'.$customer->customer_id)}}" class="active styling-edit" ui-toggle-class="">
                                 <i class="fa fa-eye"></i>  
                             <a href="{{URL::to('/edit-customer/'.$customer->customer_id)}}" class="active styling-edit" ui-toggle-class="">

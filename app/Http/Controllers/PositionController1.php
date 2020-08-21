@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use DB;
 use Auth;
@@ -8,41 +9,36 @@ use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
-class PositionController extends Controller
-{
-      public function AuthLogin(){
-                $admin_id = Auth::id();
-                if($admin_id){
-                    return Redirect::to('admin-dashboard');
-                }else{
-                    return Redirect::to('/')->send();
-                }
-            }
 
+
+
+class PositionController1 extends Controller
+{
     public function add_position()
     {
-        $this->AuthLogin();
+
         return view('add_position');     
     }
 
     public function all_position(){
-      $this->AuthLogin();
+
         $all_position= DB::table('tbl_position')->get();
         $manager_position = view('all_position')->with('all_position', $all_position);
         return view('admin_layout')->with('all_position', $manager_position);
 
-    }
+        }
 
     public function save_position(Request $request){
-     $this->AuthLogin();
+
         $data = array();
         $data['position_name']= $request->position_name;
         $data['position_note']= $request->position_note;
-        
               $this->validate($request,
         [
                        
-            'position_name' => 'bail|required|unique:tbl_position', 
+            'position_name' => 'bail|required|unique:tbl_position',
+            
+            
                 
         ],
 
@@ -57,14 +53,15 @@ class PositionController extends Controller
       ]
 
     );
-
         DB::table('tbl_position')->insert($data);
-        Session::put('message', 'Thêm chức vụ thành công');
+        Session::put('message', 'Thêm phòng ban thành công');
         return Redirect::to('add-position');
-        }
+    }
+
+   
     
      public function detail_position($position_id){
-        $this->AuthLogin();
+       
         $detail_position = DB::table('tbl_position')->where('position_id',$position_id)->get();
         $detail_employee = DB::table('tbl_e')->where('position_id',$position_id)->get();
     
@@ -74,24 +71,28 @@ class PositionController extends Controller
 
     }
     public function edit_position($position_id){
-        $this->AuthLogin();
+
         $edit_position= DB::table('tbl_position')->where('position_id', $position_id)->get();
         $manager_position = view('edit_position')->with('edit_position', $edit_position);
         return view('admin_layout')->with('edit_position', $manager_position);
+        Textarea::get('description');
     }
+
     public function update_position(Request $request, $position_id){
-        $this->AuthLogin();
+
+       
         $data = array();
         $data['position_name']= $request->position_name;
+        $data['position_note']= $request->position_note;
         DB::table('tbl_position')->where('position_id', $position_id)->update($data);
-        Session::put('message', 'Cập nhật chức vụ thành công');
+        Session::put('message', 'Cập nhật phòng ban thành công');
         return Redirect::to('all-position');
     }
 
     public function delete_position($position_id){
-       $this->AuthLogin();
+
         DB::table('tbl_position')->where('position_id', $position_id)->delete();
-        Session::put('message', 'Xóa chức vụ thành công');
+        Session::put('message', 'Xóa phòng ban thành công');
         return Redirect::to('all-position');
-    }               
+    }
 }

@@ -35,11 +35,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                    $i=0;
+                    @endphp
                     @foreach($all_department as $key => $department)
+                    @php
+                    $i++;
+                    @endphp
                   <tr>
-                    <td>#</td>
+                    <td>{{$i}}</td>
                     <td>{{$department->department_name}}</td>
                     <td>
+                        <a href="{{URL::to('/add-department/')}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-plus"></i>
                           <a href="{{URL::to('/detail-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">

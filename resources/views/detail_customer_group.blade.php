@@ -28,6 +28,8 @@
                        <tr>
                             <th>Tên nhóm khách hàng</th>  
                             <th>{{ $customer_group->customer_group_name}}</th>
+                            <a href="{{URL::to('/edit-customer-group/'.$customer_group->customer_group_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-edit"></i>
                        </tr>
 
                         <tr>
@@ -45,10 +47,12 @@
                 
 
                 </tbody>
+
             </table>
            
         </div>
     </div><!-- container fluid -->
 
-</div> <!-- Page content Wrapper -->
+</div>
+ <!-- Page content Wrapper -->
 @endsection

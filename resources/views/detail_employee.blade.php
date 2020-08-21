@@ -62,7 +62,8 @@
                             <th>Phòng ban</th>  
                             <th>{{ $employee->department_name }}</th>
                        </tr>
-                        
+                        <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
+                        <i class="fa fa-edit"></i>
                     
                 @endforeach                   
                 </tbody>

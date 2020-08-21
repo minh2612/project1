@@ -49,14 +49,18 @@
                             <li>
                                 <a href="{{URL::to('/admin-dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
+                            
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý nhân viên </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                          
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
                                 </ul>
                             </li>
-                              
+                          
+                          
+                              @hasrole(['admin'])
                          
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -65,11 +69,12 @@
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
                                 </ul>
                            </li> 
+                           @endhasrole
                           
                                       
 
 
-                           
+                           @hasrole(['admin','manager'])
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -89,7 +94,7 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý phòng ban </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-department')}}">Thêm phòng ban</a></li>
+                                    
                                     <li><a href="{{URL::to('/all-department')}}">Danh sách phòng ban</a></li>
                                 </ul>
                             </li>
@@ -97,7 +102,7 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý chức vụ </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-position')}}">Thêm chức vụ</a></li>
+                                    
                                     <li><a href="{{URL::to('/all-position')}}">Danh sách chức vụ</a></li>
                                 </ul>
 
@@ -106,29 +111,21 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-customer')}}">Thêm khách hàng</a></li>
+                                    
                                     <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
-                                </ul>
-                            </li> 
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý nhóm khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-customer-group')}}">Thêm nhóm khách hàng</a></li>
                                     <li><a href="{{URL::to('/all-customer-group')}}">Danh sách nhóm khách hàng</a></li>
                                 </ul>
                             </li> 
-
-                            
-
-                      
+                            @endhasrole
 
 
                         </ul>
                     </div>
+
                     <div class="clearfix"></div>
                 </div> <!-- end sidebarinner -->
             </div>
+            
             <!-- Left Sidebar End -->
             <!-- Start right Content here -->
             <div class="content-page">
@@ -146,10 +143,13 @@
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="{{asset('assets/images/users/avatar-6.jpg')}}" alt="user" class="rounded-circle">
+                                    <?php
+                                    $avatar=Auth::user()->e_avatar;
+                                    ?>
+                                        <img src="{{ URL::to('/public/avatar/'.$avatar)}}" alt="user" class="rounded-circle">
 
                                         <?php
-                                            $name = Session::get('e_name');
+                                            $name = Auth::user()->e_name;
                                             if($name){
                                                 echo $name;
                                                 
@@ -180,6 +180,7 @@
                     © 2019 - 2020 Zinzer <span class="d-none d-md-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</span>
                 </footer>
             </div>
+
             <!-- End Right content here -->
         </div>
         <!-- END wrapper -->

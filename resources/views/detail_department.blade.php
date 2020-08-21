@@ -42,7 +42,8 @@
                        @endforeach  </th>
                      </tr>
                 @endforeach    
-                
+                <a href="{{URL::to('/edit-department/'.$department->department_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-edit"></i>
 
                 </tbody>
             </table>

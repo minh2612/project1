@@ -26,7 +26,7 @@
                   
                                         
                        <tr>
-                            <th>Tên phòng ban</th>  
+                            <th>Tên chức vụ</th>  
                             <th>{{ $position->position_name}}</th>
                        </tr>
 
@@ -43,7 +43,8 @@
                      </tr>
                 @endforeach    
                 
-
+                <a href="{{URL::to('/edit-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-edit"></i>
                 </tbody>
             </table>
            

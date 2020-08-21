@@ -8,14 +8,14 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Thêm chức vụ</h4>
-                            <?php
+                            <h4 class="page-title m-0">Cập nhật chức vụ</h4>
+                         	<?php
                             $message= Session::get('message');
                             if($message){
                                 echo '<span class="text-alert">'.$message.'</span>';
                                 Session::put('message', null);
                             }
-                            ?>                            
+                            ?>
                         </div>
                         <!-- end col -->
                     </div>
@@ -25,17 +25,26 @@
             </div>
         </div> 
         <!-- end page title -->
-        @foreach($edit_position as $key => $edit_position)     
-        <form role="form" action="{{URL::to('/update-position/'.$edit_position->position_id)}}" method="post" enctype="multipart/form-data">
-            {{csrf_field()}}        
+        @foreach($edit_position as $key => $edit_position)    	
+		<form role="form" action="{{URL::to('/update-position/'.$edit_position->position_id)}}" method="post" enctype="multipart/form-data">
+        	{{csrf_field()}}     	
+			<div class="form-group row">
+			    <label for="example-name-input" class="col-sm-2 col-form-label">Tên chức vụ</label>
+			    <div class="col-sm-4">
+			        <input class="form-control" value="{{$edit_position->position_name}}" type="text" name="position_name"   id="example-name-input">
+			    </div>
+			</div>
             <div class="form-group row">
-                <label for="example-name-input" class="col-sm-2 col-form-label">Tên chức vụ</label>
+                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-sm-4">
-                    <input class="form-control" value="{{$edit_position->position_name}}" type="text" name="position_name" id="example-name-input">
+
+                    <textarea required class="form-control" type="text" value="" name="position_note" id="example-name-input" rows="5">{{$edit_position->position_note}}
+                    </textarea>   
+                        
                 </div>
             </div>
-            <button type="submit" name="update_position" class="btn btn-success waves-effect waves-light">Cập nhật chức vụ</button>
-        </form>
+			<button type="submit" name="update_position" class="btn btn-success waves-effect waves-light">Cập nhật chức vụ</button>
+		</form>
         @endforeach
     </div><!-- container fluid -->
 

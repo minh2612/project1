@@ -34,6 +34,13 @@
 			        <input class="form-control" value="{{$edit_department->department_name}}" type="text" name="department_name" id="example-name-input">
 			    </div>
 			</div>
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-sm-4">
+                    <textarea required class="form-control" value="" type="text" name="department_note" id="example-name-input"rows="5">{{$edit_department->department_note}}</textarea>
+                        
+                </div>
+            </div>
 			<button type="submit" name="update_department" class="btn btn-success waves-effect waves-light">Cập nhật phòng ban</button>
 		</form>
         @endforeach

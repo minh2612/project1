@@ -71,7 +71,8 @@
                             <th>{{ $customer->customer_code }}</th>
                        </tr>
                         
-                    
+                    <a href="{{URL::to('/edit-customer/'.$customer->customer_id)}}" class="active styling-edit" ui-toggle-class="">
+                                <i class="fa fa-edit"></i>
                 @endforeach                   
                 </tbody>
             </table>

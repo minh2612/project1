@@ -34,8 +34,9 @@
                         <th>Người làm</th>
                         <th>Deadline</th>
                         <th>Ghi chú</th>
-                        <th>Trạng thái</th>
                         <th>Hành động</th>
+                        <th>Trạng thái</th>
+                        
                     </tr>
                 </thead>
                 <tbody>

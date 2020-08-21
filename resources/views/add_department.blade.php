@@ -33,6 +33,12 @@
 			        <input class="form-control" type="text" name="department_name" id="example-name-input">
 			    </div>
 			</div>
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-sm-4">
+                    <textarea required class="form-control"  type="text" name="department_note" id="example-name-input"rows="5"></textarea>
+                </div>
+            </div>
              <ul>
                 @foreach($errors->all() as $error)
                      <li>{{$error}}</li>
