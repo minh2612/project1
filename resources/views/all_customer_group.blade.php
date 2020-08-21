@@ -35,7 +35,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tên phòng ban</th>                        
+                        <th>Nhóm khách hàng</th>                        
                         <th>Action</th>
                     </tr>
                 </thead>
