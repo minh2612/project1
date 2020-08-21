@@ -55,7 +55,7 @@ class PositionController1 extends Controller
     );
         DB::table('tbl_position')->insert($data);
         Session::put('message', 'Thêm phòng ban thành công');
-        return Redirect::to('add-position');
+        return Redirect::to('all-position');
     }
 
    
