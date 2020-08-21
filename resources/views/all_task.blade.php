@@ -33,6 +33,7 @@
                         <th>Tên dự án</th>
                         <th>Người làm</th>
                         <th>Deadline</th>
+                        <th>Mức độ ưu tiên</th>
                         <th>Ghi chú</th>
                         <th>Hành động</th>
                         <th>Trạng thái</th>
@@ -55,6 +56,7 @@
                             @endif
                             @endforeach</td>            
                         <td>{{$task->task_end}}</td>
+                        <td>{{$task->task_priority}}</td>
                         <td>{{$task->task_note}}</td>
                         <td>
                         <a href="{{URL::to('/detail-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
