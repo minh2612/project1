@@ -116,6 +116,7 @@ class ProjectController extends Controller
         $data['task_name'] = $request->task_name;
         $data['task_start'] = $request->task_start;
         $data['task_end'] = $request->task_end;
+        $data['task_priority'] = $request->task_priority;
         $data['task_note'] = $request->task_note;
         
         if($request->task_start<=Carbon::now('Asia/Ho_Chi_Minh')){
