@@ -17,6 +17,7 @@
                 <!-- end page-title-box -->
             </div>
         </div> 
+      
         <!-- end page title -->    	
 		<div class="table-responsive">
             <table id="datatable" class="table table-hover " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -62,8 +63,7 @@
                             <th>Phòng ban</th>  
                             <th>{{ $employee->department_name }}</th>
                        </tr>
-                        <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
-                        <i class="fa fa-edit"></i>
+                        
                     
                 @endforeach                   
                 </tbody>

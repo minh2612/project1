@@ -50,13 +50,18 @@
                 </div>
             </div>
 			<div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Người làm</label>
+		        <label class="col-sm-2 col-form-label">Người nhận</label>
 		        <div class="col-sm-4">
+                    
 		            <select multiple="true" class="form-control select2 js-example-basic-single" name="employee_task[]" >
-	                    @foreach($e as $key => $e1)
+	           
+                       @foreach($e as $key => $e1)
 	                    <option value="{{$e1 ->e_id}}">{{$e1 ->e_name}}</option>
-	                    @endforeach       
+                       
+	                    @endforeach     
+                     
 		            </select>
+                
 		        </div>
 		    </div>
 			<div class="form-group row">
@@ -93,6 +98,11 @@
                     <input  type="file" name="task_file">
                 </div>
             </div>  
+            <ul>
+               @foreach ($errors->all() as $error)
+                    <li>{{$error }}</li>
+               @endforeach
+            </ul>
             <button type="submit" name="add_task" class="btn btn-success waves-effect waves-light">Thêm công việc</button>
 		</form>
     </div><!-- container fluid -->

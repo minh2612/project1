@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -14,18 +15,24 @@ class ProjectController extends Controller
 {
   
     public function add_project(){
-      
+       $role=DB::table('admin_roles')
+        ->join('tbl_e','tbl_e.e_id','=','admin_roles.admin_e_id')->
+        where('admin_roles.roles_id_roles',2)->get();
         $e=DB::table('tbl_e')->get();
         $customer= DB::table('tbl_customer')->get();
-        return view('add_project')->with('e',$e)->with('customer',$customer);      
+        return view('add_project')->with('e',$e)->with('customer',$customer)->with('role',$role);      
     }
 
 
     public function add_task(){
+        $id=Auth::user()->e_id;
+        $manager=DB::table('tbl_e')->where('e_id',$id)->first();
 
-        $e=DB::table('tbl_e')->get();
+        
+        $e=DB::table('tbl_e')->where('department_id',$manager->department_id)->get();
+
         $project= DB::table('tbl_project')->get();
-        return view('add_task')->with('e',$e)->with('project',$project);      
+        return view('add_task')->with('e',$e)->with('project',$project)->with('e',$e);      
     }
 
 
@@ -109,10 +116,40 @@ class ProjectController extends Controller
    	public function save_task(Request $request){
        //$this->AuthAdmin();
 
-        
+        $this->validate($request,
+         [
+            'task_name' => 'bail|required',
+            'task_start' => 'bail|required|after_or_equal:today',
+            'task_end' => 'bail|required|after:task_start',
+           
+          
+            
+        ],
+
+        [
+            'required' => ':attribute không được để trống',
+            'unique' => ':attribute đã tồn tại',
+            'min' => ':attribute không được nhỏ hơn :min',
+            'max' => ':attribute không được lớn hơn :max',
+            'after' => ':attribute phải lớn hơn ngày bắt đầu',
+            'after_or_equal' => ':attribute phải lớn hơn hoặc bằng ngày hôm nay',
+
+        ],
+
+        [
+            'task_name' => 'Tên dự án',
+            'task_start' => 'Ngày bắt đầu',
+            'task_end' => 'Ngày kết thúc',
+            
+            
+        ]
+
+    );  
         
         $data =array();
         $data1=array();
+        $id=Auth::user()->e_id;
+        $data['task_manager']=$id;
         $data['task_name'] = $request->task_name;
         $data['task_start'] = $request->task_start;
         $data['task_end'] = $request->task_end;
@@ -157,7 +194,7 @@ class ProjectController extends Controller
          [
             'project_name' => 'bail|required|unique:tbl_project',
             'project_manager' => 'bail|required',
-            'project_start' => 'bail|required',
+            'project_start' => 'bail|required|after_or_equal:today',
             'project_end' => 'bail|required|after:project_start',
           
             
@@ -169,6 +206,7 @@ class ProjectController extends Controller
             'min' => ':attribute không được nhỏ hơn :min',
             'max' => ':attribute không được lớn hơn :max',
             'after' => ':attribute phải lớn hơn ngày bắt đầu',
+            'after_or_equal' => ':attribute phải lớn hơn hoặc bằng ngày hôm nay',
 
         ],
 
@@ -180,7 +218,9 @@ class ProjectController extends Controller
             
         ]
 
-    );
+    );  
+         $id=Auth::user()->e_id;
+        $data['project_admin']=$id;
         $data['project_name'] = $request->project_name;
         $data['project_manager'] = $request->project_manager;
         $data['project_start'] = $request->project_start;
@@ -198,6 +238,8 @@ class ProjectController extends Controller
             $get_image->move('public',  $new_image);
             $data['project_file'] = $new_image;
         }
+
+
 
         $id=DB::table('tbl_project')->insertGetId($data);
         Session::put('message','Thêm dự án thành công');
