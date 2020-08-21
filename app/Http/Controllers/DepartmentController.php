@@ -31,6 +31,7 @@ class DepartmentController extends Controller
         
         $data = array();
         $data['department_name']= $request->department_name;
+        $data['department_note']= $request->department_note;
               $this->validate($request,
         [
                        
@@ -73,12 +74,14 @@ class DepartmentController extends Controller
         $edit_department= DB::table('tbl_department')->where('department_id', $department_id)->get();
         $manager_department = view('edit_department')->with('edit_department', $edit_department);
         return view('admin_layout')->with('edit_department', $manager_department);
+        Textarea::get('description');
     }
 
     public function update_department(Request $request, $department_id){
         
         $data = array();
         $data['department_name']= $request->department_name;
+        $data['department_note']= $request->department_note;
         DB::table('tbl_department')->where('department_id', $department_id)->update($data);
         Session::put('message', 'Cập nhật phòng ban thành công');
         return Redirect::to('all-department');
