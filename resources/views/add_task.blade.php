@@ -50,7 +50,7 @@
                 </div>
             </div>
 			<div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Người nhận</label>
+		        <label class="col-sm-2 col-form-label">Người làm</label>
 		        <div class="col-sm-4">
 		            <select multiple="true" class="form-control select2 js-example-basic-single" name="employee_task[]" >
 	                    @foreach($e as $key => $e1)
