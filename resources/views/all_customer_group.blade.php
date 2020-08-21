@@ -46,6 +46,8 @@
                     <td>{{$i}}  </td>
                     <td>{{$customer_group->customer_group_name}}</td>
                     <td>
+                        <a href="{{URL::to('/add-customer-group/'.$customer_group->customer_group_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-plus"></i>
                           <a href="{{URL::to('/detail-customer-group/'.$customer_group->customer_group_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-customer-group/'.$customer_group->customer_group_id)}}" class="active styling-edit" ui-toggle-class="">
