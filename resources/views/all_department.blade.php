@@ -8,7 +8,12 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
+                            <div class="row">
                             <h4 class="page-title m-0">Danh sách phòng ban</h4>
+                            <p>&nbsp;</p>
+                            <a href="{{URL::to('/add-department/')}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fas fa-plus-circle fa-2x"></i></a> 
+                            </div>
                             <?php
                                 $message= Session::get('message');
                                  if($message){
