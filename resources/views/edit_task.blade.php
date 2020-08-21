@@ -34,35 +34,40 @@
 			        <input class="form-control" value="{{$task->task_name}}" type="text" name="task_name" id="example-name-input">
 			    </div>
 			</div>
+	        <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tên dự án</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="project_name">
+                    @foreach($project as $key => $project1)
+                        @if($project1->project_id == $task->project_id)
+                        <option selected value="{{$project1->project_id}}">{{$project1->project_name}}</option>
+                        @else
+                        <option value="{{$project1->project_id}}">{{$project1->project_name}}</option>
+                        @endif
+                    @endforeach  
+                    </select>
+                </div>
+            </div>
+            
 			<div class="form-group row">
-			    <label for="example-email-input" class="col-sm-2 col-form-label">Người giao</label>
-			    <div class="col-sm-4">
-			        <input class="form-control" value="{{$task->task_admin}}" type="text" name="task_admin" id="example-email-input">
-			    </div>
-			</div>
-			<div class="form-group row">
-			    <label for="example-password-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
-			    <div class="col-sm-4">
-			        <input class="form-control" value="{{$task->task_start}}" type="date" name="task_start" id="example-password-input">
-			    </div>
-			</div>
-			<div class="form-group row">
-			    <label for="example-tel-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
+			    <label for="example-tel-input" class="col-sm-2 col-form-label">Deadline</label>
 			    <div class="col-sm-4">
 			        <input class="form-control" value="{{$task->task_end}}" type="date" name="task_end" id="example-tel-input">
 			    </div>
 			</div>
-			<div class="form-group row">
-			    <label for="example-tel-input" class="col-sm-2 col-form-label">Tình trạng công việc</label>
-			    <div class="col-sm-2">
-			        <select name="task_status" class="form-control input-sm m-bot15">
-                        <option value="0">Bắt đầu</option>
-                        <option value="1">Đang diễn ra</option>
-                        <option value="2">Đang đợi duyệt</option>
-                        <option value="3">Hoàn thành</option>
-                    </select>
-			    </div>
-			</div>
+            <div class="form-group row">
+                <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-sm-4">
+                    <textarea required class="form-control" value="{{$task->task_note}}" name="task_note" rows="5"><?php echo $task->task_note ?></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
+                <div class="col-sm-2">
+                    <input  type="file" name="task_file">
+                </div>
+            </div>  
             <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật thông tin</button>
 		</form>
 		@endforeach
