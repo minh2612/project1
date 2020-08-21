@@ -46,8 +46,16 @@ class HomeController extends Controller
     
 
     public function show_dashboard(Request $request){
-         
-             return view('admin_layout');
+             $id=Auth::user()->e_id;
+             
+             $task_user=DB::table('tbl_employee_task')
+             ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)->get();
+             $all_project=DB::table('tbl_project')->get();
+           
+       
+             return view('admin_dashboard')->with( 'task_user',$task_user)->with( 'all_project',$all_project);
       }
     
 
