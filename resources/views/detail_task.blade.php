@@ -49,8 +49,16 @@
                             <th>{{ $task->task_end}}</th>
                        </tr>
                         <tr>
+                            <th>Mức độ ưu tiên</th>  
+                            <th>{{ $task->task_priority}}</th>
+                       </tr>
+                        <tr>
                             <th>Ghi chú</th>  
                             <th>{{ $task->task_note}}</th>
+                       </tr>
+                       <tr>
+                            <th>File đính kèm</th>  
+                            <th>{{ $task->task_file}}</th>
                        </tr>
      
                 @endforeach                   
