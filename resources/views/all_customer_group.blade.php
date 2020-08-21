@@ -8,7 +8,12 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Danh sách phòng ban</h4>
+                            <div class="row">
+                            <h4 class="page-title m-0">Danh sách nhóm khách hàng</h4>
+                            <p>&nbsp;</p>
+                            <a href="{{URL::to('/add-customer-group/')}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fas fa-plus-circle fa-2x"></i></a>    
+                            </div>
                             <?php
                                 $message= Session::get('message');
                                  if($message){
@@ -46,8 +51,6 @@
                     <td>{{$i}}  </td>
                     <td>{{$customer_group->customer_group_name}}</td>
                     <td>
-                        <a href="{{URL::to('/add-customer-group/'.$customer_group->customer_group_id)}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-plus"></i>
                           <a href="{{URL::to('/detail-customer-group/'.$customer_group->customer_group_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-customer-group/'.$customer_group->customer_group_id)}}" class="active styling-edit" ui-toggle-class="">
