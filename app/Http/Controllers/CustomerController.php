@@ -125,7 +125,7 @@ class CustomerController extends Controller
             $data['customer_avatar'] = $new_image;
             DB::table('tbl_customer')->insert($data);
             Session::put('message','Thêm khách hàng thành công');
-             return Redirect::to('add-customer');
+             return Redirect::to('all-customer');
         }
    
     }
