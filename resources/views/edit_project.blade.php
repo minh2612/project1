@@ -35,33 +35,45 @@
 			    </div>
 			</div>
 			<div class="form-group row">
-			    <label for="example-email-input" class="col-sm-2 col-form-label">Người giao</label>
-			    <div class="col-sm-4">
-			        <input class="form-control" value="{{$project->project_admin}}" type="text" name="project_admin" id="example-email-input">
-			    </div>
-			</div>
+                <label class="col-sm-2 col-form-label">Tên khách hàng</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="customer_name">
+                    @foreach($customer as $key => $value)
+                        @if($value->customer_id == $project->customer_id)
+                        <option selected value="{{$value->customer_id}}">{{$value->customer_name}}</option>
+                        @else
+                        <option value="{{$value->customer_id}}">{{$value->customer_name}}</option>
+                        @endif
+                    @endforeach  
+                    </select>
+                </div>
+            </div>
 			<div class="form-group row">
-			    <label for="example-password-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
-			    <div class="col-sm-4">
-			        <input class="form-control" value="{{$project->project_start}}" type="date" name="project_start" id="example-password-input">
-			    </div>
-			</div>
+                <label class="col-sm-2 col-form-label">Người quản lý dự án</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="customer_name">
+                    @foreach($employee as $key => $value)
+                        @if($value->e_id == $project->project_manager)
+                        <option selected value="{{$value->e_id}}">{{$value->e_name}}</option>
+                        @else
+                        <option value="{{$value->e_id}}">{{$value->e_name}}</option>
+                        @endif
+                    @endforeach  
+                    </select>
+                </div>
+            </div>
 			<div class="form-group row">
 			    <label for="example-tel-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
 			    <div class="col-sm-4">
 			        <input class="form-control" value="{{$project->project_end}}" type="date" name="project_end" id="example-tel-input">
 			    </div>
 			</div>
-			<div class="form-group row">
-			    <label for="example-tel-input" class="col-sm-2 col-form-label">Tình trạng công việc</label>
-			    <div class="col-sm-2">
-			        <select name="project_status" value="{{$project->project_status}}" class="form-control input-sm m-bot15">
-                        <option value="0">Chưa bắt đầu</option>
-                        <option value="1">Hoạt động</option>
-                        <option value="2">Kết thúc</option>
-                    </select>
-			    </div>
-			</div>
+            <div class="form-group row">
+                <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-sm-4">
+                    <textarea required class="form-control" value="{{$project->project_node}}" name="project_node" rows="5"><?php echo $project->project_node ?></textarea>
+                </div>
+            </div>
             <button type="submit" name="update_project" class="btn btn-success waves-effect waves-light">Cập nhật thông tin</button>
 		</form>
 		@endforeach
