@@ -228,9 +228,14 @@ class EmployeeController extends Controller
     public function delete_employee($e_id){
        
         $this->AuthLogin();
+        if(Auth::id()==$e_id){
+             return redirect()->back()->with('message','Bạn không được xóa chính mình');
+        }
+        else{
         DB::table('tbl_e')->where('e_id',$e_id)->delete();
-        Session::put('message','Xóa sản phẩm thành công');
+        Session::put('message','Xóa nhân viên thành công');
         return Redirect::to('all-employee');
+    }
     }
 
 }
