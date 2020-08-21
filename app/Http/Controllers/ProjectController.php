@@ -7,6 +7,7 @@ use DB;
 use Session;
 use Auth;
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 use Carbon\Carbon;
@@ -66,6 +67,11 @@ class ProjectController extends Controller
         return view('admin_layout')->with('all_task', $manager_task);
     }
 
+    public function download($task_file)
+    {
+
+        return response()->download(storage_path('../public/'.$task_file));
+    }
     public function detail_task($task_id){
         //this->AuthAdmin();
 
@@ -74,6 +80,7 @@ class ProjectController extends Controller
         $employee = DB::table('tbl_employee_task')->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->where('task_id',$task_id)->get();
         $manager_task  = view('detail_task')->with('detail_task',$detail_task)->with('employee',$employee);
         return view('admin_layout')->with('detail_task', $manager_task);
+
 
     }
 
@@ -308,7 +315,16 @@ class ProjectController extends Controller
         $data['task_name'] = $request->task_name;
         $data['project_id'] = $request->project_name;
         $data['task_end'] = $request->task_end;
+        $data['task_priority'] = $request->task_priority;
         $data['task_note'] = $request->task_note;
+        $get_image= $request->file('task_file');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public',  $new_image);
+            $data['task_file'] = $new_image;
+        }
         if( $request->task_name==""){
             Session::put('message','Mời nhập đầy đủ thông tin');
              return Redirect::to('edit-task/'.$task_id);
