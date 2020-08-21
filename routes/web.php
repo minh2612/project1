@@ -20,20 +20,23 @@ Route::get('/logout', 'HomeController@logout');
 Route::post('assign-roles','EmployeeController@assign_roles');
 
 //Admin-Employee
-Route::get('/add-employee','EmployeeController@add_employee');
+//Route::group(['middleware' => 'roles', 'roles'=>['admin','author']], function () {
+Route::get('/add-employee','EmployeeController@add_employee')->middleware('auth.roles');
 Route::get('/all-employee','EmployeeController@all_employee');
 Route::post('/save-employee', 'EmployeeController@save_employee');
 Route::get('/edit-employee/{e_id}', 'EmployeeController@edit_employee');
 Route::get('/detail-employee/{e_id}', 'EmployeeController@detail_employee');
 Route::get('/delete-employee/{e_id}', 'EmployeeController@delete_employee');
 Route::post('/update-employee/{e_id}', 'EmployeeController@update_employee');
+//});
 //Admin-Project
 Route::get('/add-project','ProjectController@add_project');
 Route::get('/edit-project/{project_id}', 'ProjectController@edit_project');
-Route::get('/detail-project/{project}', 'ProjectController@detail_project');
+Route::get('/detail-project/{project_id}', 'ProjectController@detail_project');
 Route::get('/delete-project/{project_id}', 'ProjectController@delete_project');
 Route::get('/all-project','ProjectController@all_project');
-Route::get('/add-task/{project_id}', 'ProjectController@add_task');
+Route::get('/all-task','ProjectController@all_task');
+Route::get('/add-task', 'ProjectController@add_task');
 Route::get('/info-task/{project_id}','ProjectController@info_task');
 
 Route::get('/unactive-project/{project_id}','ProjectController@unactive_project');
@@ -48,7 +51,7 @@ Route::get('/delete-task/{task_id}', 'ProjectController@delete_task');
 Route::get('/sm-task', 'ProjectController@sm_task');
 
 Route::post('/save-project','ProjectController@save_project');
-Route::post('/save-task/{product_id}', 'ProjectController@save_task');
+Route::post('/save-task', 'ProjectController@save_task');
 Route::post('/update-project/{project_id}', 'ProjectController@update_project');
 Route::post('/update-task/{task_id}', 'ProjectController@update_task');
 

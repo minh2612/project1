@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="page-content-wrapper container">
+<div class="page-content-wrapper ">
 
     <div class="container-fluid">
         <div class="row">
@@ -26,17 +26,20 @@
         </div> 
         <!-- end page title -->     
         <div class="table-responsive">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap container" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>Tên dự án</th>
-                        <th>Người giao</th>
-                        <th>Người tham gia</th>
+
+                        
+                        <th>Tên khách hàng</th>
+                        <th>Người quản lý dự án</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
-                        <th>Công việc<br> cần xử lý</th>
-                        <th>Công việc<br> đã xong</th>
-                        <th>Công việc<br> chưa xong</th>
+                        <th>Công việc<br>cần xử lý</th>
+                        <th>Công việc<br>đã hoàn thành</th>
+                        <th>Công việc<br>chưa hoàn thành</th>
+
                         <th>Hành động</th>
                         <th>Trạng thái</th>
                     </tr>
@@ -46,13 +49,17 @@
                     <tr>
             
                         <td>{{$project->project_name}}</td>
-                       
-                        <td>{{$project->e_name}}</td>
+    
+                        <td>@foreach($all_customer as $key => $value) 
+                            @if($project->customer_id==$value->customer_id)
+                            {{$value->customer_name}}<br>
+                            @endif
+                            @endforeach</td>
                         <td>@foreach($all_employee as $key => $value) 
-                            @if($project->project_name==$value->project_name)
+                            @if($project->project_manager==$value->e_id)
                             {{$value->e_name}}<br>
                             @endif
-                            @endforeach</td>                    
+                            @endforeach</td>                      
                         <td>{{$project->project_start}}</td>
                         <td>{{$project->project_end}}</td>
                         
@@ -94,7 +101,7 @@
                         
 
                         <td>
-                        <a href="{{URL::to('/info-task/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                        <a href="{{URL::to('/detail-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
@@ -112,7 +119,8 @@
                     </tr>
                 @endforeach                 
                 </tbody>
-            </table> 
+            </table>
+
         </div>
     </div><!-- container fluid -->
 

@@ -14,11 +14,18 @@ session_start();
 
 class EmployeeController extends Controller
 {
-
+      public function AuthLogin(){
+            $admin_id = Auth::id();
+            if($admin_id){
+                return Redirect::to('admin-dashboard');
+            }else{
+                return Redirect::to('/')->send();
+            }
+        }
 
     public function add_employee()
     {
-        
+        $this->AuthLogin();
         $e_department = DB::table('tbl_department')->orderby('department_id','desc')->get(); 
         $e_position = DB::table('tbl_position')->orderby('position_id','desc')->get(); 
        
@@ -28,7 +35,7 @@ class EmployeeController extends Controller
 
     public function all_employee(){
        
-        
+        $this->AuthLogin();
         $all_employee = Admin::with('roles')->orderBy('e_id','DESC')->get();
 
         $manager_employee  = view('all_employee')->with('all_employee',$all_employee);
@@ -37,6 +44,7 @@ class EmployeeController extends Controller
     }
 
     public function assign_roles(Request $request){
+        $this->AuthLogin();
        $data = $request->all();
         $user = Admin::where('e_email',$data['e_email'])->first();
       
@@ -56,7 +64,7 @@ class EmployeeController extends Controller
      public function detail_employee($e_id){
         
 
-        //$this->AuthLogin();
+        $this->AuthLogin();
         $detail_employee = DB::table('tbl_e')
         ->join('tbl_position','tbl_position.position_id','=','tbl_e.position_id')
         ->join('tbl_department','tbl_department.department_id','=','tbl_e.department_id')
@@ -70,7 +78,7 @@ class EmployeeController extends Controller
 
 
     public function save_employee(Request $request){
-      
+            $this->AuthLogin();
             $this->validate($request,
         [
              'e_avatar' => 'bail|required',
@@ -142,7 +150,7 @@ class EmployeeController extends Controller
    
     public function edit_employee($e_id){
         
-        // $this->AuthLogin();
+         $this->AuthLogin();
 
         $e_department = DB::table('tbl_department')->get(); 
         $e_position = DB::table('tbl_position')->orderby('position_id','desc')->get();  
@@ -157,7 +165,7 @@ class EmployeeController extends Controller
 
     public function update_employee(Request $request, $e_id){
         
-        // $this->AuthLogin();
+        $this->AuthLogin();
             $this->validate($request,
         [
                        
@@ -219,10 +227,15 @@ class EmployeeController extends Controller
 
     public function delete_employee($e_id){
        
-        //$this->AuthLogin();
+        $this->AuthLogin();
+        if(Auth::id()==$e_id){
+             return redirect()->back()->with('message','Bạn không được xóa chính mình');
+        }
+        else{
         DB::table('tbl_e')->where('e_id',$e_id)->delete();
-        Session::put('message','Xóa sản phẩm thành công');
+        Session::put('message','Xóa nhân viên thành công');
         return Redirect::to('all-employee');
+    }
     }
 
 }

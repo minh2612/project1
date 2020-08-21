@@ -41,34 +41,35 @@
 			    </div>
 			</div>
 			<div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Người giao</label>
-		        <div class="col-sm-2">
-		            <select class="form-control"  name="project_admin" id="project_admin">
+		        <label class="col-sm-2 col-form-label">Tên khách hàng</label>
+		        <div class="col-sm-4">
+		            <select class="form-control"  name="customer_id">
+                        @foreach($customer as $key => $customer1)
+                        <option value="{{$customer1 ->customer_id}}">{{$customer1 ->customer_name}}</option>
+                        @endforeach    
+		            </select>
+		        </div>
+		    </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Người quản lý dự án</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="project_manager">
                         @foreach($e as $key => $e1)
                         <option value="{{$e1 ->e_id}}">{{$e1 ->e_name}}</option>
                         @endforeach       
-		            </select>
-		        </div>
-		    </div>
-			<div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Người nhận</label>
-		        <div class="col-sm-2">
-		            <select multiple="true" class="form-control select2 js-example-basic-single" name="employee_project[]" id="employee_project">
-	                    @foreach($e as $key => $e1)
-	                    <option value="{{$e1 ->e_id}}">{{$e1 ->e_name}}</option>
-	                    @endforeach       
-		            </select>
-		        </div>
-		    </div>
+                    </select>
+                </div>
+            </div>
 			<div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
-                <div class="col-sm-2">
-                    <input class="form-control" type="date" name="project_start">
+                <div class="col-sm-4">
+                    <input class="form-control" type="date" name="project_start" id="today">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <input class="form-control" type="date" name="project_end">
                 </div>
             </div>			
@@ -78,16 +79,12 @@
                     <textarea required class="form-control" name="project_node" rows="5"></textarea>
                 </div>
             </div>
-    		<div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Trạng thái</label>
-		        <div class="col-sm-4">
-		            <select class="form-control"  name="project_status" >
-                       	<option value="0">Chưa bắt đầu</option>
-	                    <option value="1">Hoạt động</option>
-	                    <option value="2">Kết thúc</option>
-		            </select>
-		        </div>
-		    </div>
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">File đính kèm</label>
+                <div class="col-sm-4">
+                    <input type="file" name="project_file">
+                </div>
+            </div>  
             <ul>
                @foreach ($errors->all() as $error)
                     <li>{{$error }}</li>

@@ -44,26 +44,46 @@
                 <div class="sidebar-inner slimscrollleft">
                     <div id="sidebar-menu">
                         <ul>
-                              
+                           
                             <li class="menu-title">Main</li>
                             <li>
                                 <a href="{{URL::to('/admin-dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
+                            
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý nhân viên </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                          
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
                                 </ul>
                             </li>
+                          
+                          
+                              @hasrole(['admin'])
+                         
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/add-project')}}">Thêm dự án</a></li>
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
                                 </ul>
-                            </li> 
-                                                     
+                           </li> 
+                           @endhasrole
+                          
+                                      
+
+
+                           @hasrole(['admin','manager'])
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{URL::to('/add-task')}}">Thêm công việc</a></li>
+                                    <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
+                                </ul>
+                            </li>                              
+
+
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-wallet"></i> <span> Quản lý lương </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -89,20 +109,23 @@
                             </li> 
                              </li>    
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
                                     <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
                                     <li><a href="{{URL::to('/all-customer-group')}}">Danh sách nhóm khách hàng</a></li>
                                 </ul>
                             </li> 
+                            @endhasrole
 
-                          
+
                         </ul>
                     </div>
+
                     <div class="clearfix"></div>
                 </div> <!-- end sidebarinner -->
             </div>
+            
             <!-- Left Sidebar End -->
             <!-- Start right Content here -->
             <div class="content-page">
@@ -120,10 +143,13 @@
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="{{asset('assets/images/users/avatar-6.jpg')}}" alt="user" class="rounded-circle">
+                                    <?php
+                                    $avatar=Auth::user()->e_avatar;
+                                    ?>
+                                        <img src="{{ URL::to('/public/avatar/'.$avatar)}}" alt="user" class="rounded-circle">
 
                                         <?php
-                                            $name = Session::get('e_name');
+                                            $name = Auth::user()->e_name;
                                             if($name){
                                                 echo $name;
                                                 
@@ -154,6 +180,7 @@
                     © 2019 - 2020 Zinzer <span class="d-none d-md-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</span>
                 </footer>
             </div>
+
             <!-- End Right content here -->
         </div>
         <!-- END wrapper -->
@@ -176,5 +203,8 @@
         <script src="{{asset('assets/pages/datatables.init.js')}}"></script>    
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
+        <script type="text/javascript">
+        document.querySelector("#today").valueAsDate = new Date();
+        </script>
     </body>
 </html>

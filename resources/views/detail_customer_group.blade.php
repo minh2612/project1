@@ -53,5 +53,6 @@
         </div>
     </div><!-- container fluid -->
 
-</div> <!-- Page content Wrapper -->
+</div>
+ <!-- Page content Wrapper -->
 @endsection

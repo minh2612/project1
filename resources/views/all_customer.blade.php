@@ -19,15 +19,16 @@
         </div> 
         <!-- end page title -->    	
 		<div class="table-responsive">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                     	<th>ID</th>
                         <th>Tên khách hàng</th>
                         <th>Email</th>
-                        <th>Người tạo</th>
                         <th>Nhóm người dùng</th>
                         <th>Mã code</th>
+                        <th>Người tạo</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,9 +43,9 @@
                          <td>{{$i}}</td>
                         <td>{{ $customer->customer_name }}</td>
                         <td>{{ $customer->customer_email }}</td>
-                        <td>{{ $customer->e_name}}</td>
                         <td>{{ $customer->customer_group_name }}</td>
                         <td>{{ $customer->customer_code }}</td>
+                        <td>{{ $customer->e_name}}</td>
                         <td>
                             <a href="{{URL::to('/add-customer/')}}" class="active styling-edit" ui-toggle-class="">
                                 <i class="fa fa-plus"></i>  
