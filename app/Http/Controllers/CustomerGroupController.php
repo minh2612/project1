@@ -53,7 +53,7 @@ class CustomerGroupController extends Controller
     );
         DB::table('tbl_customer_group')->insert($data);
         Session::put('message', 'Thêm nhóm khách hàng thành công');
-        return Redirect::to('add-customer-group');
+        return Redirect::to('all-customer-group');
     }
 
    public function detail_customer_group($customer_group_id){
