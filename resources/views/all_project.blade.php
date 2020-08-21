@@ -25,8 +25,8 @@
             </div>
         </div> 
         <!-- end page title -->     
-        <div class="table-responsive">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
+        <div class="table-responsive" style="width: 100%">
+            <table id="datatable" class="table table-bordered " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>Tên dự án</th>
@@ -36,7 +36,8 @@
                         <th>Người quản lý dự án</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
-                        <th>Công việc<br>cần xử lý</th>
+                        <th>Ghi chú</th>
+                        <th>Tổng số<br>công việc</th>
                         <th>Công việc<br>đã hoàn thành</th>
                         <th>Công việc<br>chưa hoàn thành</th>
 
@@ -62,7 +63,7 @@
                             @endforeach</td>                      
                         <td>{{$project->project_start}}</td>
                         <td>{{$project->project_end}}</td>
-                        
+                        <td>{{$project->project_node}}</td>
                         @php
                             $i = 0;
                         @endphp
@@ -110,10 +111,10 @@
                         </td>
                          <td><span class="text-ellipsis">
                         @if($i==$i1 && $i>0)
-                            <button type="button" style="width:130px;" class="btn btn-success waves-effect waves-light">Hoàn thành</button>
+                            <button type="button" style="width:150px;" class="btn btn-success waves-effect waves-light">Hoàn thành</button>
                         @endif
                         @if($i!=$i1 ||($i==$i1 && $i==0))
-                            <button type="button" style="width:130px;" class="btn btn-light waves-effect waves-light">Đang chạy</button>
+                            <button type="button" style="width:150px;" class="btn btn-light waves-effect waves-light">Đang chạy</button>
                          @endif   
                         </span></td>      
                     </tr>
