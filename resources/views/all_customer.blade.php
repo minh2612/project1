@@ -19,7 +19,7 @@
         </div> 
         <!-- end page title -->    	
 		<div class="table-responsive">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-bordered " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                     	<th>ID</th>
