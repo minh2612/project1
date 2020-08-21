@@ -9,13 +9,13 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <h4 class="page-title m-0">Thêm chức vụ</h4>
-                            <?php
+                         	<?php
                             $message= Session::get('message');
                             if($message){
                                 echo '<span class="text-alert">'.$message.'</span>';
                                 Session::put('message', null);
                             }
-                            ?>                            
+                            ?>
                         </div>
                         <!-- end col -->
                     </div>
@@ -25,29 +25,27 @@
             </div>
         </div> 
         <!-- end page title -->    	
-        <form role="form" action="{{URL::to('/save-position')}}" method="post" enctype="multipart/form-data">
-            {{csrf_field()}}        
+		<form role="form" action="{{URL::to('/save-position')}}" method="post" >
+        	{{csrf_field()}}     	
+			<div class="form-group row">
+			    <label for="example-name-input" class="col-sm-2 col-form-label">Tên chức vụ</label>
+			    <div class="col-sm-4">
+			        <input class="form-control" type="text" name="position_name" id="example-name-input">
+			    </div>
+			</div>
             <div class="form-group row">
-                <label for="example-name-input" class="col-sm-2 col-form-label">Tên chức vụ</label>
+                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="text" name="position_name" id="example-name-input">
+                    <textarea required class="form-control"  type="text" name="position_note" id="example-name-input"rows="5"></textarea>
                 </div>
             </div>
-
-                <div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Mô tả</label>
-                <div class="col-sm-4">
-                    <textarea required class="form-control" name="position_note" rows="5"></textarea>
-                </div>
-            </div>
-
              <ul>
                 @foreach($errors->all() as $error)
                      <li>{{$error}}</li>
                 @endforeach
             </ul>
-            <button type="submit" name="add_position" class="btn btn-success waves-effect waves-light">Thêm chức vụ</button>
-        </form>
+			<button type="submit" name="add_position" class="btn btn-success waves-effect waves-light">Thêm chức vụ</button>
+		</form>
     </div><!-- container fluid -->
 
 </div> <!-- Page content Wrapper -->
