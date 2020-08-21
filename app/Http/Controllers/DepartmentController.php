@@ -62,7 +62,7 @@ class DepartmentController extends Controller
     );
         DB::table('tbl_department')->insert($data);
         Session::put('message', 'Thêm phòng ban thành công');
-        return Redirect::to('add-department');
+        return Redirect::to('all-department');
     }
 
    public function detail_department($department_id){
