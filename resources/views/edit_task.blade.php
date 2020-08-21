@@ -56,6 +56,17 @@
 			    </div>
 			</div>
             <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mức độ ưu tiên</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="task_priority" >
+                        <option  selected value="{{$task->task_priority}}">{{$task->task_priority}}</option>
+                        <option value="Thấp">Thấp</option>    
+                        <option value="Trung bình">Trung bình</option>    
+                        <option value="Cao">Cao</option>    
+                    </select>
+                </div>
+            </div>      
+            <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-sm-4">
                     <textarea required class="form-control" value="{{$task->task_note}}" name="task_note" rows="5"><?php echo $task->task_note ?></textarea>
@@ -66,6 +77,7 @@
                 <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-2">
                     <input  type="file" name="task_file">
+                    <label for="example-date-input" value="{{$task->task_file}}" class="col-sm-2 col-form-label">{{$task->task_file}}</label>
                 </div>
             </div>  
             <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật thông tin</button>
