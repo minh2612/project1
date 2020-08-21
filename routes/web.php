@@ -38,6 +38,7 @@ Route::get('/all-project','ProjectController@all_project');
 Route::get('/all-task','ProjectController@all_task');
 Route::get('/add-task', 'ProjectController@add_task');
 Route::get('/info-task/{project_id}','ProjectController@info_task');
+Route::get('file/download/{id}','ProjectController@show');
 
 Route::get('/unactive-project/{project_id}','ProjectController@unactive_project');
 Route::get('/active-project/{project_id}','ProjectController@active_project');
