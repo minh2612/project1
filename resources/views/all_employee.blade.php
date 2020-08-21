@@ -39,6 +39,7 @@
                         <th>Admin</th>
                         <th>Quản lý</th>
                         <th>Nhân viên</th>
+
                    
 
                     </tr>
@@ -67,14 +68,12 @@
                 <td><input type="checkbox" name="admin_role" {{$user->hasRole('admin') ? 'checked' : ''}}></td>
                 <td><input type="checkbox" name="manager_role"  {{$user->hasRole('manager') ? 'checked' : ''}}></td>
                 <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
-
-              <td>
                   
-                    
-                 <input type="submit" value="Cấp quyền" class="btn btn-sm btn-default">
+              <td> 
                 
+                 <input type="submit" value="Cấp quyền" class="btn btn-sm btn-default">
               </td> 
-
+                   
               </tr>
             </form>
           @endforeach     
