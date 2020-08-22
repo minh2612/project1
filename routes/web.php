@@ -114,10 +114,12 @@ Route::post('/update-customer-group/{customer_group_id}', 'CustomerGroupControll
 
 //Users
 
+Route::get('/count-task','UserProject@count_task');
 Route::get('/loading-task','UserProject@loading_task');
 Route::get('/wait-user-task','UserProject@wait_user_task');
 Route::get('/refuse-user-task','UserProject@refuse_user_task');
 Route::get('/end-user-task','UserProject@end_user_task');
+Route::get('/stack-user-task','UserProject@stack_user_task');
 Route::get('/start-user-task/{task_id}','UserProject@start_user_task');
 Route::get('/submit-user-task/{task_id}','UserProject@submit_user_task');
 
