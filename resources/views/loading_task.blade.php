@@ -1,5 +1,5 @@
-@extends('users_layout')
-@section('users_content')
+@extends('admin_layout')
+@section('admin_content')
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
@@ -11,34 +11,38 @@
                 <thead>
                     <tr>                     
                         <th>Dự án</th>
-                        <th>Công việc</th>
+                        <th>Tên công việc</th>
                         <th>Người phụ trách</th>                        
                         <th>Thành viên</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
+                        <th>Mức độ ưu tiên</th>
+
                         <th>Trạng thái</th>
                         
                     </tr>
                 </thead>
+                <tbody>
                   <tr>
                     @foreach($all_task as $key => $value)
-                        <th>{{$value->project_name}}</th>
+                        <th>{{$value->project_id}}</th>
                         <th>{{$value->task_name}}</th>  
-                        <th>{{$value->task_admin}}</th> 
+                        <th>{{$value->e_name}}</th> 
                        <th> @foreach($all_employee as $key)
                             @if($key->task_id==$value->task_id)
                                {{$key->e_name}}<br>
                             @endif
                         @endforeach</th>
                          <th>{{$value->task_start}}</th> 
-                        <th>{{$value->task_end}}</th>   
+                        <th>{{$value->task_end}}</th> 
+                          <th>{{$value->task_priority}}</th> 
                         <td>
                             <span class="text-ellipsis">
                             <?php
 
                             if($value->task_status==1){
                             ?>
-                                <a href="{{URL::to('/submit-user-task/'.$value->task_id)}}"><button type="button" style="width:130px;" class="btn btn-info waves-effect waves-light">Đang diễn ra</button></a>
+                                <a href="{{URL::to('/submit-user-task/'.$value->task_id)}}"><button type="button" style="width:130px;" class="btn btn-primary waves-effect waves-light">Đang xử lý</button></a>
                             <?php
                             }
                             ?>
@@ -46,7 +50,7 @@
                         </td> 
                     </tr>
                     @endforeach
-                <tbody>
+                
                    
                 </tbody>
             </table>
