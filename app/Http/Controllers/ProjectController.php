@@ -193,7 +193,7 @@ class ProjectController extends Controller
          $this->validate($request,
          [
             'project_name' => 'bail|required|unique:tbl_project',
-            'project_manager' => 'bail|required',
+            'project_manager' => '',
             'project_start' => 'bail|required|after_or_equal:today',
             'project_end' => 'bail|required|after:project_start',
           
@@ -212,7 +212,7 @@ class ProjectController extends Controller
 
         [
             'project_name' => 'Tên dự án',
-            'project_manager' => 'Người giao',
+            'project_manager' => 'Người quản lý',
             'project_start' => 'Ngày bắt đầu',
             'project_end' => 'Ngày kết thúc',
             
@@ -222,7 +222,7 @@ class ProjectController extends Controller
          $id=Auth::user()->e_id;
         $data['project_admin']=$id;
         $data['project_name'] = $request->project_name;
-        $data['project_manager'] = $request->project_manager;
+        $data['project_manager'] = $request->employee_task;
         $data['project_start'] = $request->project_start;
         $data['project_end'] = $request->project_end;
         $data['project_node'] = $request->project_node;
@@ -308,6 +308,7 @@ class ProjectController extends Controller
         $data['task_name'] = $request->task_name;
         $data['project_id'] = $request->project_name;
         $data['task_end'] = $request->task_end;
+        $data['task_priority']=$request->task_priority;
         $data['task_note'] = $request->task_note;
         if( $request->task_name==""){
             Session::put('message','Mời nhập đầy đủ thông tin');
