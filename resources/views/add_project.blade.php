@@ -56,7 +56,7 @@
 
                 <div class="col-sm-4">
                     
-                    <select multiple="true" class="form-control select2 js-example-basic-single" name="employee_task[]" >
+                    <select class="form-control select2 js-example-basic-single" name="employee_task" >
                        @foreach($e as $key => $e1)
                         @foreach($role as  $r)
                         @if($e1->e_id == $r->admin_e_id )
