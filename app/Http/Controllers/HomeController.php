@@ -51,7 +51,7 @@ class HomeController extends Controller
              $task_user=DB::table('tbl_employee_task')
              ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
              ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
-             ->where('tbl_employee_task.employee_id',$id)->get();
+             ->where('tbl_employee_task.employee_id',$id)->orderBy('task_priority', 'asc')->get();
              $all_project=DB::table('tbl_project')->get();
            
        
