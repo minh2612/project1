@@ -58,7 +58,8 @@
                        </tr>
                        <tr>
                             <th>File đính kèm</th>  
-                            <th>{{ $task->task_file}}</th>
+                            <th><a href="{{URL::to('/download/'.$task->task_file)}}">{{ $task->task_file}}</a>
+                            </th>
                        </tr>
      
                 @endforeach                   

@@ -13,14 +13,15 @@
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-position/')}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fas fa-plus-circle fa-2x"></i></a>    
-                            </div>
+                            <p>&nbsp;</p>
                             <?php
                                 $message= Session::get('message');
                                  if($message){
                                       echo '<span class="text-alert">'.$message.'</span>';
                                       Session::put('message', null);
                                     }
-                            ?>                       
+                            ?>
+                            </div>                       
                         </div>
                         <!-- end col -->
                     </div>

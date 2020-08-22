@@ -7,15 +7,21 @@
             <div class="col-sm-12">
                 <div class="page-title-box">
                     <div class="row align-items-center">
-                        <div class="col-md-8">
+                        <div class="row">
                             <h4 class="page-title m-0">Danh sách công việc</h4>
+                            <p>&nbsp;</p>
+                            <a href="{{URL::to('/add-task/')}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fas fa-plus-circle fa-2x"></i></a> 
+                            <p>&nbsp;</p>
                             <?php
                                 $message= Session::get('message');
                                  if($message){
                                       echo '<span class="text-alert">'.$message.'</span>';
                                       Session::put('message', null);
                                     }
-                            ?>        
+                            ?>
+                            </div>
+                                    
                         </div>
                         <!-- end col -->
                     </div>
