@@ -50,11 +50,22 @@
             </div>
             
 			<div class="form-group row">
-			    <label for="example-tel-input" class="col-sm-2 col-form-label">Deadline</label>
+			    <label for="example-tel-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
 			    <div class="col-sm-4">
 			        <input class="form-control" value="{{$task->task_end}}" type="date" name="task_end" id="example-tel-input">
 			    </div>
 			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mức độ ưu tiên</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="task_priority" >
+                        <option value="Thấp">Thấp</option>    
+                        <option value="Trung bình">Trung bình</option>    
+                        <option value="Cao">Cao</option>      
+                    </select>
+                </div>
+            </div>  
+            
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-sm-4">
