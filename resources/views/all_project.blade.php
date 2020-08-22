@@ -38,8 +38,8 @@
                         <th>Ngày kết thúc</th>
                         <th>Ghi chú</th>
                         <th>Tổng số<br>công việc</th>
-                        <th>Công việc<br>đã hoàn thành</th>
-                        <th>Công việc<br>chưa hoàn thành</th>
+                        <th>Công việc<br>đã xử lý</th>
+                        <th>Công việc<br>chưa xử lý</th>
 
                         <th>Hành động</th>
                         <th>Trạng thái</th>
