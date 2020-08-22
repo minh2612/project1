@@ -80,6 +80,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/add-task')}}">Thêm công việc</a></li>
                                     <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
+                                    
                                 </ul>
                             </li>                              
 
@@ -125,6 +126,7 @@
                     <div class="clearfix"></div>
                 </div> <!-- end sidebarinner -->
             </div>
+
             
             <!-- Left Sidebar End -->
             <!-- Start right Content here -->
@@ -160,7 +162,7 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
-                                        <a class="dropdown-item"  href="{{URL::to('/logout')}}"><i class="dripicons-exit text-muted"></i> Logout</a>
+                                        <a class="dropdown-item"  href="{{URL::to('/logout')}}"><i class="dripicons-exit text-muted"></i>Đăng xuất</a>
                                     </div>
                                 </li>
                             </ul>
@@ -173,11 +175,88 @@
                             </ul>
                         </nav>
                     </div>
+        @hasrole(['user'])
+         <div class="row">
+            <div style="margin-left: 30px; margin-top: 20px;">
+                <div class="card bg-primary mini-stat text-white" style="width:260px">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50" style="color:black">Công việc đang chạy</h6>
+                            <h4 class="mb-3 mt-0 float-right"></h4>
+                        </div>                     
+                    </div>
+                    <div class="p-3">
+                        <a href="{{URL::to('/loading-task')}}" style="color:white" class="font-14 m-0">Xem các công việc đang chạy</a>
+                    </div>
+                </div>
+            </div>
+
+             <div style="margin-left: 25px; margin-top: 20px;">
+                <div class="card bg-info mini-stat text-white" style="width:260px">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Công việc chờ duyệt</h6>
+                            <h4 class="mb-3 mt-0 float-right"></h4>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <a  href="{{URL::to('/wait-user-task')}}" style="color:white" class="font-14 m-0">Xem các công việc chờ duyệt</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-left: 25px; margin-top: 20px;">
+                <div class="card bg-pink mini-stat text-white" style="width:260px">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Công việc bị từ chối</h6>
+                            <h4 class="mb-3 mt-0 float-right"></h4>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <a href="{{URL::to('/refuse-user-task')}}" style="color:white" class="font-14 m-0">Xem các công việc bị từ chối</a>
+                    </div>
+                </div>
+            </div>
+            
+           
+
+            <div style="margin-left: 25px; margin-top: 20px;">
+                <div class="card  mini-stat text-white" style="width:260px; background-color: #ff9800;">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Công việc treo</h6>
+                            <h4 class="mb-3 mt-0 float-right"></h4>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <a  href="{{URL::to('/stack-user-task')}}" style="color:white" class="font-14 m-0">Xem các công việc treo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-left: 25px; margin-top: 20px;">
+                 <div class="card bg-success mini-stat text-white" style="width:260px">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Công việc hoàn thành</h6>
+                            <h4 class="mb-3 mt-0 float-right"></h4>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <a  href="{{URL::to('/end-user-task')}}" style="color:white" class="font-14 m-0">Xem các công việc đã hoàn thành</a>
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>  
+        @endhasrole
                     <!-- Top Bar End -->
                     @yield('admin_content') 
                 </div> <!-- content -->
                 <footer class="footer">
-                    © 2019 - 2020 Zinzer <span class="d-none d-md-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</span>
+                    Quản lý công việc <span class="d-none d-md-inline-block">  <i class="mdi mdi-heart text-danger"></i> by Team thực tập kalzen.</span>
                 </footer>
             </div>
 
