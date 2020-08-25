@@ -47,9 +47,12 @@
                            
                             <li class="menu-title">Main</li>
                             <li>
-                                <a href="{{URL::to('/admin-dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
+                                <a href="{{route('admin.index')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
+
+
                             
+                    
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý nhân viên </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                           
@@ -58,40 +61,38 @@
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
                                 </ul>
                             </li>
-                          
-                          
-                              @hasrole(['admin'])
+                       
+                     
                          
+                             @hasrole(['admin','manager'])
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-project')}}">Thêm dự án</a></li>
+                                    
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
+                                    <li><a href="{{URL::to('/my-project')}}">Dự án của tôi</a></li>
                                 </ul>
                            </li> 
-                           @endhasrole
+                      
                           
                                       
 
 
-                           @hasrole(['admin','manager'])
+                           
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-task')}}">Thêm công việc</a></li>
-                                    <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
                                     
+                                    <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
+                                      <li><a href="{{URL::to('/my-task')}}">Công việc của tôi</a></li>
                                 </ul>
                             </li>                              
 
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-wallet"></i> <span> Quản lý lương </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a>Thêm lương</a></li>
-                                    <li><a>Danh sách lương</a></li>
-                                </ul>
-                            </li>
+                        @endhasrole
+                          
+                            
+                          @hasrole(['admin'])
+                          
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý phòng ban </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -117,7 +118,18 @@
                                     <li><a href="{{URL::to('/all-customer-group')}}">Danh sách nhóm khách hàng</a></li>
                                 </ul>
                             </li> 
+
+                             <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý vai trò </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                          
+
+                                <ul class="list-unstyled">
+                                     <li><a href="{{URL::to('/all-roles')}}">Danh sách vai trò</a></li>
+                                </ul>
+                            </li>
                             @endhasrole
+                        
+
 
 
                         </ul>
