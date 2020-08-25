@@ -51,9 +51,9 @@
                     <tr>
             
                         <td>{{$task->task_name}}</td>
-                        <td>@foreach($all_project as $key => $value) 
-                            @if($task->project_id==$value->project_id)
-                            {{$value->project_name}}<br>
+                        <td>@foreach($all_project as $key => $value1) 
+                            @if($task->project_id==$value1->project_id)
+                            {{$value1->project_name}}<br>
                             @endif
                             @endforeach</td>
                         <td>@foreach($all_employee as $key => $value) 
@@ -62,7 +62,11 @@
                             @endif
                             @endforeach</td>            
                         <td>{{$task->task_end}}</td>
-                        <td>{{$task->task_priority}}</td>
+                        <td>@foreach($all_priority as $key => $value2) 
+                            @if($task->priority_id==$value2->priority_id)
+                            {{$value2->priority_name}}<br>
+                            @endif
+                            @endforeach</td>
                         <td>{{$task->task_note}}</td>
                         <td>
                         <a href="{{URL::to('/detail-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
