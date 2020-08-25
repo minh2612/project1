@@ -11,7 +11,7 @@
                             <h4 class="page-title m-0">Danh sách khách hàng</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-customer/')}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fas fa-plus-circle fa-2x"></i></a> 
+                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm khách hàng</button></a> 
                             <p>&nbsp;</p>
                             <?php
                                 $message= Session::get('message');
