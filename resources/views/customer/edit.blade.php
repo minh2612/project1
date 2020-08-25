@@ -128,7 +128,7 @@ function showPreview(event){
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
-            <button type="submit" name="update_customer" class="btn btn-success waves-effect waves-light">Cập nhật</button>
+            <button type="submit" name="update_customer" class="btn btn-success waves-effect waves-light">Cập nhật khách hàng</button>
 		</form>
 		@endforeach
     </div><!-- container fluid -->
