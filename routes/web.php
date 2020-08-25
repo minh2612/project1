@@ -12,124 +12,141 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //Home
-Route::get('/','HomeController@index');
-Route::post('/login','HomeController@login');
-Route::get('/admin-dashboard', 'HomeController@show_dashboard');
-Route::get('/logout', 'HomeController@logout');
-Route::post('assign-roles','EmployeeController@assign_roles');
+Route::get('/','HomeController@index')->name('admin.index');
+Route::post('/login','HomeController@login')->name('admin.login');
+Route::get('/admin-dashboard', 'HomeController@show_dashboard')->name('admin.dashboard');
+Route::get('/logout', 'HomeController@logout')->name('admin.logout');
+Route::post('assign-roles','EmployeeController@assign_roles')->name('admin.asign.roles');
+
+//permission controleer
+Route::get('/add-role','RoleControler@add_role');
+Route::post('/save-role','RoleControler@save_role');
 
 //Admin-Employee
 //Route::group(['middleware' => 'roles', 'roles'=>['admin','author']], function () {
-Route::get('/add-employee','EmployeeController@add_employee')->middleware('auth.roles');
-Route::get('/all-employee','EmployeeController@all_employee');
-Route::post('/save-employee', 'EmployeeController@save_employee');
-Route::get('/edit-employee/{e_id}', 'EmployeeController@edit_employee');
-Route::get('/detail-employee/{e_id}', 'EmployeeController@detail_employee');
-Route::get('/delete-employee/{e_id}', 'EmployeeController@delete_employee');
-Route::post('/update-employee/{e_id}', 'EmployeeController@update_employee');
+Route::get('/add-employee','EmployeeController@add_employee')->name('admin.employee.add')->middleware('permission:admin.employee.add');
+Route::get('/all-employee','EmployeeController@all_employee')->name('admin.employee.all')->middleware('permission:admin.employee.all');
+Route::post('/save-employee', 'EmployeeController@save_employee')->name('admin.employee.save');
+Route::get('/edit-employee/{e_id}', 'EmployeeController@edit_employee')->name('admin.employee.edit');
+Route::get('/detail-employee/{e_id}', 'EmployeeController@detail_employee')->name('admin.employee.detail');
+Route::get('/delete-employee/{e_id}', 'EmployeeController@delete_employee')->name('admin.employee.delete');
+Route::post('/update-employee/{e_id}', 'EmployeeController@update_employee')->name('admin.employee.update');
 //});
 //Admin-Project
-Route::get('/add-project','ProjectController@add_project');
-Route::get('/edit-project/{project_id}', 'ProjectController@edit_project');
-Route::get('/detail-project/{project_id}', 'ProjectController@detail_project');
-Route::get('/delete-project/{project_id}', 'ProjectController@delete_project');
-Route::get('/all-project','ProjectController@all_project');
-Route::get('/all-task','ProjectController@all_task');
-Route::get('/add-task', 'ProjectController@add_task');
-Route::get('/info-task/{project_id}','ProjectController@info_task');
-Route::get('/download/{task_id}','ProjectController@download');
+Route::get('/add-project','ProjectController@add_project')->name('admin.project.add');
+Route::get('/edit-project/{project_id}', 'ProjectController@edit_project')->name('admin.project.edit');
+Route::get('/detail-project/{project_id}', 'ProjectController@detail_project')->name('admin.project.detail');
+Route::get('/delete-project/{project_id}', 'ProjectController@delete_project')->name('admin.project.delete');
+Route::get('/all-project','ProjectController@all_project')->name('admin.project.all');
+Route::get('/all-task','ProjectController@all_task')->name('admin.task.all');
+Route::get('/add-task', 'ProjectController@add_task')->name('admin.task.add');
+Route::get('/info-task/{project_id}','ProjectController@info_task')->name('admin.task.info');
+Route::get('/download/{task_id}','ProjectController@download')->name('admin.task.dowload');
 
-Route::get('/unactive-project/{project_id}','ProjectController@unactive_project');
-Route::get('/active-project/{project_id}','ProjectController@active_project');
+Route::get('/my-project','ProjectController@my_project')->name('admin.project.my');
+Route::get('/my-task','ProjectController@my_task')->name('admin.task.my');
+Route::get('/add-my-task', 'ProjectController@add_my_task')->name('admin.task.addmy');
 
-Route::get('/start-task/{task_id}','ProjectController@start_task');
-Route::get('/detail-task/{task_id}', 'ProjectController@detail_task');
-Route::get('/submit-task/{task_id}','ProjectController@submit_task');
-Route::get('/refuse-task/{task_id}','ProjectController@refuse_task');
-Route::get('/end-task/{task_id}','ProjectController@end_task');
-Route::get('/edit-task/{task_id}', 'ProjectController@edit_task');
-Route::get('/delete-task/{task_id}', 'ProjectController@delete_task');
-Route::get('/sm-task', 'ProjectController@sm_task');
 
-Route::post('/save-project','ProjectController@save_project');
-Route::post('/save-task', 'ProjectController@save_task');
-Route::post('/update-project/{project_id}', 'ProjectController@update_project');
-Route::post('/update-task/{task_id}', 'ProjectController@update_task');
+Route::get('/start-task/{task_id}','ProjectController@start_task')->name('admin.task.start');
+Route::get('/detail-task/{task_id}', 'ProjectController@detail_task')->name('admin.task.detail');
+Route::get('/submit-task/{task_id}','ProjectController@submit_task')->name('admin.task.submit');
+Route::get('/refuse-task/{task_id}','ProjectController@refuse_task')->name('admin.task.end');
+Route::get('/end-task/{task_id}','ProjectController@end_task')->name('admin.task.end');
+Route::get('/edit-task/{task_id}', 'ProjectController@edit_task')->name('admin.task.edit');
+Route::get('/delete-task/{task_id}', 'ProjectController@delete_task')->name('admin.task.delete');
+Route::get('/sm-task', 'ProjectController@sm_task')->name('admin.task.sm');
+
+Route::post('/save-project','ProjectController@save_project')->name('admin.project.save');
+Route::post('/save-task', 'ProjectController@save_task')->name('admin.task.save');
+Route::post('/save-my-task', 'ProjectController@save_my_task')->name('admin.task.savemy');
+Route::post('/update-project/{project_id}', 'ProjectController@update_project')->name('admin.project.update');
+Route::post('/update-task/{task_id}', 'ProjectController@update_task')->name('admin.task.update');
 
 //Admin-Salary
-Route::get('/add-salary','SalaryController@add_salary');
-Route::get('/all-salary','SalaryController@all_salary');
-Route::get('/edit-salary/{salary_id}', 'SalaryController@edit_salary');
-Route::get('/delete-salary/{salary_id}', 'SalaryController@delete_salary');
-Route::post('/save-salary', 'SalaryController@save_salary');
-Route::post('/update-salary/{salary_id}', 'SalaryController@update_salary');
-//Salary table
-Route::get('/add-salary-table', 'SalaryTableController@add_salary_table');
-Route::get('/edit-salary-table/{salary_table_id}', 'SalaryTableController@edit_salary_table');
-Route::get('/delete-salary-table/{salary_table_id}', 'SalaryTableController@delete_salary_table');
-Route::get('/all-salary-table', 'SalaryTableController@all_salary_table');
+// Route::get('/add-salary','SalaryController@add_salary');
+// Route::get('/all-salary','SalaryController@all_salary');
+// Route::get('/edit-salary/{salary_id}', 'SalaryController@edit_salary');
+// Route::get('/delete-salary/{salary_id}', 'SalaryController@delete_salary');
+// Route::post('/save-salary', 'SalaryController@save_salary');
+// Route::post('/update-salary/{salary_id}', 'SalaryController@update_salary');
+// //Salary table
+// Route::get('/add-salary-table', 'SalaryTableController@add_salary_table');
+// Route::get('/edit-salary-table/{salary_table_id}', 'SalaryTableController@edit_salary_table');
+// Route::get('/delete-salary-table/{salary_table_id}', 'SalaryTableController@delete_salary_table');
+// Route::get('/all-salary-table', 'SalaryTableController@all_salary_table');
 
-Route::post('/save-salary-table', 'SalaryTableController@save_salary_table');
-Route::post('/update-salary-table/{salary_table_id}', 'SalaryTableController@update_salary_table');
+// Route::post('/save-salary-table', 'SalaryTableController@save_salary_table');
+// Route::post('/update-salary-table/{salary_table_id}', 'SalaryTableController@update_salary_table');
 //Admin-Department
-Route::get('/add-department','DepartmentController@add_department');
-Route::get('/all-department','DepartmentController@all_department');
-Route::post('/save-department','DepartmentController@save_department');
-Route::get('/detail-department/{department_id}', 'DepartmentController@detail_department');
-Route::get('/edit-department/{department_id}', 'DepartmentController@edit_department');
-Route::get('/delete-department/{department_id}', 'DepartmentController@delete_department');
-Route::post('/update-department/{department_id}', 'DepartmentController@update_department');
+Route::get('/add-department','DepartmentController@add_department')->name('admin.department.add');
+Route::get('/all-department','DepartmentController@all_department')->name('admin.department.all');
+Route::post('/save-department','DepartmentController@save_department')->name('admin.department.save');
+Route::get('/detail-department/{department_id}', 'DepartmentController@detail_department')->name('admin.department.edit');
+Route::get('/edit-department/{department_id}', 'DepartmentController@edit_department')->name('admin.department.edit');
+Route::get('/delete-department/{department_id}', 'DepartmentController@delete_department')->name('admin.department.delete');
+Route::post('/update-department/{department_id}', 'DepartmentController@update_department')->name('admin.department.update');
 
 //Admin-Position
-Route::get('/add-position','PositionController1@add_position');
-Route::get('/all-position','PositionController1@all_position');
-Route::post('/save-position','PositionController1@save_position');
-Route::get('/detail-position/{position_id}', 'PositionController1@detail_position');
-Route::get('/edit-position/{position_id}', 'PositionController1@edit_position');
-Route::get('/delete-position/{position_id}', 'PositionController1@delete_position');
-Route::post('/update-position/{position_id}', 'PositionController1@update_position');
+Route::get('/add-position','PositionController1@add_position')->name('admin.position.add');
+Route::get('/all-position','PositionController1@all_position')->name('admin.position.all');
+Route::post('/save-position','PositionController1@save_position')->name('admin.position.save');
+Route::get('/detail-position/{position_id}', 'PositionController1@detail_position')->name('admin.position.detail');
+Route::get('/edit-position/{position_id}', 'PositionController1@edit_position')->name('admin.position.edit');
+Route::get('/delete-position/{position_id}', 'PositionController1@delete_position')->name('admin.position.delete');
+Route::post('/update-position/{position_id}', 'PositionController1@update_position')->name('admin.position.update');
 
 
 
 //Admin-Customer
-Route::get('/add-customer','CustomerController@add_customer');
-Route::get('/all-customer','CustomerController@all_customer');
-Route::post('/save-customer', 'CustomerController@save_customer');
-Route::get('/edit-customer/{customer_id}', 'CustomerController@edit_customer');
-Route::get('/detail-customer/{customer_id}', 'CustomerController@detail_customer');
-Route::get('/delete-customer/{customer_id}', 'CustomerController@delete_customer');
-Route::post('/update-customer/{customer_id}', 'CustomerController@update_customer');
+Route::get('/add-customer','CustomerController@add_customer')->name('admin.customer.add');
+Route::get('/all-customer','CustomerController@all_customer')->name('admin.customer.all');
+Route::post('/save-customer', 'CustomerController@save_customer')->name('admin.customer.save');
+Route::get('/edit-customer/{customer_id}', 'CustomerController@edit_customer')->name('admin.customer.edit');
+Route::get('/detail-customer/{customer_id}', 'CustomerController@detail_customer')->name('admin.customer.detail');
+Route::get('/delete-customer/{customer_id}', 'CustomerController@delete_customer')->name('admin.customer.delete');
+Route::post('/update-customer/{customer_id}', 'CustomerController@update_customer')->name('admin.customer.update');
 
 
 //Admin-Customer-Group
-Route::get('/add-customer-group','CustomerGroupController@add_customer_group');
-Route::get('/all-customer-group','CustomerGroupController@all_customer_group');
-Route::post('/save-customer-group','CustomerGroupController@save_customer_group');
-Route::get('/detail-customer-group/{customer_group_id}', 'CustomerGroupController@detail_customer_group');
-Route::get('/edit-customer-group/{customer_group_id}', 'CustomerGroupController@edit_customer_group');
-Route::get('/delete-customer-group/{customer_group_id}', 'CustomerGroupController@delete_customer_group');
-Route::post('/update-customer-group/{customer_group_id}', 'CustomerGroupController@update_customer_group');
+Route::get('/add-customer-group','CustomerGroupController@add_customer_group')->name('admin.customer_group.add');
+Route::get('/all-customer-group','CustomerGroupController@all_customer_group')->name('admin.customer_group.all');
+Route::post('/save-customer-group','CustomerGroupController@save_customer_group')->name('admin.customer_group.save');
+Route::get('/detail-customer-group/{customer_group_id}', 'CustomerGroupController@detail_customer_group')->name('admin.customer_group.detail');
+Route::get('/edit-customer-group/{customer_group_id}', 'CustomerGroupController@edit_customer_group')->name('admin.customer_group.edit');
+Route::get('/delete-customer-group/{customer_group_id}', 'CustomerGroupController@delete_customer_group')->name('admin.customer_group.delete');
+Route::post('/update-customer-group/{customer_group_id}', 'CustomerGroupController@update_customer_group')->name('admin.customer_group.update');
 
 
 //Users
 
-Route::get('/count-task','UserProject@count_task');
-Route::get('/loading-task','UserProject@loading_task');
-Route::get('/wait-user-task','UserProject@wait_user_task');
-Route::get('/refuse-user-task','UserProject@refuse_user_task');
-Route::get('/end-user-task','UserProject@end_user_task');
-Route::get('/stack-user-task','UserProject@stack_user_task');
-Route::get('/start-user-task/{task_id}','UserProject@start_user_task');
-Route::get('/submit-user-task/{task_id}','UserProject@submit_user_task');
+Route::get('/count-task','UserProject@count_task')->name('user.task.count');
+Route::get('/loading-task','UserProject@loading_task')->name('user.task.loading');
+Route::get('/wait-user-task','UserProject@wait_user_task')->name('user.task.wait');
+Route::get('/refuse-user-task','UserProject@refuse_user_task')->name('user.task.refuse');
+Route::get('/end-user-task','UserProject@end_user_task')->name('user.task.end');
+Route::get('/stack-user-task','UserProject@stack_user_task')->name('user.task.stack');
+Route::get('/start-user-task/{task_id}','UserProject@start_user_task')->name('user.task.start');
+Route::get('/submit-user-task/{task_id}','UserProject@submit_user_task')->name('user.task.submit');
+
+//permission
+Route::get('/add-roles','RolesController@add_roles')->name('admin.roles.add');
+Route::post('/save-roles','RolesController@save_roles')->name('admin.roles.save');
+Route::get('/all-roles','RolesController@all_roles')->name('admin.roles.all');
+
+Route::get('/edit-roles/{id}','RolesController@edit_roles')->name('admin.roles.edit');
+Route::get('/delete-roles/{id}','RolesController@delete_roles')->name('admin.roles.delete');
+Route::post('/update-roles/{id}','RolesController@update_roles')->name('admin.roles.update');
 
 
 //Admin-Employee
-Route::get('/users-show-employee','UsersController@show_employee');
-Route::get('/users-show-employee','UsersController@show_employee');
+// Route::get('/users-show-employee','UsersController@show_employee')->name('user.employee.show');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@home')->name('home');
+// Route::get('/home', 'HomeController@home')->name('home');
 
 //auth role
 // Route::get('/register-auth','AuthController@register_auth');
