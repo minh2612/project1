@@ -13,13 +13,6 @@
                             <a href="{{URL::to('/add-customer-group/')}}" class="active styling-edit" ui-toggle-class="">
                             <button type="button" class="btn btn-success waves-effect waves-light">Thêm nhóm khách hàng</button></a> 
                             <p>&nbsp;</p>
-                            <?php
-                                $message= Session::get('message');
-                                 if($message){
-                                      echo '<span class="text-alert">'.$message.'</span>';
-                                      Session::put('message', null);
-                                    }
-                            ?>
                             </div>                            
                         </div>
                         <!-- end col -->
@@ -28,7 +21,14 @@
                 </div>
                 <!-- end page-title-box -->
             </div>
-        </div> 
+        </div>
+        <?php
+            $message= Session::get('message');
+             if($message){
+                  echo '<span class="text-alert">'.$message.'</span>';
+                  Session::put('message', null);
+                }
+        ?> 
         <!-- end page title -->
         <div class="row">
             <div class="col-12">
