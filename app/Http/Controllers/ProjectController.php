@@ -16,7 +16,7 @@ class ProjectController extends Controller
 {
   
     public function add_project(){
-       $role=DB::table('admin_roles')
+        $role=DB::table('admin_roles')
         ->join('tbl_e','tbl_e.e_id','=','admin_roles.admin_e_id')->
         where('admin_roles.roles_id_roles',2)->get();
         $e=DB::table('tbl_e')->get();
@@ -28,12 +28,10 @@ class ProjectController extends Controller
     public function add_task(){
         $id=Auth::user()->e_id;
         $manager=DB::table('tbl_e')->where('e_id',$id)->first();
-
-        
         $e=DB::table('tbl_e')->where('department_id',$manager->department_id)->get();
-
+        $priority=DB::table('tbl_priority')->get();
         $project= DB::table('tbl_project')->get();
-        return view('add_task')->with('e',$e)->with('project',$project)->with('e',$e);      
+        return view('add_task')->with('e',$e)->with('project',$project)->with('e',$e)->with('priority',$priority);      
     }
 
 
@@ -59,11 +57,12 @@ class ProjectController extends Controller
         //$this->AuthAdmin();
         $all_task= DB::table('tbl_task')->get();
         $all_project= DB::table('tbl_project')->get();
+        $all_priority= DB::table('tbl_priority')->get();
         $all_employee=DB::table('tbl_employee_task')
         ->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->get();
 
 
-        $manager_task = view('all_task')->with('all_employee',  $all_employee)->with('all_task',$all_task)->with('all_project',  $all_project);
+        $manager_task = view('all_task')->with('all_employee',  $all_employee)->with('all_task',$all_task)->with('all_project',  $all_project)->with('all_priority',  $all_priority);
         return view('admin_layout')->with('all_task', $manager_task);
     }
 
@@ -160,7 +159,7 @@ class ProjectController extends Controller
         $data['task_name'] = $request->task_name;
         $data['task_start'] = $request->task_start;
         $data['task_end'] = $request->task_end;
-        $data['task_priority'] = $request->task_priority;
+        $data['priority_id'] = $request->priority_id;
         $data['task_note'] = $request->task_note;
         
         if($request->task_start<=Carbon::now('Asia/Ho_Chi_Minh')){
@@ -293,7 +292,8 @@ class ProjectController extends Controller
    
         $edit_task=DB::table('tbl_task')->where('task_id',$task_id)->get();
         $project=DB::table('tbl_project')->get();
-        $manager_task = view('edit_task')->with('edit_task',$edit_task)->with('project', $project);
+        $priority=DB::table('tbl_priority')->get();
+        $manager_task = view('edit_task')->with('edit_task',$edit_task)->with('project', $project)->with('priority', $priority);
 
         return view('admin_layout')->with('edit_task', $manager_task);
 
@@ -316,7 +316,7 @@ class ProjectController extends Controller
         $data['project_id'] = $request->project_name;
         $data['task_end'] = $request->task_end;
 
-        $data['task_priority']=$request->task_priority;
+        $data['priority_id']=$request->priority_name;
         $data['task_note'] = $request->task_note;
         $get_image= $request->file('task_file');
         if($get_image){
