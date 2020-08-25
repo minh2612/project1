@@ -92,7 +92,7 @@ Route::post('/update-department/{department_id}', 'DepartmentController@update')
 //Admin-Position
 Route::get('/add-position','Position_Controller@add')->name('admin.position.add');
 Route::get('/all-position','Position_Controller@show')->name('admin.position.all');
-Route::post('/save-position','PositionController@save')->name('admin.position.save');
+Route::post('/save-position','Position_Controller@save')->name('admin.position.save');
 Route::get('/edit-position/{position_id}', 'Position_Controller@edit')->name('admin.position.edit');
 Route::get('/delete-position/{position_id}', 'Position_Controller@delete')->name('admin.position.delete');
 Route::post('/update-position/{position_id}', 'Position_Controller@update')->name('admin.position.update');
