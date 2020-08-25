@@ -18,9 +18,7 @@
                 <!-- end page-title-box -->
             </div>
         </div> 
-
         <!-- end page title -->     
-
 </div> 
 </div>
     <div class="table-responsive">
@@ -53,7 +51,7 @@
                         <td>{{ $project1->project_name }}</td>
                         @endif
                         @endforeach
-                        <td>{{ $task->task_priority}}</td>
+                        <td>{{ $task->priority_id}}</td>
                         <td>{{ $task->task_start}}</td>
                         <td>{{ $task->task_end}}</td>
                         <td>{{ $task->task_note}}</td>
