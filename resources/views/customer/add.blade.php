@@ -1,0 +1,122 @@
+@extends('admin_layout')
+@section('admin_content')
+<div class="page-content-wrapper ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="page-title m-0">Thêm khách hàng</h4> 
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                     <li>{{$error}}</li>
+                                @endforeach
+                            </ul>                      
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end page-title-box -->
+            </div>
+        </div> 
+        <!-- end page title -->
+        <form role="form" action="{{URL::to('/save-customer')}}" method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="form-group row">
+                <label height="100" width="100" class="col-sm-2 col-form-label">Ảnh đại diện</label>
+                <div class="col-sm-2">
+                    <input type="file" name="image" height="100" width="100" type="file"  onchange="showPreview(event);">
+                    <img id="show_image";>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tên khách hàng</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="email" name="email">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Địa chỉ</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="address">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Số điện thoại</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="phone">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Giới tính</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="sex">
+                    @foreach($sex as $s)
+                    <option value="{{$s->sex_id}}">{{$s->sex_name}}</option>
+                    @endforeach                              
+                    </select>
+                </div>
+            </div>
+ 
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nhóm khách hàng</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="customer_group">
+                    @foreach($customer_group as $cg)
+                    <option value="{{$cg->customer_group_id}}">{{$cg->customer_group_name}}</option>
+                    @endforeach                              
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Dịch vụ sử dụng</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="service">
+                    @foreach($service as $sv)
+                    <option value="{{$sv ->service_id}}">{{$sv ->service_name}}</option>
+                    @endforeach                              
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Ghi chú</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-12">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                            <textarea id="elm1" name="note"></textarea>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+            <button type="submit" name="add" class="btn btn-success waves-effect waves-light">Thêm khách hàng</button>
+        </form>
+    </div><!-- container fluid -->
+</div> <!-- Page content Wrapper -->
+<script type="text/javascript">
+    function showPreview(event){
+        if(event.target.files.length > 0){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("show_image");
+        preview.src = src;
+        preview.style.fontSize ="1px";
+        }
+    }
+</script>
+@endsection

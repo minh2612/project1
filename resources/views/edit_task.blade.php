@@ -1,7 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
 <div class="page-content-wrapper ">
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -31,7 +30,7 @@
 			<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Tên công việc</label>
 			    <div class="col-sm-4">
-			        <input class="form-control" value="{{$task->task_name}}" type="text" name="task_name" id="example-name-input">
+			        <input class="form-control" value="{{$task->task_name}}" type="text" name="task_name">
 			    </div>
 			</div>
 	        <div class="form-group row">
@@ -58,12 +57,14 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Mức độ ưu tiên</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="task_priority" >
-
-                        <option  selected value="{{$task->task_priority}}">{{$task->task_priority}}</option>
-                        <option value="Thấp">Thấp</option>    
-                        <option value="Trung bình">Trung bình</option>    
-                        <option value="Cao">Cao</option>    
+                    <select class="form-control" name="priority_name" >
+                        @foreach($priority as $key => $priority1)
+                        @if($priority1->priority_id == $task->priority_id)
+                        <option  selected value="{{$priority1->priority_id}}">{{$priority1->priority_name}}</option>
+                        @else
+                        <option value="{{$priority1->priority_id}}">{{$priority1->priority_name}}</option>    
+                        @endif
+                        @endforeach
                     </select>
                 </div>
             </div>      

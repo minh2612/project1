@@ -50,7 +50,7 @@
                        </tr>
                         <tr>
                             <th>Mức độ ưu tiên</th>  
-                            <th>{{ $task->task_priority}}</th>
+                            <th>{{ $task->priority_id}}</th>
                        </tr>
                         <tr>
                             <th>Ghi chú</th>  

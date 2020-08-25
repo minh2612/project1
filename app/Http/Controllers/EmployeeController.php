@@ -207,7 +207,6 @@ class EmployeeController extends Controller
     );
         $data = array();
         $data['e_name'] = $request->e_name;
-         
         $data['e_email'] = $request->e_email;
         $data['e_address'] = $request->e_address;
         $data['e_phone'] = $request->e_phone;
