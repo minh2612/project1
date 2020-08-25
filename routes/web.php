@@ -57,59 +57,45 @@ Route::post('/save-task', 'ProjectController@save_task');
 Route::post('/update-project/{project_id}', 'ProjectController@update_project');
 Route::post('/update-task/{task_id}', 'ProjectController@update_task');
 
-//Admin-Salary
-Route::get('/add-salary','SalaryController@add_salary');
-Route::get('/all-salary','SalaryController@all_salary');
-Route::get('/edit-salary/{salary_id}', 'SalaryController@edit_salary');
-Route::get('/delete-salary/{salary_id}', 'SalaryController@delete_salary');
-Route::post('/save-salary', 'SalaryController@save_salary');
-Route::post('/update-salary/{salary_id}', 'SalaryController@update_salary');
-//Salary table
-Route::get('/add-salary-table', 'SalaryTableController@add_salary_table');
-Route::get('/edit-salary-table/{salary_table_id}', 'SalaryTableController@edit_salary_table');
-Route::get('/delete-salary-table/{salary_table_id}', 'SalaryTableController@delete_salary_table');
-Route::get('/all-salary-table', 'SalaryTableController@all_salary_table');
-
-Route::post('/save-salary-table', 'SalaryTableController@save_salary_table');
-Route::post('/update-salary-table/{salary_table_id}', 'SalaryTableController@update_salary_table');
 //Admin-Department
-Route::get('/add-department','DepartmentController@add_department');
-Route::get('/all-department','DepartmentController@all_department');
-Route::post('/save-department','DepartmentController@save_department');
-Route::get('/detail-department/{department_id}', 'DepartmentController@detail_department');
-Route::get('/edit-department/{department_id}', 'DepartmentController@edit_department');
-Route::get('/delete-department/{department_id}', 'DepartmentController@delete_department');
-Route::post('/update-department/{department_id}', 'DepartmentController@update_department');
+Route::get('/add-department','DepartmentController@add');
+Route::get('/all-department','DepartmentController@show');
+Route::post('/save-department','DepartmentController@save');
+Route::get('/edit-department/{department_id}', 'DepartmentController@edit');
+Route::get('/delete-department/{department_id}', 'DepartmentController@delete');
+Route::post('/update-department/{department_id}', 'DepartmentController@update');
 
 //Admin-Position
-Route::get('/add-position','PositionController1@add_position');
-Route::get('/all-position','PositionController1@all_position');
-Route::post('/save-position','PositionController1@save_position');
-Route::get('/detail-position/{position_id}', 'PositionController1@detail_position');
-Route::get('/edit-position/{position_id}', 'PositionController1@edit_position');
-Route::get('/delete-position/{position_id}', 'PositionController1@delete_position');
-Route::post('/update-position/{position_id}', 'PositionController1@update_position');
-
-
+Route::get('/add-position','Position_Controller@add');
+Route::get('/all-position','Position_Controller@show');
+Route::post('/save-position','Position_Controller@save');
+Route::get('/edit-position/{position_id}', 'Position_Controller@edit');
+Route::get('/delete-position/{position_id}', 'Position_Controller@delete');
+Route::post('/update-position/{position_id}', 'Position_Controller@update');
 
 //Admin-Customer
-Route::get('/add-customer','CustomerController@add_customer');
-Route::get('/all-customer','CustomerController@all_customer');
-Route::post('/save-customer', 'CustomerController@save_customer');
-Route::get('/edit-customer/{customer_id}', 'CustomerController@edit_customer');
-Route::get('/detail-customer/{customer_id}', 'CustomerController@detail_customer');
-Route::get('/delete-customer/{customer_id}', 'CustomerController@delete_customer');
-Route::post('/update-customer/{customer_id}', 'CustomerController@update_customer');
-
+Route::get('/add-customer','CustomerController@add');
+Route::get('/all-customer','CustomerController@show');
+Route::post('/save-customer', 'CustomerController@save');
+Route::get('/edit-customer/{customer_id}', 'CustomerController@edit');
+Route::get('/delete-customer/{customer_id}', 'CustomerController@delete');
+Route::post('/update-customer/{customer_id}', 'CustomerController@update');
 
 //Admin-Customer-Group
-Route::get('/add-customer-group','CustomerGroupController@add_customer_group');
-Route::get('/all-customer-group','CustomerGroupController@all_customer_group');
-Route::post('/save-customer-group','CustomerGroupController@save_customer_group');
-Route::get('/detail-customer-group/{customer_group_id}', 'CustomerGroupController@detail_customer_group');
-Route::get('/edit-customer-group/{customer_group_id}', 'CustomerGroupController@edit_customer_group');
-Route::get('/delete-customer-group/{customer_group_id}', 'CustomerGroupController@delete_customer_group');
-Route::post('/update-customer-group/{customer_group_id}', 'CustomerGroupController@update_customer_group');
+Route::get('/add-customer-group','CustomerGroupController@add');
+Route::get('/all-customer-group','CustomerGroupController@show');
+Route::post('/save-customer-group','CustomerGroupController@save');
+Route::get('/edit-customer-group/{customer_group_id}', 'CustomerGroupController@edit');
+Route::get('/delete-customer-group/{customer_group_id}', 'CustomerGroupController@delete');
+Route::post('/update-customer-group/{customer_group_id}', 'CustomerGroupController@update');
+
+//Admin-Service
+Route::get('/add-service','ServiceController@add');
+Route::get('/all-service','ServiceController@show');
+Route::post('/save-service', 'ServiceController@save');
+Route::get('/edit-service/{service_id}', 'ServiceController@edit');
+Route::get('/delete-service/{service_id}', 'ServiceController@delete');
+Route::post('/update-service/{service_id}', 'ServiceController@update');
 
 
 //Users
