@@ -53,7 +53,7 @@ class DepartmentController extends Controller
 
         [
             
-            'name' => 'Tên chức vụ',
+            'name' => 'Tên phòng ban',
         ]
 
     );
@@ -61,7 +61,7 @@ class DepartmentController extends Controller
         $data['department_name']= $request->name;
         $data['department_note']= $request->note;
         DB::table('tbl_department')->insert($data);
-        Session::put('message', 'Thêm chức vụ thành công');
+        Session::put('message', 'Thêm phòng ban thành công');
         return Redirect::to('all-department');
     }
 
@@ -84,7 +84,7 @@ class DepartmentController extends Controller
         ],
 
         [
-            'name' => 'Tên chức vụ',
+            'name' => 'Tên phòng ban',
         ]
 
     );
@@ -92,14 +92,14 @@ class DepartmentController extends Controller
         $data['department_name']= $request->name;
         $data['department_note']= $request->note;
         DB::table('tbl_department')->where('department_id', $department_id)->update($data);
-        Session::put('message', 'Cập nhật chức vụ thành công');
+        Session::put('message', 'Cập nhật phòng ban thành công');
         return Redirect::to('all-department');
     }
 
     public function delete($department_id){
         $this->AuthLogin();
         DB::table('tbl_department')->where('department_id', $department_id)->delete();
-        Session::put('message', 'Xóa chức vụ thành công');
+        Session::put('message', 'Xóa phòng ban thành công');
         return Redirect::to('all-department');
     }
 }
