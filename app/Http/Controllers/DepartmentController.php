@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use Illuminate\Support\Facades\Route;  
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -20,6 +21,28 @@ class DepartmentController extends Controller
                 return Redirect::to('/')->send();
             }
         }
+   
+    // public function addpermission(){
+           
+    //     $routeCollection = Route::getRoutes();
+
+              
+    //     foreach ($routeCollection as $value) {
+           
+    //         $data1=array();
+    //         $name=$value->getName();
+    //         if($name){
+    //         $data1['permission_name']=$name;
+             
+    //         DB::table('tbl_permission')->insert($data1);
+    //         $data1="";
+    //     }
+
+          
+    //     }
+    // }
+         
+       
 
     public function add_department()
     {
@@ -29,14 +52,18 @@ class DepartmentController extends Controller
 
     public function all_department(){
          $this->AuthLogin();
+
+     
         $all_department= DB::table('tbl_department')->get();
         $manager_department = view('all_department')->with('all_department', $all_department);
         return view('admin_layout')->with('all_department', $manager_department);
 
         }
+    
 
     public function save_department(Request $request){
          $this->AuthLogin();
+          // $this->addpermission();
         $data = array();
         $data['department_name']= $request->department_name;
         $data['department_note']= $request->department_note;
