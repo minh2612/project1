@@ -90,12 +90,12 @@ Route::get('/delete-department/{department_id}', 'DepartmentController@delete')-
 Route::post('/update-department/{department_id}', 'DepartmentController@update')->name('admin.department.update');
 
 //Admin-Position
-Route::get('/add-position','PositionController1@add')->name('admin.position.add');
-Route::get('/all-position','PositionController1@show')->name('admin.position.all');
-Route::post('/save-position','PositionController1@save')->name('admin.position.save');
-Route::get('/edit-position/{position_id}', 'PositionController1@edit')->name('admin.position.edit');
-Route::get('/delete-position/{position_id}', 'PositionController1@delete')->name('admin.position.delete');
-Route::post('/update-position/{position_id}', 'PositionController1@update')->name('admin.position.update');
+Route::get('/add-position','Position_Controller@add')->name('admin.position.add');
+Route::get('/all-position','Position_Controller@show')->name('admin.position.all');
+Route::post('/save-position','PositionController@save')->name('admin.position.save');
+Route::get('/edit-position/{position_id}', 'Position_Controller@edit')->name('admin.position.edit');
+Route::get('/delete-position/{position_id}', 'Position_Controller@delete')->name('admin.position.delete');
+Route::post('/update-position/{position_id}', 'Position_Controller@update')->name('admin.position.update');
 
 
 
