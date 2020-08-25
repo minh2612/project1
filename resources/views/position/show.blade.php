@@ -11,7 +11,7 @@
                             <h4 class="page-title m-0">Danh sách chức vụ</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-position/')}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fas fa-plus-circle fa-2x"></i></a> 
+                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm chức vụ</button></a> 
                             <p>&nbsp;</p>
                             <?php
                                 $message= Session::get('message');
