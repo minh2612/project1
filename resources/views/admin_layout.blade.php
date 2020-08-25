@@ -109,7 +109,7 @@
                                 </ul>
 
                             </li> 
-                             </li>    
+                               
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -117,22 +117,23 @@
                                     <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
                                     <li><a href="{{URL::to('/all-customer-group')}}">Danh sách nhóm khách hàng</a></li>
                                 </ul>
-                            </li> 
-
-                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý vai trò </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                          
-
-                                <ul class="list-unstyled">
-                                     <li><a href="{{URL::to('/all-roles')}}">Danh sách vai trò</a></li>
-                                </ul>
                             </li>
+
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="far fa-handshake"></i> <span> Quản lý dịch vụ </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/all-service')}}">Danh sách dịch vụ</a></li>
                                 </ul>
-                            </li> 
+                            </li>  
+
+                             <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý vai trò </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                     <li><a href="{{URL::to('/all-roles')}}">Danh sách vai trò</a></li>
+                                </ul>
+                            </li>
+
+                            
                             @endhasrole
                         
 
