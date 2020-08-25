@@ -79,10 +79,10 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Mức độ ưu tiên</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="task_priority" >
-                        <option value="Thấp">Thấp</option>    
-                        <option value="Trung bình">Trung bình</option>    
-                        <option value="Cao">Cao</option>      
+                    <select class="form-control" name="priority_id" >
+                        <option value="1">Thấp</option>
+                        <option value="2">Trung bình</option>    
+                        <option value="3">Cao</option>         
                     </select>
                 </div>
             </div>			
