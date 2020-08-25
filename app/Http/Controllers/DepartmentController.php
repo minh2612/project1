@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
+use Illuminate\Support\Facades\Route;  
+
 use Session;
 use Carbon\Carbon;
-use App\Http\Requests;
-use Auth;
-use Illuminate\Support\Facades\Redirect;
+
 session_start();
 
 class DepartmentController extends Controller
@@ -20,7 +21,9 @@ class DepartmentController extends Controller
         }else{
             return Redirect::to('/')->send();
         }
+
     }
+
 
     public function add()
     {
@@ -28,16 +31,21 @@ class DepartmentController extends Controller
         return view('department.add');     
     }
 
+
     public function show(){
         $this->AuthLogin();
         $department= DB::table('tbl_department')->get();
         $show = view('department.show')->with('department', $department);
         return view('admin_layout')->with('department', $show);
+
         }
+    
+
 
     public function save(Request $request){
         $this->AuthLogin();
         $this->validate($request,
+
         [
                        
             'name' => 'bail|required|unique:tbl_department,department_name',

@@ -47,9 +47,12 @@
                            
                             <li class="menu-title">Main</li>
                             <li>
-                                <a href="{{URL::to('/admin-dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
+                                <a href="{{route('admin.index')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
+
+
                             
+                    
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý nhân viên </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                           
@@ -58,37 +61,38 @@
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
                                 </ul>
                             </li>
-                          
-                          
-                              @hasrole(['admin'])
+                       
+                     
                          
+                             @hasrole(['admin','manager'])
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-project')}}">Thêm dự án</a></li>
+                                    
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
+                                    <li><a href="{{URL::to('/my-project')}}">Dự án của tôi</a></li>
                                 </ul>
                            </li> 
-                           @endhasrole
+                      
                           
-                           @hasrole(['admin','manager'])
+                                      
+
+
+                           
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-task')}}">Thêm công việc</a></li>
-                                    <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
                                     
+                                    <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
+                                      <li><a href="{{URL::to('/my-task')}}">Công việc của tôi</a></li>
                                 </ul>
                             </li>                              
 
-
-                            <!-- <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-wallet"></i> <span> Quản lý lương </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a>Thêm lương</a></li>
-                                    <li><a>Danh sách lương</a></li>
-                                </ul>
-                            </li> -->
+                        @endhasrole
+                          
+                            
+                          @hasrole(['admin'])
+                          
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý phòng ban </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -113,14 +117,19 @@
                                     <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
                                     <li><a href="{{URL::to('/all-customer-group')}}">Danh sách nhóm khách hàng</a></li>
                                 </ul>
-                            </li>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="far fa-handshake"></i> <span> Quản lý dịch vụ </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/all-service')}}">Danh sách dịch vụ</a></li>
-                                </ul>
                             </li> 
+
+                             <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý vai trò </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                          
+
+                                <ul class="list-unstyled">
+                                     <li><a href="{{URL::to('/all-roles')}}">Danh sách vai trò</a></li>
+                                </ul>
+                            </li>
                             @endhasrole
+                        
+
 
 
                         </ul>
@@ -283,37 +292,10 @@
         <script src="{{asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
         <!-- Datatable init js -->
         <script src="{{asset('assets/pages/datatables.init.js')}}"></script>    
-        <script src="{{asset('plugins/tinymce/tinymce.min.js')}}"></script>
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
         <script type="text/javascript">
         document.querySelector("#today").valueAsDate = new Date();
-        </script>
-        <script>
-            $(document).ready(function () {
-                if($("#elm1").length > 0){
-                    tinymce.init({
-                        selector: "textarea#elm1",
-                        theme: "modern",
-                        height:300,
-                        plugins: [
-                            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                            "save table contextmenu directionality emoticons template paste textcolor"
-                        ],
-                        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-                        style_formats: [
-                            {title: 'Bold text', inline: 'b'},
-                            {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
-                            {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
-                            {title: 'Example 1', inline: 'span', classes: 'example1'},
-                            {title: 'Example 2', inline: 'span', classes: 'example2'},
-                            {title: 'Table styles'},
-                            {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
-                        ]
-                    });
-                }
-            });
         </script>
     </body>
 </html>

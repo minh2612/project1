@@ -22,8 +22,10 @@ class CustomerController extends Controller
         }
     }
 
+
     public function add()
     {
+
         $this->AuthLogin();
         $customer_group = DB::table('tbl_customer_group')->orderby('customer_group_id','asc')->get();
         $sex = DB::table('tbl_sex')->orderby('sex_id','asc')->get(); 
@@ -83,9 +85,11 @@ class CustomerController extends Controller
             $get_image->move('public/avatar',  $new_image);
             $data['customer_image'] = $new_image;
         }
+
         DB::table('tbl_customer')->insert($data);
         Session::put('message','Thêm khách hàng thành công');
         return Redirect::to('all-customer');
+
    
     }
    

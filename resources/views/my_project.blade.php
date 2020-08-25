@@ -1,0 +1,135 @@
+@extends('admin_layout')
+@section('admin_content')
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="row">
+                            <h4 class="page-title m-0">Danh sách dự án của tôi</h4>
+                            <p>&nbsp;</p>
+                            <a href="{{URL::to('/add-project/')}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fas fa-plus-circle fa-2x"></i></a> 
+                            <p>&nbsp;</p>
+                            <?php
+                                $message= Session::get('message');
+                                 if($message){
+                                      echo '<span class="text-alert">'.$message.'</span>';
+                                      Session::put('message', null);
+                                    }
+                            ?>
+                            </div>        
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end page-title-box -->
+            </div>
+        </div> 
+        <!-- end page title -->     
+        <div class="table-responsive" style="width: 100%">
+            <table id="datatable" class="table table-bordered " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Tên dự án</th>
+
+                        
+                        <th>Tên khách hàng</th>
+                        <th>Người quản lý dự án</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Ghi chú</th>
+                        <th>Tổng số<br>công việc</th>
+                        <th>Công việc<br>đã xử lý</th>
+                        <th>Công việc<br>chưa xử lý</th>
+
+                        <th>Hành động</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($all_project as $key => $project)
+                    <tr>
+            
+                        <td>{{$project->project_name}}</td>
+    
+                        <td>@foreach($all_customer as $key => $value) 
+                            @if($project->customer_id==$value->customer_id)
+                            {{$value->customer_name}}<br>
+                            @endif
+                            @endforeach</td>
+                        <td>@foreach($all_employee as $key => $value) 
+                            @if($project->project_manager==$value->e_id)
+                            {{$value->e_name}}<br>
+                            @endif
+                            @endforeach</td>                      
+                        <td>{{$project->project_start}}</td>
+                        <td>{{$project->project_end}}</td>
+                        <td>{{$project->project_node}}</td>
+                        @php
+                            $i = 0;
+                        @endphp
+                        @foreach($all_task as  $value1) 
+                            @if($project->project_id==$value1->project_id)
+                                @php
+                                    $i +=1;
+                                @endphp
+                            @endif
+                        @endforeach
+                        <td>{{$i}}</td>
+                        @php
+                            $i1 = 0;
+                        @endphp
+                        @foreach($all_task as  $value1) 
+                            @if($project->project_id==$value1->project_id && $value1->task_status==3)
+                                @php
+                                    $i1 +=1;
+                                @endphp
+                            @endif
+                        @endforeach
+                        <td>{{$i1}}</td>
+
+                        @php
+                            $i2 = 0;
+                        @endphp
+                        @foreach($all_task as  $value1) 
+                            @if($project->project_id==$value1->project_id && $value1->task_status!=3)
+                                @php
+                                    $i2 +=1;
+                                @endphp
+                            @endif
+                        @endforeach
+                        <td>{{$i2}}</td>
+                        
+                        
+
+                        <td>
+                        <a href="{{URL::to('/detail-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-eye"></i>
+                        <a href="{{URL::to('/edit-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-edit"></i>
+                        <a onclick="return confirm('Bạn có chắc là muốn xóa dự án này ko?')" href="{{URL::to('/delete-project/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fa fa-trash-alt"></i>
+                        </td>
+                         <td><span class="text-ellipsis">
+                        @if($i==$i1 && $i>0)
+                            <button type="button" style="width:150px;" class="btn btn-success waves-effect waves-light">Hoàn thành</button>
+                        @endif
+                        @if($i!=$i1 ||($i==$i1 && $i==0))
+                            <button type="button" style="width:150px;" class="btn btn-light waves-effect waves-light">Đang chạy</button>
+                         @endif   
+                        </span></td>      
+                    </tr>
+                @endforeach                 
+                </tbody>
+            </table>
+
+        </div>
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+@endsection

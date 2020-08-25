@@ -82,9 +82,9 @@
 		        <label class="col-sm-2 col-form-label">Phòng ban</label>
 		        <div class="col-sm-4">
 		            <select class="form-control" name="department_id">
-                    @foreach($e_department as $key => $department)
-                    <option value="{{$department->department_id}}">{{$department->department_name}}</option>
-                    @endforeach        
+	                    @foreach($e_department as $key => $department)
+	                    <option value="{{$department->department_id}}">{{$department->department_name}}</option>
+	                    @endforeach        
 		            </select>
 		        </div>
 		    </div>
@@ -92,18 +92,19 @@
 		        <label class="col-sm-2 col-form-label">Chức vụ</label>
 		        <div class="col-sm-4">
 		            <select class="form-control" name="position_id">
-                    @foreach($e_position as $key => $position)
-                    <option value="{{$position->position_id}}">{{$position->position_name}}</option>
-                    @endforeach                              
+	                    @foreach($e_position as $key => $position)
+	                    <option value="{{$position->position_id}}">{{$position->position_name}}</option>
+	                    @endforeach                              
 		            </select>
 		        </div>
 		    </div>
 		    <div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Chọn quyền</label>
+		        <label class="col-sm-2 col-form-label">Chọn vai trò</label>
 		        <div class="col-sm-4">
-		            <select class="form-control"  name="is_admin" >
-                       	<option value="0">Quản lý</option>
-	                    <option value="1">Nhân viên</option>
+		            <select class="form-control"  name="roles[]" multiple >
+                       	@foreach($roles as $key => $roles)
+	                    <option value="{{$roles->id_roles}}">{{$roles->name}}</option>
+	                    @endforeach  
 	                </select>
 		        </div>
 		    </div>

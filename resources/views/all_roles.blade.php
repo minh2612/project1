@@ -9,10 +9,10 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="row">
-                            <h4 class="page-title m-0">Danh sách chức vụ</h4>
+                            <h4 class="page-title m-0">Danh sách vai trò</h4>
                             <p>&nbsp;</p>
-                            <a href="{{URL::to('/add-position/')}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fas fa-plus-circle fa-2x"></i></a>    
+                            <a href="{{URL::to('/add-roles/')}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fas fa-plus-circle fa-2x"></i></a> 
                             <p>&nbsp;</p>
                             <?php
                                 $message= Session::get('message');
@@ -21,7 +21,7 @@
                                       Session::put('message', null);
                                     }
                             ?>
-                            </div>                       
+                            </div>                            
                         </div>
                         <!-- end col -->
                     </div>
@@ -32,32 +32,30 @@
         </div> 
         <!-- end page title -->    	
 		<div class="table-responsive">
-            <table id="datatable" class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-bordered " style="background-color: white;border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tên chức vụ</th>                        
-                        <th>Action</th>
+                        <th>Tên vai trò</th>                        
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
                     $i=0;
                     @endphp
-                    @foreach($all_position as $key => $position)
+                    @foreach($all_roles as $key => $roles)
                     @php
                     $i++;
                     @endphp
                   <tr>
-                   
                     <td>{{$i}}</td>
-                    <td>{{$position->position_name}}</td>
+                    <td>{{ $roles->name}}</td>
                     <td>
-                          <a href="{{URL::to('/detail-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-eye"></i>
-                        <a href="{{URL::to('/edit-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
+                          
+                        <a href="{{URL::to('/edit-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
-                        <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-position/'.$position->position_id)}}" class="active styling-edit" ui-toggle-class="">
+                        <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-trash-alt"></i>          
                      </td>
                   </tr>

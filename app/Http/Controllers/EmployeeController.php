@@ -29,8 +29,8 @@ class EmployeeController extends Controller
         $e_department = DB::table('tbl_department')->orderby('department_id','desc')->get(); 
         $e_position = DB::table('tbl_position')->orderby('position_id','desc')->get(); 
        
-
-        return view('add_employee')->with('e_department',$e_department)->with('e_position',$e_position);   
+        $roles=DB::table('tbl_roles')->get();
+        return view('add_employee')->with('e_department',$e_department)->with('e_position',$e_position)->with('roles',$roles);   
     }
 
     public function all_employee(){
@@ -122,6 +122,7 @@ class EmployeeController extends Controller
     );
         // $this->AuthLogin();
         $data = array();
+        $data1 = array();
         $data['department_id'] = $request->department_id;
         $data['e_name'] = $request->e_name;
         $data['e_email'] = $request->e_email;
@@ -131,9 +132,10 @@ class EmployeeController extends Controller
         $data['e_cmnd'] = $request->e_cmnd; 
         $data['position_id'] = $request->position_id;
         $data['e_password'] = md5($request->e_password);
-        $data['is_admin'] = ($request->is_admin);
+       
         $data['e_avatar'] = ($request->e_avatar);
         $get_image = $request->file('e_avatar');
+        
       
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
@@ -141,10 +143,17 @@ class EmployeeController extends Controller
             $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/avatar',  $new_image);
             $data['e_avatar'] = $new_image;
-            DB::table('tbl_e')->insert($data);
+        
+        }
+            $id=DB::table('tbl_e')->insertGetId($data);
+            foreach ($request->roles as $key => $value) {
+             $data1['admin_e_id']=$id;
+             $data1['roles_id_roles']=$value;
+            DB::table('admin_roles')->insert($data1);
+        }
+        
             Session::put('message','Thêm nhân viên thành công');
              return Redirect::to('add-employee');
-        }
    
     }
    
