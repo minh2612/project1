@@ -9,7 +9,8 @@ use App\Http\Requests;
 use App\Admin;
 use App\Roles;
 use Auth;
-session_start();	
+session_start();
+use Route;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,18 @@ class HomeController extends Controller
     
 
     public function show_dashboard(Request $request){
+       // dd(Auth::user()->)
+        // $routeCollection = Route::getRoutes();
+
+
+        // foreach ($routeCollection as $value) {
+              
+             
+                
+        //         var_dump($value->getName() );
+               
+         
+        // }
              $id=Auth::user()->e_id;
              
              $task_user=DB::table('tbl_employee_task')
@@ -55,7 +68,7 @@ class HomeController extends Controller
              $all_project=DB::table('tbl_project')->get();
            
        
-             return view('admin_dashboard')->with( 'task_user',$task_user)->with( 'all_project',$all_project);
+            return view('admin_dashboard')->with( 'task_user',$task_user)->with( 'all_project',$all_project);
       }
     
 
@@ -66,7 +79,11 @@ class HomeController extends Controller
     
 
     public function login(Request $request)
+
     {
+        
+        
+        
         $this->validate($request,
         [
             'e_email' => 'bail|email|required',
@@ -98,6 +115,7 @@ class HomeController extends Controller
          }    
        }
    }
+
 		
 		    
        // return view('home');
