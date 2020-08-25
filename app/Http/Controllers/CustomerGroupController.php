@@ -89,14 +89,14 @@ class CustomerGroupController extends Controller
         $data['customer_group_name']= $request->name;
         $data['customer_group_note']= $request->note;
         DB::table('tbl_customer_group')->where('customer_group_id', $customer_group_id)->update($data);
-        Session::put('message', 'Cập nhật thông tin thành công');
+        Session::put('message', 'Cập nhật nhóm khách hàng thành công');
         return Redirect::to('all-customer-group');
     }
 
     public function delete($customer_group_id){
         $this->AuthLogin();
         DB::table('tbl_customer_group')->where('customer_group_id', $customer_group_id)->delete();
-        Session::put('message', 'Xóa thành công');
+        Session::put('message', 'Xóa nhóm khách hàng thành công');
         return Redirect::to('all-customer-group');
     }
 }
