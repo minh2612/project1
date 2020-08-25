@@ -49,6 +49,7 @@
                     $i++;
                     @endphp
                   <tr>
+                   
                     <td>{{$i}}</td>
                     <td>{{$position->position_name}}</td>
                     <td>
