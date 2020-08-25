@@ -32,6 +32,8 @@ class CustomerController extends Controller
         return view('add_customer')->with('customer_employee',$customer_employee)->with('customer_groups',$customer_groups);   
     }
 
+    
+
     public function all_customer(){
         $this->AuthLogin();
         $all_customer = DB::table('tbl_customer')
@@ -127,6 +129,7 @@ class CustomerController extends Controller
             Session::put('message','Thêm khách hàng thành công');
              return Redirect::to('all-customer');
         }
+        else
    
     }
    
