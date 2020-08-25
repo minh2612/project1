@@ -3,11 +3,9 @@
 <script>
 	$(document).ready(function() {
 	$(".js-example-basic-single").select2();
-	// Thêm các tùy chọn của bạn vào đây.
 	});
 </script>
 <div class="page-content-wrapper ">
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -21,7 +19,12 @@
                                 echo '<span class="text-alert">'.$message.'</span>';
                                 Session::put('message', null);
                             }
-                            ?>                            
+                            ?>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error }}</li>
+                                @endforeach
+                            </ul>                            
                         </div>
                         <!-- end col -->
                     </div>
@@ -98,11 +101,6 @@
                     <input  type="file" name="task_file">
                 </div>
             </div>  
-            <ul>
-               @foreach ($errors->all() as $error)
-                    <li>{{$error }}</li>
-               @endforeach
-            </ul>
             <button type="submit" name="add_task" class="btn btn-success waves-effect waves-light">Thêm công việc</button>
 		</form>
     </div><!-- container fluid -->
