@@ -8,7 +8,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Thêm chức vụ</h4>
+                            <h4 class="page-title m-0">Thêm vai trò</h4>
                             <?php
                             $message= Session::get('message');
                             if($message){
@@ -26,14 +26,26 @@
         </div> 
         <!-- end page title -->     
         <form role="form" action="{{URL::to('/save-roles')}}" method="post" >
-            {{csrf_field()}}        
-            <div class="form-group row">
-                <label for="example-name-input" class="col-sm-2 col-form-label">Tên vai trò</label>
+            {{csrf_field()}}  
+                   
+           <div  class="form-group row" style="padding-left: 20px;">
+                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Tên vai trò</label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="text" name="roles_name" id="example-name-input">
+                    <input class="form-control" type="text" name="name" id="today">
                 </div>
             </div>
-         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
+               
+           <div class="form-group row"  style="padding-left: 20px;">
+                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Mô tả</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="roles_note" id="today">
+                </div>
+            </div>
+            <div class="form-group row"  style="padding-left: 20px;">
+                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Chọn quyền</label>
+            </div>
+
+         <div style="margin-left: 20px;   width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall1" class='' type="checkbox"> <span class="badge badge-success">VAI TRÒ</span> </h6>
             @foreach($permission  as $permission1)
                 @if(strpos($permission1->permission_name,'role'))
@@ -46,7 +58,7 @@
         </div> 
 
         
-         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left" >
+         <div style="margin-left: 20px;   width: 400px;" class="container float-left" >
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall2" class='' type="checkbox"> <span class="badge badge-success">NHÂN VIÊN</span> </h6>
             
             @foreach($permission  as $permission1)
@@ -59,7 +71,7 @@
             @endforeach    
         </div>  
 
-         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
+         <div style="margin-left: 20px;   width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall3" class='' type="checkbox"> <span class="badge badge-success">DỰ ÁN</span> </h6>
             @foreach($permission  as $permission1)
                 @if(strpos($permission1->permission_name,'project'))
@@ -71,7 +83,7 @@
                 @endforeach
         </div> 
 
-         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
+         <div style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall4" class='' type="checkbox"> <span class="badge badge-success">CÔNG VIỆC</span> </h6>
             @foreach($permission  as $permission1)
                 @if(strpos($permission1->permission_name,'task'))
@@ -89,7 +101,7 @@
          
 
 
-         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left"  >
+         <div style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left"  >
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall5" class='' type="checkbox"> <span class="badge badge-success">CHỨC VỤ</span> </h6>
             @foreach($permission  as $permission1)
                 @if(strpos($permission1->permission_name,'position'))
@@ -101,8 +113,8 @@
             @endforeach    
         </div>    
                
-        <div  style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
-            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall6" class='' type="checkbox"><span class="badge badge-success">PHÒNG BAN</span></h6>
+        <div  style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left">
+            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall6" class='' type="checkbox"><span class="badge badge-success"> PHÒNG BAN</span></h6>
             @foreach($permission  as $permission1)
                 @if(strpos($permission1->permission_name,'department'))
                     <span><div class="form-check" >
@@ -111,11 +123,9 @@
                     </div></span>
                 @endif
             @endforeach  
-            </div>  
-              
+            </div>
 
-                      
-                 <button  style="margin-right: 800px; margin-top: 80px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Thêm vai trò</button>        
+                 <button  style="margin-right: 800px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Thêm vai trò</button>        
         </form>
         
         </div> 
