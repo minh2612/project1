@@ -66,13 +66,13 @@ class RolesController extends Controller
     
        public function edit_roles($id)
     {
-        $permissions = $this->permission->all();
+        $permission = $this->permission->all();
 
         $role = $this->role->findOrfail($id);
        
         $getAllPermissionOfRole = DB::table('roles_permission')->where('roles_id_roles', $id)->pluck('permission_id_permission');
   
-        return view('edit_roles', compact('permissions', 'role', 'getAllPermissionOfRole'));
+        return view('edit_roles', compact('permission', 'role', 'getAllPermissionOfRole'));
     }
 
     public function update_roles(Request $request, $id)
