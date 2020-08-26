@@ -42,6 +42,7 @@
 			        <input class="form-control" type="text" name="task_name">
 			    </div>
 			</div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tên dự án</label>
                 <div class="col-sm-4">
@@ -52,6 +53,7 @@
                     </select>
                 </div>
             </div>
+
 			<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Người nhận</label>
 		        <div class="col-sm-4">
@@ -67,18 +69,21 @@
                 
 		        </div>
 		    </div>
-			<div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="date" name="task_start" id="today">
-                </div>
-            </div>
+
             <div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
+                <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="date" name="task_end">
+                    <input class="form-control" type="datetime-local" name="task_start">
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="datetime-local" name="task_end">
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Mức độ ưu tiên</label>
                 <div class="col-sm-4">
@@ -89,18 +94,24 @@
                     </select>
                 </div>
             </div>			
-			<div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
-                <div class="col-sm-4">
-                    <textarea required class="form-control" name="task_note" rows="5"></textarea>
-                </div>
-            </div>
+
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-2">
                     <input  type="file" name="task_file">
                 </div>
-            </div>  
+            </div>
+            
+            <div class="row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-12">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                                <textarea id="elm1" name="task_note"></textarea>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->  
             <button type="submit" name="add_task" class="btn btn-success waves-effect waves-light">Thêm công việc</button>
 		</form>
     </div><!-- container fluid -->
