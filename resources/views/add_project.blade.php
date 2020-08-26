@@ -15,13 +15,11 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <h4 class="page-title m-0">Thêm dự án</h4>
-                            <?php
-                            $message= Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>                            
+                            <ul>
+                               @foreach ($errors->all() as $error)
+                                    <li>{{$error }}</li>
+                               @endforeach
+                            </ul>                            
                         </div>
                         <!-- end col -->
                     </div>
@@ -40,12 +38,22 @@
 			        <input class="form-control" type="text" name="project_name">
 			    </div>
 			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Loại dự án</label>
+                <div class="col-sm-4">
+                    <select class="form-control"  name="service_name">
+                        @foreach($service as $s)
+                        <option value="{{$s ->service_id}}">{{$s ->service_name}}</option>
+                        @endforeach    
+                    </select>
+                </div>
+            </div>
 			<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Tên khách hàng</label>
 		        <div class="col-sm-4">
-		            <select class="form-control"  name="customer_id">
-                        @foreach($customer as $key => $customer1)
-                        <option value="{{$customer1 ->customer_id}}">{{$customer1 ->customer_name}}</option>
+		            <select class="form-control"  name="customer_name">
+                        @foreach($customer as $c)
+                        <option value="{{$c ->customer_id}}">{{$c ->customer_name}}</option>
                         @endforeach    
 		            </select>
 		        </div>
@@ -56,7 +64,7 @@
 
                 <div class="col-sm-4">
                     
-                    <select class="form-control select2 js-example-basic-single" name="employee_task" >
+                    <select class="form-control" name="project_manager" >
                        @foreach($e as $key => $e1)
                         @foreach($role as  $r)
                         @if($e1->e_id == $r->admin_e_id )
@@ -69,35 +77,35 @@
                 </div>
                  
             </div>
-			<div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
+            <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Ngày bắt đầu</label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="date" name="project_start" id="today">
+                    <input class="form-control" type="datetime-local" name="project_start">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
+                <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="date" name="project_end">
-                </div>
-            </div>			
-			<div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
-                <div class="col-sm-4">
-                    <textarea required class="form-control" name="project_node" rows="5"></textarea>
+                    <input class="form-control" type="datetime-local" name="project_end">
                 </div>
             </div>
+			
             <div class="form-group row">
                 <label for="example-name-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-4">
                     <input type="file" name="project_file">
                 </div>
-            </div>  
-            <ul>
-               @foreach ($errors->all() as $error)
-                    <li>{{$error }}</li>
-               @endforeach
-            </ul>
+            </div>
+            <div class="row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-12">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                                <textarea id="elm1" name="project_note"></textarea>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->  
             <button type="submit" name="add_project" class="btn btn-success waves-effect waves-light">Thêm dự án</button>
 		</form>
     </div><!-- container fluid -->
