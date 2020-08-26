@@ -42,6 +42,7 @@ Route::get('/delete-project/{project_id}', 'ProjectController@delete_project')->
 Route::get('/all-project','ProjectController@all_project')->name('admin.project.all');
 Route::get('/all-task','ProjectController@all_task')->name('admin.task.all');
 Route::get('/add-task', 'ProjectController@add_task')->name('admin.task.add');
+Route::get('/add-task-in-project', 'ProjectController@add_task_in_project');
 Route::get('/info-task/{project_id}','ProjectController@info_task')->name('admin.task.info');
 Route::get('/download/{task_id}','ProjectController@download')->name('admin.task.dowload');
 
@@ -56,14 +57,18 @@ Route::get('/submit-task/{task_id}','ProjectController@submit_task')->name('admi
 Route::get('/refuse-task/{task_id}','ProjectController@refuse_task')->name('admin.task.end');
 Route::get('/end-task/{task_id}','ProjectController@end_task')->name('admin.task.end');
 Route::get('/edit-task/{task_id}', 'ProjectController@edit_task')->name('admin.task.edit');
+Route::get('/edit-task-in-project/{task_id}', 'ProjectController@edit_task_in_project');
 Route::get('/delete-task/{task_id}', 'ProjectController@delete_task')->name('admin.task.delete');
+Route::get('/delete-task-in-project/{task_id}', 'ProjectController@delete_task_in_project');
 Route::get('/sm-task', 'ProjectController@sm_task')->name('admin.task.sm');
 
 Route::post('/save-project','ProjectController@save_project')->name('admin.project.save');
 Route::post('/save-task', 'ProjectController@save_task')->name('admin.task.save');
+Route::post('/save-task-in-project', 'ProjectController@save_task_in_project');
 Route::post('/save-my-task', 'ProjectController@save_my_task')->name('admin.task.savemy');
 Route::post('/update-project/{project_id}', 'ProjectController@update_project')->name('admin.project.update');
 Route::post('/update-task/{task_id}', 'ProjectController@update_task')->name('admin.task.update');
+Route::post('/update-task-in-project/{task_id}', 'ProjectController@update_task_in_project');
 
 
 //Admin-Salary
