@@ -33,20 +33,37 @@
                     <input class="form-control" type="text" name="roles_name" id="example-name-input">
                 </div>
             </div>
-
-
+         <div style="border-style: ridge;">
+         <DIV style="margin-left: 20px; margin-top: 50px;" >
+            <h6 class="page-title m-0">CHỨC VỤ</h6>
             @foreach($permission  as $permission1)
-                    <div class="form-check">
+                @if(strpos($permission1->permission_name,'position'))
+                    <div class="form-check" style="float: left; padding-right: 200px;">
+                        <input  type="checkbox" class="form-check-input" name="permission[]" value="{{ $permission1->id_permission }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                    </div>
+                @endif
+            @endforeach    
+            </DIV>    
+               
+            <DIV style=" margin-left: 20px; margin-top: 50px;" > 
+            <h6 class="page-title m-0">PHÒNG BAN</h6>
+            @foreach($permission  as $permission1)
+                @if(strpos($permission1->permission_name,'department'))
+                     <div class="form-check" style="float: left; margin-right: 30px;">
                         <input type="checkbox" class="form-check-input" name="permission[]" value="{{ $permission1->id_permission }}">
                         <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
                     </div>
-            @endforeach
+                @endif
+            @endforeach   
+               </DIV> 
 
 
            
 
 
-                       <button type="submit" name="add_position" class="btn btn-success waves-effect waves-light">Thêm vai trò</button>
+                       <button style="margin-left: 20px; margin-top: 20px;" type="submit" name="add_position" class="btn btn-success waves-effect waves-light">Thêm vai trò</button>
+                       </div>
         </form>
     </div><!-- container fluid -->
 
