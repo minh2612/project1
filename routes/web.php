@@ -29,9 +29,8 @@ Route::post('/save-role','RoleControler@save_role');
 Route::get('/add-employee','EmployeeController@add_employee')->name('admin.employee.add')->middleware('permission:admin.employee.add');
 Route::get('/all-employee','EmployeeController@all_employee')->name('admin.employee.all')->middleware('permission:admin.employee.all');
 Route::post('/save-employee', 'EmployeeController@save_employee')->name('admin.employee.save');
-Route::get('/edit-employee/{e_id}', 'EmployeeController@edit_employee')->name('admin.employee.edit');
-Route::get('/detail-employee/{e_id}', 'EmployeeController@detail_employee')->name('admin.employee.detail');
-Route::get('/delete-employee/{e_id}', 'EmployeeController@delete_employee')->name('admin.employee.delete');
+Route::get('/edit-employee/{e_id}', 'EmployeeController@edit_employee')->name('admin.employee.edit')->middleware('permission:admin.employee.edit');
+Route::get('/delete-employee/{e_id}', 'EmployeeController@delete_employee')->name('admin.employee.delete')->middleware('permission:admin.employee.delete');
 Route::post('/update-employee/{e_id}', 'EmployeeController@update_employee')->name('admin.employee.update');
 //});
 //Admin-Project
@@ -71,22 +70,7 @@ Route::post('/update-task/{task_id}', 'ProjectController@update_task')->name('ad
 Route::post('/update-task-in-project/{task_id}', 'ProjectController@update_task_in_project');
 
 
-//Admin-Salary
-// Route::get('/add-salary','SalaryController@add_salary');
-// Route::get('/all-salary','SalaryController@all_salary');
-// Route::get('/edit-salary/{salary_id}', 'SalaryController@edit_salary');
-// Route::get('/delete-salary/{salary_id}', 'SalaryController@delete_salary');
-// Route::post('/save-salary', 'SalaryController@save_salary');
-// Route::post('/update-salary/{salary_id}', 'SalaryController@update_salary');
-// //Salary table
-// Route::get('/add-salary-table', 'SalaryTableController@add_salary_table');
-// Route::get('/edit-salary-table/{salary_table_id}', 'SalaryTableController@edit_salary_table');
-// Route::get('/delete-salary-table/{salary_table_id}', 'SalaryTableController@delete_salary_table');
-// Route::get('/all-salary-table', 'SalaryTableController@all_salary_table');
 
-// Route::post('/save-salary-table', 'SalaryTableController@save_salary_table');
-// Route::post('/update-salary-table/{salary_table_id}', 'SalaryTableController@update_salary_table');
-//Admin-Department
 Route::get('/add-department','DepartmentController@add')->name('admin.department.add');
 Route::get('/all-department','DepartmentController@show')->name('admin.department.all');
 Route::post('/save-department','DepartmentController@save')->name('admin.department.save');;

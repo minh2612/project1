@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use Auth;
+use Mail;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
@@ -231,6 +232,17 @@ class ProjectController extends Controller
                  
               DB::table('tbl_employee_task')->insert($data1);
          }
+          $email1=DB::table('tbl_e')->where('e_id',$value)->value('e_email');
+                //send to this email
+                $to_name = DB::table('tbl_e')->where('e_id',$value)->value('e_name');
+                $to_email = $email1;
+
+                $data = array("task_name"=>$request->task_name,"task_start"=>$request->task_start,"task_end"=>$request->task_end,"priority_id"=>$request->priority_id,"task_note"=>$request->task_note); //body of mail.blade.php
+            
+                Mail::send('mail_assign',$data,function($message) use ($to_name,$to_email){
+                    $message->to($to_email)->subject('Thông báo');//send this mail with subject
+                    $message->from($to_email,$to_name);//send from this mail
+                });
 
 
         Session::put('message','Thêm công việc thành công');

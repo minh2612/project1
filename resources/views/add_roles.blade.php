@@ -33,22 +33,175 @@
                     <input class="form-control" type="text" name="roles_name" id="example-name-input">
                 </div>
             </div>
-
-
+         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
+            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall1" class='' type="checkbox"> <span class="badge badge-success">VAI TRÒ</span> </h6>
             @foreach($permission  as $permission1)
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="permission[]" value="{{ $permission1->id_permission }}">
+                @if(strpos($permission1->permission_name,'role'))
+                    <div class="form-check" >
+                        <input  type="checkbox" class="1" name="permission[]" value="{{ $permission1->id_permission }}">
                         <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
                     </div>
-            @endforeach
+                @endif
+                @endforeach
+        </div> 
+
+        
+         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left" >
+            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall2" class='' type="checkbox"> <span class="badge badge-success">NHÂN VIÊN</span> </h6>
+            
+            @foreach($permission  as $permission1)
+                @if(strpos($permission1->permission_name,'employee'))
+                <div class="form-check" >
+                        <input  type="checkbox" class="2" name="permission[]" value="{{ $permission1->id_permission }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                    </div>
+                @endif
+            @endforeach    
+        </div>  
+
+         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
+            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall3" class='' type="checkbox"> <span class="badge badge-success">DỰ ÁN</span> </h6>
+            @foreach($permission  as $permission1)
+                @if(strpos($permission1->permission_name,'project'))
+                    <div class="form-check" >
+                        <input  type="checkbox" class="3" name="permission[]" value="{{ $permission1->id_permission }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                    </div>
+                @endif
+                @endforeach
+        </div> 
+
+         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
+            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall4" class='' type="checkbox"> <span class="badge badge-success">CÔNG VIỆC</span> </h6>
+            @foreach($permission  as $permission1)
+                @if(strpos($permission1->permission_name,'task'))
+                    <div class="form-check" >
+                        <input  type="checkbox" class="4" name="permission[]" value="{{ $permission1->id_permission }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                    </div>
+                @endif
+                @endforeach
+        </div> 
+   
+
+         
+
+         
 
 
-           
+         <div style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left"  >
+            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall5" class='' type="checkbox"> <span class="badge badge-success">CHỨC VỤ</span> </h6>
+            @foreach($permission  as $permission1)
+                @if(strpos($permission1->permission_name,'position'))
+                    <span ><div class="form-check" >
+                        <input  type="checkbox" class="5" name="permission[]" value="{{ $permission1->id_permission }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                    </div></span>
+                @endif
+            @endforeach    
+        </div>    
+               
+        <div  style="margin-left: 20px; margin-top: 50px;  width: 400px;" class="container float-left">
+            <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall6" class='' type="checkbox"><span class="badge badge-success">PHÒNG BAN</span></h6>
+            @foreach($permission  as $permission1)
+                @if(strpos($permission1->permission_name,'department'))
+                    <span><div class="form-check" >
+                        <input  type="checkbox" class="6" name="permission[]" value="{{ $permission1->id_permission }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                    </div></span>
+                @endif
+            @endforeach  
+            </div>  
+              
 
-
-                       <button type="submit" name="add_position" class="btn btn-success waves-effect waves-light">Thêm vai trò</button>
+                      
+                 <button  style="margin-right: 800px; margin-top: 80px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Thêm vai trò</button>        
         </form>
-    </div><!-- container fluid -->
+        
+        </div> 
 
-</div> <!-- Page content Wrapper -->
+        </div>   
+
+        
+        <script type="text/javascript">
+                 $("#checkall1").click(function (){
+             if ($("#checkall1").is(':checked')){
+                $(".1").each(function (){
+                   $(this).prop("checked", true);
+                   });
+                }else{
+                   $(".1").each(function (){
+                        $(this).prop("checked", false);
+                   });
+                }
+         });
+                 </script>
+                 <script type="text/javascript">
+                 $("#checkall2").click(function (){
+             if ($("#checkall2").is(':checked')){
+                $(".2").each(function (){
+                   $(this).prop("checked", true);
+                   });
+                }else{
+                   $(".2").each(function (){
+                        $(this).prop("checked", false);
+                   });
+                }
+         });
+                 </script>
+                 <script type="text/javascript">
+                 $("#checkall3").click(function (){
+             if ($("#checkall3").is(':checked')){
+                $(".3").each(function (){
+                   $(this).prop("checked", true);
+                   });
+                }else{
+                   $(".3").each(function (){
+                        $(this).prop("checked", false);
+                   });
+                }
+         });
+                 </script>
+                 <script type="text/javascript">
+                 $("#checkall4").click(function (){
+             if ($("#checkall4").is(':checked')){
+                $(".4").each(function (){
+                   $(this).prop("checked", true);
+                   });
+                }else{
+                   $(".4").each(function (){
+                        $(this).prop("checked", false);
+                   });
+                }
+         });
+                 </script>
+                 <script type="text/javascript">
+                 $("#checkall5").click(function (){
+             if ($("#checkall5").is(':checked')){
+                $(".5").each(function (){
+                   $(this).prop("checked", true);
+                   });
+                }else{
+                   $(".5").each(function (){
+                        $(this).prop("checked", false);
+                   });
+                }
+         });
+                 </script>
+                 <script type="text/javascript">
+                 $("#checkall6").click(function (){
+             if ($("#checkall6").is(':checked')){
+                $(".6").each(function (){
+                   $(this).prop("checked", true);
+                   });
+                }else{
+                   $(".6").each(function (){
+                        $(this).prop("checked", false);
+                   });
+                }
+         });
+                 </script>
+  
+
+ <!-- Page content Wrapper -->
 @endsection
