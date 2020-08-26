@@ -13,13 +13,6 @@
                             <a href="{{URL::to('/add-task/')}}" class="active styling-edit" ui-toggle-class="">
                             <button type="button" class="btn btn-success waves-effect waves-light">Thêm công việc</button></a> 
                             <p>&nbsp;</p>
-                            <?php
-                                $message= Session::get('message');
-                                 if($message){
-                                      echo '<span class="text-alert">'.$message.'</span>';
-                                      Session::put('message', null);
-                                    }
-                            ?>
                             </div>
                                     
                         </div>
@@ -30,7 +23,14 @@
                 <!-- end page-title-box -->
             </div>
         </div> 
-        <!-- end page title -->     
+        <!-- end page title -->
+        <?php
+            $message= Session::get('message');
+             if($message){
+                  echo '<span class="text-alert">'.$message.'</span>';
+                  Session::put('message', null);
+                }
+        ?>     
         <div class="table-responsive">
             <table id="datatable" class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
