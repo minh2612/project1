@@ -18,7 +18,7 @@
                             <?php
                             $message= Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<h6 style="color: blue;">'.$message.'</h6>';
                                 Session::put('message', null);
                             }
                             ?>                            
