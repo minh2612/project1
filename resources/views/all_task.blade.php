@@ -1,5 +1,8 @@
 @extends('admin_layout')
 @section('admin_content')
+@php
+use Carbon\Carbon;
+@endphp
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
@@ -49,7 +52,7 @@
                 <tbody>
                 @foreach($all_task as $key => $task)
                     <tr>
-            
+                        
                         <td>{{$task->task_name}}</td>
                         <td>@foreach($all_project as $key => $value1) 
                             @if($task->project_id==$value1->project_id)
@@ -60,8 +63,14 @@
                             @if($task->task_id==$value->task_id)
                             {{$value->e_name}}<br>
                             @endif
-                            @endforeach</td>            
+                            @endforeach</td>   
+                        @if($task->task_end<Carbon::now('Asia/Ho_Chi_Minh'))       
+                        <td style="background-color: red;">{{$task->task_end}}</td>
+                        
+                        @else
                         <td>{{$task->task_end}}</td>
+                        
+                        @endif
                         <td>@foreach($all_priority as $key => $value2) 
                             @if($task->priority_id==$value2->priority_id)
                             {{$value2->priority_name}}<br>
