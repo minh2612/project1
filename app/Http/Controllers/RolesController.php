@@ -30,8 +30,17 @@ class RolesController extends Controller
 
      
         $all_roles= DB::table('tbl_roles')->get();
+        $all_permission =DB::table('roles_permission')
+        ->join('tbl_roles','tbl_roles.id_roles','=','roles_permission.roles_id_roles')
+        ->join('tbl_permission','tbl_permission.id_permission','=','roles_permission.permission_id_permission')
+        ->get();
+        $all_employee=DB::table('admin_roles')
+        ->join('tbl_roles','tbl_roles.id_roles','=','admin_roles.roles_id_roles')
+        ->join('tbl_e','tbl_e.e_id','=','admin_roles.admin_e_id')
+        ->get();
 
-        return view('all_roles',compact('all_roles'));
+
+        return view('all_roles',compact('all_roles','all_permission','all_employee'));
         
 
         }
@@ -52,14 +61,32 @@ class RolesController extends Controller
         }
 
     public function save_roles(Request $request){
+          $this->validate($request,
+         [
+            'name' => 'bail|required|unique:tbl_roles',
+            'roles_note' => 'bail|required',
+        ],
+
+        [    'unique' => ':attribute đã tồn tại',
+            'required' => ':attribute không được để trống',
+        ],
+
+        [
+            'name' => 'Vai trò',
+            'roles_note' => 'Mô tả',     
+        ]
+
+    );  
            
          $roleCreate = $this->role->create([
-                'name' => $request->roles_name,
+                'name' => $request->name,
+                'roles_note' => $request->roles_note
                 
             ]);
 
             // Insert data to role_permission
             $roleCreate->Permission()->attach($request->permission);
+            Session::put('message','Thêm vai trò thành công');
             return redirect()->route('admin.roles.add');
     }
     
@@ -69,6 +96,7 @@ class RolesController extends Controller
         $permission = $this->permission->all();
 
         $role = $this->role->findOrfail($id);
+    
        
         $getAllPermissionOfRole = DB::table('roles_permission')->where('roles_id_roles', $id)->pluck('permission_id_permission');
   
@@ -76,9 +104,26 @@ class RolesController extends Controller
     }
 
     public function update_roles(Request $request, $id)
-    {
+    {       
+             $this->validate($request,
+         [
+            'name' => 'bail|required|unique:tbl_roles',
+            'roles_note' => 'bail|required',
+        ],
+
+        [    'unique' => ':attribute đã tồn tại',
+            'required' => ':attribute không được để trống',
+        ],
+
+        [
+            'name' => 'Vai trò',
+            'roles_note' => 'Mô tả',     
+        ]
+
+    );  
             $this->role->where('id_roles', $id)->update([
                 'name' => $request->name,
+                'roles_note' => $request->roles_note
             ]);
 
             DB::table('roles_permission')->where('roles_id_roles', $id)->delete();
@@ -97,7 +142,7 @@ class RolesController extends Controller
                 
             }
             
-
+            Session::put('message','Sửa vai trò thành công');
             return redirect()->route('admin.roles.all');
       
         }
