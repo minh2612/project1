@@ -9,13 +9,11 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <h4 class="page-title m-0">Cập nhật dự án</h4>
-                            <?php
-                            $message= Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>                            
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                     <li>{{$error}}</li>
+                                @endforeach
+                            </ul>                           
                         </div>
                         <!-- end col -->
                     </div>
@@ -34,6 +32,20 @@
 			        <input class="form-control" value="{{$project->project_name}}" type="text" name="project_name" id="example-name-input">
 			    </div>
 			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Loại dự án</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="service_name">
+                    @foreach($service as $s)
+                        @if($s->service_id == $project->service_id)
+                        <option selected value="{{$s->service_id}}">{{$s->service_name}}</option>
+                        @else
+                        <option value="{{$s->service_id}}">{{$s->service_name}}</option>
+                        @endif
+                    @endforeach  
+                    </select>
+                </div>
+            </div>
 			<div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tên khách hàng</label>
                 <div class="col-sm-4">
@@ -48,10 +60,11 @@
                     </select>
                 </div>
             </div>
+
 			<div class="form-group row">
                 <label class="col-sm-2 col-form-label">Người quản lý dự án</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="customer_name">
+                    <select class="form-control" name="project_manager">
                     @foreach($employee as $key => $value)
                         @if($value->e_id == $project->project_manager)
                         <option selected value="{{$value->e_id}}">{{$value->e_name}}</option>
@@ -62,19 +75,25 @@
                     </select>
                 </div>
             </div>
-			<div class="form-group row">
-			    <label for="example-tel-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
-			    <div class="col-sm-4">
-			        <input class="form-control" value="{{$project->project_end}}" type="date" name="project_end" id="example-tel-input">
-			    </div>
-			</div>
+
             <div class="form-group row">
-                <label for="example-date-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
                 <div class="col-sm-4">
-                    <textarea required class="form-control" value="{{$project->project_node}}" name="project_node" rows="5"><?php echo $project->project_node ?></textarea>
+                    <input class="form-control" value="{{$project->project_end}}" type="datetime-local" name="project_end">
                 </div>
             </div>
-            <button type="submit" name="update_project" class="btn btn-success waves-effect waves-light">Cập nhật thông tin</button>
+
+            <div class="row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
+                <div class="col-12">
+                    <div class="card m-b-30">
+                        <div class="card-body">
+                                <textarea id="elm1" name="project_note">{{$project->project_note}}</textarea>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+            <button type="submit" name="update_project" class="btn btn-success waves-effect waves-light">Cập nhật dự án</button>
 		</form>
 		@endforeach
     </div><!-- container fluid -->
