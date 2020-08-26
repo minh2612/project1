@@ -12,7 +12,7 @@
                             <h4 class="page-title m-0">Danh sách vai trò</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-roles/')}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fas fa-plus-circle fa-2x"></i></a> 
+                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm vai trò</button></a> 
                             <p>&nbsp;</p>
                             <?php
                                 $message= Session::get('message');
@@ -30,38 +30,46 @@
                 <!-- end page-title-box -->
             </div>
         </div> 
-        <!-- end page title -->    	
-		<div class="table-responsive">
-            <table id="datatable" class="table table-bordered " style="background-color: white;border-collapse: collapse; border-spacing: 0; width: 100%;">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tên vai trò</th>                        
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                    $i=0;
-                    @endphp
-                    @foreach($all_roles as $key => $roles)
-                    @php
-                    $i++;
-                    @endphp
-                  <tr>
-                    <td>{{$i}}</td>
-                    <td>{{ $roles->name}}</td>
-                    <td>
-                          
-                        <a href="{{URL::to('/edit-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-edit"></i>
-                        <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-trash-alt"></i>          
-                     </td>
-                  </tr>
-                  @endforeach   
-                </tbody>
-            </table>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">    	
+                		<div class="table-responsive">
+                            <table id="datatable" class="table table-bordered " style="background-color: white;border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên vai trò</th>                        
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $i=0;
+                                    @endphp
+                                    @foreach($all_roles as $key => $roles)
+                                    @php
+                                    $i++;
+                                    @endphp
+                                  <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{ $roles->name}}</td>
+                                    <td>
+                                          
+                                        <a href="{{URL::to('/edit-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
+                                            <i class="fa fa-edit"></i>
+                                        <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
+                                            <i class="fa fa-trash-alt"></i>          
+                                     </td>
+                                  </tr>
+                                  @endforeach   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div><!-- container fluid -->
 

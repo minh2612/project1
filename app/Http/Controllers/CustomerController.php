@@ -148,7 +148,7 @@ class CustomerController extends Controller
             $data['customer_image'] = $new_image;
         }
         DB::table('tbl_customer')->where('customer_id',$customer_id)->update($data);
-        Session::put('message','Cập nhật thông tin thành công');
+        Session::put('message','Cập nhật khách hàng thành công');
         return Redirect::to('all-customer');
     }
 

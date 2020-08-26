@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use Auth;
-use Illuminate\Support\Facades\Route;  
-
 use Session;
 use Carbon\Carbon;
-
+use App\Http\Requests;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
 session_start();
 
 class DepartmentController extends Controller

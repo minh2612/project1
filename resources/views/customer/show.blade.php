@@ -11,15 +11,8 @@
                             <h4 class="page-title m-0">Danh sách khách hàng</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-customer/')}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fas fa-plus-circle fa-2x"></i></a> 
+                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm khách hàng</button></a> 
                             <p>&nbsp;</p>
-                            <?php
-                                $message= Session::get('message');
-                                 if($message){
-                                      echo '<span class="text-alert">'.$message.'</span>';
-                                      Session::put('message', null);
-                                    }
-                            ?>
                             </div>
                         </div>
                         <!-- end col -->
@@ -28,7 +21,14 @@
                 </div>
                 <!-- end page-title-box -->
             </div>
-        </div> 
+        </div>
+        <?php
+            $message= Session::get('message');
+             if($message){
+                  echo '<span class="text-alert">'.$message.'</span>';
+                  Session::put('message', null);
+                }
+        ?> 
         <!-- end page title -->
         <div class="row">
             <div class="col-12">
