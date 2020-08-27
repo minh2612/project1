@@ -72,7 +72,7 @@
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-2">
-                    <input  type="file" name="task_file">
+                    <input  type="file" name="task_file" multiple>
                     <a href="{{URL::to('/download/'.$task->task_file)}}">{{ $task->task_file}}</a>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->  
-            <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật thông tin</button>
+            <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật công việc</button>
 		</form>
 		@endforeach
     </div><!-- container fluid -->
