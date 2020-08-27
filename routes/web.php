@@ -34,13 +34,13 @@ Route::get('/delete-employee/{e_id}', 'EmployeeController@delete_employee')->nam
 Route::post('/update-employee/{e_id}', 'EmployeeController@update_employee')->name('admin.employee.update');
 //});
 //Admin-Project
-Route::get('/add-project','ProjectController@add_project')->name('admin.project.add');
-Route::get('/edit-project/{project_id}', 'ProjectController@edit_project')->name('admin.project.edit');
+Route::get('/add-project','ProjectController@add_project')->name('admin.project.add')->middleware('permission:admin.project.add');
+Route::get('/edit-project/{project_id}', 'ProjectController@edit_project')->name('admin.project.edit')->middleware('permission:admin.project.edit');
 Route::get('/detail-project/{project_id}', 'ProjectController@detail_project')->name('admin.project.detail');
-Route::get('/delete-project/{project_id}', 'ProjectController@delete_project')->name('admin.project.delete');
-Route::get('/all-project','ProjectController@all_project')->name('admin.project.all');
-Route::get('/all-task','ProjectController@all_task')->name('admin.task.all');
-Route::get('/add-task', 'ProjectController@add_task')->name('admin.task.add');
+Route::get('/delete-project/{project_id}', 'ProjectController@delete_project')->name('admin.project.delete')->middleware('permission:admin.project.delete');
+Route::get('/all-project','ProjectController@all_project')->name('admin.project.all')->middleware('permission:admin.project.all');
+Route::get('/all-task','ProjectController@all_task')->name('admin.task.all')->middleware('permission:admin.task.all');
+Route::get('/add-task', 'ProjectController@add_task')->name('admin.task.add')->middleware('permission:admin.task.add');
 Route::get('/add-task-in-project', 'ProjectController@add_task_in_project');
 Route::get('/info-task/{project_id}','ProjectController@info_task')->name('admin.task.info');
 Route::get('/download/{task_id}','ProjectController@download')->name('admin.task.dowload');
@@ -55,9 +55,9 @@ Route::get('/detail-task/{task_id}', 'ProjectController@detail_task')->name('adm
 Route::get('/submit-task/{task_id}','ProjectController@submit_task')->name('admin.task.submit');
 Route::get('/refuse-task/{task_id}','ProjectController@refuse_task')->name('admin.task.end');
 Route::get('/end-task/{task_id}','ProjectController@end_task')->name('admin.task.end');
-Route::get('/edit-task/{task_id}', 'ProjectController@edit_task')->name('admin.task.edit');
+Route::get('/edit-task/{task_id}', 'ProjectController@edit_task')->name('admin.task.edit')->middleware('permission:admin.task.edit');
 Route::get('/edit-task-in-project/{task_id}', 'ProjectController@edit_task_in_project');
-Route::get('/delete-task/{task_id}', 'ProjectController@delete_task')->name('admin.task.delete');
+Route::get('/delete-task/{task_id}', 'ProjectController@delete_task')->name('admin.task.delete')->middleware('permission:admin.task.detele');
 Route::get('/delete-task-in-project/{task_id}', 'ProjectController@delete_task_in_project');
 Route::get('/sm-task', 'ProjectController@sm_task')->name('admin.task.sm');
 
@@ -71,19 +71,19 @@ Route::post('/update-task-in-project/{task_id}', 'ProjectController@update_task_
 
 
 
-Route::get('/add-department','DepartmentController@add')->name('admin.department.add');
-Route::get('/all-department','DepartmentController@show')->name('admin.department.all');
-Route::post('/save-department','DepartmentController@save')->name('admin.department.save');;
+Route::get('/add-department','DepartmentController@add')->name('admin.department.add')->middleware('permission:admin.department.add');
+Route::get('/all-department','DepartmentController@show')->name('admin.department.all')->middleware('permission:admin.department.all');
+Route::post('/save-department','DepartmentController@save')->name('admin.department.save');
 Route::get('/edit-department/{department_id}', 'DepartmentController@edit')->name('admin.department.edit');
-Route::get('/delete-department/{department_id}', 'DepartmentController@delete')->name('admin.department.delete');
+Route::get('/delete-department/{department_id}', 'DepartmentController@delete')->name('admin.department.delete')->middleware('permission:admin.department.delete');
 Route::post('/update-department/{department_id}', 'DepartmentController@update')->name('admin.department.update');
 
 //Admin-Position
-Route::get('/add-position','Position_Controller@add')->name('admin.position.add');
-Route::get('/all-position','Position_Controller@show')->name('admin.position.all');
+Route::get('/add-position','Position_Controller@add')->name('admin.position.add')->middleware('permission:admin.position.add');
+Route::get('/all-position','Position_Controller@show')->name('admin.position.all')->middleware('permission:admin.position.all');
 Route::post('/save-position','Position_Controller@save')->name('admin.position.save');
-Route::get('/edit-position/{position_id}', 'Position_Controller@edit')->name('admin.position.edit');
-Route::get('/delete-position/{position_id}', 'Position_Controller@delete')->name('admin.position.delete');
+Route::get('/edit-position/{position_id}', 'Position_Controller@edit')->name('admin.position.edit')->middleware('permission:admin.position.edit');
+Route::get('/delete-position/{position_id}', 'Position_Controller@delete')->name('admin.position.delete')->middleware('permission:admin.position.delete');
 Route::post('/update-position/{position_id}', 'Position_Controller@update')->name('admin.position.update');
 
 
@@ -128,12 +128,12 @@ Route::get('/start-user-task/{task_id}','UserProject@start_user_task')->name('us
 Route::get('/submit-user-task/{task_id}','UserProject@submit_user_task')->name('user.task.submit');
 
 //permission
-Route::get('/add-roles','RolesController@add_roles')->name('admin.roles.add');
+Route::get('/add-roles','RolesController@add_roles')->name('admin.roles.add')->middleware('permission:admin.roles.add');
 Route::post('/save-roles','RolesController@save_roles')->name('admin.roles.save');
-Route::get('/all-roles','RolesController@all_roles')->name('admin.roles.all');
+Route::get('/all-roles','RolesController@all_roles')->name('admin.roles.all')->middleware('permission:admin.roles.all');
 
-Route::get('/edit-roles/{id}','RolesController@edit_roles')->name('admin.roles.edit');
-Route::get('/delete-roles/{id}','RolesController@delete_roles')->name('admin.roles.delete');
+Route::get('/edit-roles/{id}','RolesController@edit_roles')->name('admin.roles.edit')->middleware('permission:admin.roles.edit');
+Route::get('/delete-roles/{id}','RolesController@delete_roles')->name('admin.roles.delete')->middleware('permission:admin.roles.delete');
 Route::post('/update-roles/{id}','RolesController@update_roles')->name('admin.roles.update');
 
 
