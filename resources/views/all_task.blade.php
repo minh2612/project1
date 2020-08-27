@@ -44,6 +44,7 @@
                                         <th>Người làm</th>
                                         <th>Deadline</th>
                                         <th>Mức độ ưu tiên</th>
+                                        <th>File đính kèm</th>
                                         <th>Hành động</th>
                                         <th>Trạng thái</th>
                                         
@@ -70,6 +71,15 @@
                                             {{$value2->priority_name}}<br>
                                             @endif
                                             @endforeach</td>
+                                        <td><a href="{{URL::to('/download/'.$task->task_file)}}">{{ $task->task_file}}</a>
+                                            <div class="form-group row">
+                                                <div class="col-sm-2">
+                                                    <input  type="file" name="task_file[]" multiple>
+                                                </div>
+                                            </div>
+                                            <a href="{{URL::to('/upload-task-file-in-project/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
+                                            <i class="fas fa-file-upload"></i>
+                                        </td>
                                         <td>
                                         <a href="{{URL::to('/edit-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
                                             <i class="fa fa-edit"></i>
