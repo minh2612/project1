@@ -87,7 +87,7 @@
                 </div> <!-- end col -->
             </div> <!-- end row -->
 
-            <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật thông tin</button>
+            <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật công việc</button>
 		</form>
 		@endforeach
     </div><!-- container fluid -->
