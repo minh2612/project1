@@ -32,13 +32,11 @@
                 <thead>
                     <tr>
                     
-                        <th>Hành động</th>
+                       
                         <th>Tên nhân viên</th>
                         <th>Email</th>
-
-                        <th>Admin</th>
-                        <th>Quản lý</th>
-                        <th>Nhân viên</th>
+                        <th>Hành động</th>
+                        
 
                    
 
@@ -52,7 +50,11 @@
               <tr>
                
                 
-                <td>
+               
+                <td>{{ $user->e_name }}</td>
+                <td>{{ $user->e_email }} <input type="hidden" name="e_email" value="{{ $user->e_email }}"   ></td>
+             
+                 <td>
                      <a href="{{URL::to('/detail-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
                         <i class="fa fa-eye"></i>  
                     <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
@@ -61,18 +63,14 @@
                     <a onclick="return confirm('Bạn có chắc là muốn xóa nhân viên này ko?')" href="{{URL::to('/delete-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
                         <i class="fa fa-trash-alt"></i>
                 </td>
-                <td>{{ $user->e_name }}</td>
-                <td>{{ $user->e_email }} <input type="hidden" name="e_email" value="{{ $user->e_email }}"   ></td>
-             
-                
-                <td><input type="checkbox" name="admin_role" {{$user->hasRole('admin') ? 'checked' : ''}}></td>
+               <!--  <td><input type="checkbox" name="admin_role" {{$user->hasRole('admin') ? 'checked' : ''}}></td>
                 <td><input type="checkbox" name="manager_role"  {{$user->hasRole('manager') ? 'checked' : ''}}></td>
                 <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
                   
               <td> 
                 
                  <input type="submit" value="Cấp quyền" class="btn btn-sm btn-default">
-              </td> 
+              </td>  -->
                    
               </tr>
             </form>
