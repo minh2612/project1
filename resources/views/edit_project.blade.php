@@ -83,6 +83,14 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
+                <div class="col-sm-2">
+                    <input  type="file" name="project_file" multiple>
+                    <a href="{{URL::to('/download/'.$project->project_file)}}">{{ $project->project_file}}</a>
+                </div>
+            </div>
+
             <div class="row">
                 <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-12">
@@ -93,6 +101,7 @@
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
+
             <button type="submit" name="update_project" class="btn btn-success waves-effect waves-light">Cập nhật dự án</button>
 		</form>
 		@endforeach
