@@ -37,9 +37,9 @@
                         <th>Tên dự án</th>
                         <th>Người làm</th>
                         <th>Deadline</th>
-                        <th>Ghi chú</th>
-                        <th>Trạng thái</th>
+                        <th>Mức độ ưu tiên</th>
                         <th>Hành động</th>
+                        <th>Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,10 +56,8 @@
                             @endif
                             @endforeach</td>            
                         <td>{{$task->task_end}}</td>
-                        <td>{{$task->task_note}}</td>
+                        <td>{{$task->priority_name}}</td>
                         <td>
-                        <a href="{{URL::to('/detail-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-eye"></i>
                         <a href="{{URL::to('/edit-task-in-project/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-edit"></i>
                         <a onclick="return confirm('Bạn có chắc là muốn xóa công việc này ko?')" href="{{URL::to('/delete-task-in-project/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
