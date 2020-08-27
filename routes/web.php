@@ -68,6 +68,7 @@ Route::post('/save-my-task', 'ProjectController@save_my_task')->name('admin.task
 Route::post('/update-project/{project_id}', 'ProjectController@update_project')->name('admin.project.update');
 Route::post('/update-task/{task_id}', 'ProjectController@update_task')->name('admin.task.update');
 Route::post('/update-task-in-project/{task_id}', 'ProjectController@update_task_in_project');
+Route::post('/upload-task-file-in-project/{task_id}', 'ProjectController@upload_task_file_in_project');
 
 
 
