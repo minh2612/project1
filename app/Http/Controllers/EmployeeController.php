@@ -165,8 +165,9 @@ class EmployeeController extends Controller
         $e_position = DB::table('tbl_position')->orderby('position_id','desc')->get();  
 
         $edit_employee = DB::table('tbl_e')->where('e_id',$e_id)->get();
+        $roles=DB::table('tbl_roles')->get();
 
-        $manager_employee  = view('edit_employee')->with('edit_employee',$edit_employee)->with('e_position',$e_position )->with('e_department', $e_department);
+        $manager_employee  = view('edit_employee')->with('edit_employee',$edit_employee)->with('e_position',$e_position )->with('e_department', $e_department)->with('roles', $roles);
 
 
         return view('admin_layout')->with('edit_employee', $manager_employee);
@@ -222,16 +223,18 @@ class EmployeeController extends Controller
                     $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
                     $get_image->move('public/avatar',$new_image);
                     $data['e_avatar'] = $new_image;
-                    DB::table('tbl_e')->where('e_id',$e_id)->update($data);
-                    Session::put('message','Cập nhật nhân viên thành công');
-                    return Redirect::to('all-employee');
         }
-        else{
+        DB::table('admin_roles')->where('admin_e_id', $e_id)->delete();
+        foreach ($request->roles as $key => $value) {
+             $data1['admin_e_id']=$e_id;
+             $data1['roles_id_roles']=$value;
+             DB::table('admin_roles')->insert($data1);
+        }
         DB::table('tbl_e')->where('e_id',$e_id)->update($data);
-        Session::put('message','Cập nhật sản phẩm thành công');
+        Session::put('message','Cập nhật nhân viên thành công');
         return Redirect::to('all-employee');
     }
-    }
+    
 
     public function delete_employee($e_id){
        
