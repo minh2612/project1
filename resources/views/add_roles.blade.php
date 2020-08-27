@@ -125,7 +125,7 @@
             @endforeach  
             </div>
 
-                 <button  style="margin-right: 800px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Thêm vai trò</button>        
+                 <button  style="margin-right: 800px; margin-top: 80px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Thêm vai trò</button>        
         </form>
         
         </div> 
