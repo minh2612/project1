@@ -97,7 +97,7 @@
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-2">
-                    <input  type="file" name="task_file">
+                    <input  type="file" name="task_file[]" multiple>
                 </div>
             </div>
             <div class="row">
@@ -115,4 +115,5 @@
     </div><!-- container fluid -->
 
 </div> <!-- Page content Wrapper -->
+
 @endsection
