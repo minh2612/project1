@@ -216,12 +216,16 @@ class ProjectController extends Controller
     }
         $data['project_id']=$request->project_id;
         $get_image= $request->file('task_file');
-        if($get_image){
+        if($request->hasFile('task_file')){
+            foreach ($get_image as $get_image) {
+                dd($get_image);
+            
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public',  $new_image);
             $data['task_file'] = $new_image;
+            }
         }
         $id=DB::table('tbl_task')->insertGetId($data);
        foreach($request->employee_task as  $value) {
