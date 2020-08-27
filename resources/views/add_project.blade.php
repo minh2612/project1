@@ -103,7 +103,7 @@
             <div class="form-group row">
                 <label for="example-name-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-4">
-                    <input type="file" name="project_file">
+                    <input multiple type="file" name="project_file[]">
                 </div>
             </div>
             <div class="row">

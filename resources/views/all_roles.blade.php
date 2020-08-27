@@ -60,15 +60,15 @@
                                   <tr>
                                     <td>{{$i}}</td>
 
-                                    <td style="width: 100px">{{ $roles->name}}</td>
-                                  <td>{{$i}}</td>
-                                   <td style="width: 300px"> @foreach($all_permission as $permission)
+                                    <td >{{ $roles->name}}</td>
+                                    <td>{{$roles->roles_note}}</td>
+                                    <td style="width: 400px"> @foreach($all_permission as $permission)
                                         @if($permission->roles_id_roles==$roles->id_roles)
                                     
                                           <p class="badge badge-success" style="font-size:85%;"> {{trans('auth.'.$permission->permission_name)}}</p>
                                         @endif
                                     @endforeach</td>
-                                    <td style="width: 300px"> @foreach($all_employee as $employee)
+                                    <td style="width: 200px"> @foreach($all_employee as $employee)
                                         @if($employee->id_roles==$roles->id_roles)
                                     
                                           <p class="badge badge-success" style="font-size:85%;"> {{$employee->e_name}}</p>

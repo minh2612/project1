@@ -98,7 +98,7 @@ function showPreview(event){
 
 	    	<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Phòng ban</label>
-		        <div class="col-sm-2">
+		        <div class="col-sm-4">
 		            <select class="form-control" name="department_id">
                     @foreach($e_department as $key => $department)
                         @if($department->department_id == $employee->department_id)
@@ -112,7 +112,7 @@ function showPreview(event){
 		    </div>
 	    	<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Chức vụ</label>
-		        <div class="col-sm-2">
+		        <div class="col-sm-4">
 		            <select class="form-control" name="position_id">
                     @foreach($e_position as $key => $position)
                         @if($position->position_id== $employee->position_id)
@@ -122,6 +122,16 @@ function showPreview(event){
                         @endif
                     @endforeach                         
 		            </select>
+		        </div>
+		    </div>
+		      <div class="form-group row">
+		        <label class="col-sm-2 col-form-label">Chọn vai trò</label>
+		        <div class="col-sm-4">
+		            <select class="form-control chosen-select "  name="roles[]" multiple >
+                       	@foreach($roles as $key => $roles)
+	                    <option value="{{$roles->id_roles}}">{{$roles->name}}</option>
+	                    @endforeach  
+	                </select>
 		        </div>
 		    </div>
 		     <ul>

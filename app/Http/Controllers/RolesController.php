@@ -83,6 +83,10 @@ class RolesController extends Controller
                 'roles_note' => $request->roles_note
                 
             ]);
+            // $data= array();
+            // $data['name']=$request->name;
+            // $data['roles_note']=$request->roles_note;
+            // DB::table('tbl_roles')->insert($data);
 
             // Insert data to role_permission
             $roleCreate->Permission()->attach($request->permission);
@@ -96,6 +100,7 @@ class RolesController extends Controller
         $permission = $this->permission->all();
 
         $role = $this->role->findOrfail($id);
+
     
        
         $getAllPermissionOfRole = DB::table('roles_permission')->where('roles_id_roles', $id)->pluck('permission_id_permission');
@@ -107,11 +112,11 @@ class RolesController extends Controller
     {       
              $this->validate($request,
          [
-            'name' => 'bail|required|unique:tbl_roles',
+            'name' => 'bail|required',
             'roles_note' => 'bail|required',
         ],
 
-        [    'unique' => ':attribute đã tồn tại',
+        [  
             'required' => ':attribute không được để trống',
         ],
 
@@ -121,15 +126,20 @@ class RolesController extends Controller
         ]
 
     );  
-            $this->role->where('id_roles', $id)->update([
-                'name' => $request->name,
-                'roles_note' => $request->roles_note
-            ]);
+            // $this->role->where('id_roles', $id)->update([
+            //     'name' => $request->name,
+            //     'roles_note' => $request->roles_note
+            // ]);
+             $data= array();
+             $data['name']=$request->name;
+             $data['roles_note']=$request->roles_note;
+             DB::table('tbl_roles')->where('id_roles', $id)->update($data);
 
             DB::table('roles_permission')->where('roles_id_roles', $id)->delete();
             // $roleCreate = $this->role->find($id);
 
             // $roleCreate->Permissions()->attach($request->permission);
+            if($request->permission){
             foreach ($request->permission as $key => $value) {
                 if($value){
                 $data=array();
@@ -138,13 +148,21 @@ class RolesController extends Controller
                 DB::table('roles_permission')->insert($data);
                 $data="";
 
+            } 
             }
-                
             }
             
             Session::put('message','Sửa vai trò thành công');
             return redirect()->route('admin.roles.all');
       
         }
+         public function delete_roles($id){
+       
+        DB::table('roles_permission')->where('roles_id_roles',$id) ->delete();
+        DB::table('admin_roles')->where('roles_id_roles',$id) ->delete();
+        DB::table('tbl_roles')->where('id_roles',$id) ->delete();
+        Session::put('message', 'Xóa vai trò thành công');
+        return Redirect::to('all-roles');
+    }
     
 }

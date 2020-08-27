@@ -8,7 +8,7 @@ class Roles extends Model
 {
     public $timestamps = false; //set time to false
     protected $fillable = [
-    	'name'
+    	'name','roles_note'
     ];
     protected $primaryKey = 'id_roles';
  	protected $table = 'tbl_roles';
