@@ -35,8 +35,8 @@
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">     
-                        <div class="table-responsive" style="width: 100%">
-                            <table id="datatable" class="table table-bordered " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -46,6 +46,7 @@
                                         <th>Người quản lý dự án</th>
                                         <th>Ngày bắt đầu</th>
                                         <th>Ngày kết thúc</th>
+                                        <th>File đính kèm</th>
                                         <th>Tổng số<br>công việc</th>
                                         <th>Công việc<br>đã xử lý</th>
                                         <th>Công việc<br>chưa xử lý</th>
@@ -69,6 +70,15 @@
                                         <td>{{$project->e_name}}</td>                      
                                         <td>{{$project->project_start}}</td>
                                         <td>{{$project->project_end}}</td>
+                                        <td><a href="{{URL::to('/download/'.$project->project_file)}}">{{ $project->project_file}}</a>
+                                            <div class="form-group row">
+                                                <div class="col-sm-2">
+                                                    <input  type="file" name="task_file[]" multiple>
+                                                </div>
+                                            </div>
+                                            <a href="{{URL::to('/upload-project-file/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                                            <i class="fas fa-file-upload"></i>
+                                        </td>
                                         @php
                                             $i = 0;
                                         @endphp
