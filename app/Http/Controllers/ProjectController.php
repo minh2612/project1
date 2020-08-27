@@ -433,12 +433,15 @@ class ProjectController extends Controller
         $data['project_file']=$request->project_file;
         $get_image= $request->file('project_file');
         if($get_image){
+            foreach ($get_image as $get_image) {
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public',  $new_image);
-            $data['project_file'] = $new_image;
-        }
+            $files[] = $new_image;
+            }
+               $data['project_file'] =implode(',',$files);
+    }
 
         $id=DB::table('tbl_project')->insertGetId($data);
         Session::put('message','Thêm dự án thành công');
