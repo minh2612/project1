@@ -139,7 +139,7 @@ class ProjectController extends Controller
     public function detail_project($project_id){
         //this->AuthAdmin();
         //$this->AuthLogin();
-        $all_task= DB::table('tbl_task')->join('tbl_project','tbl_project.project_id','=','tbl_task.project_id')->where('tbl_task.project_id',$project_id)->get();
+        $all_task= DB::table('tbl_task')->join('tbl_project','tbl_project.project_id','=','tbl_task.project_id')->join('tbl_priority','tbl_priority.priority_id','=','tbl_task.priority_id')->where('tbl_task.project_id',$project_id)->get();
         $employee = DB::table('tbl_employee_task')->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->where('tbl_task.project_id',$project_id)->get();
         $manager_project  = view('detail_project')->with('all_task',$all_task)->with('employee',$employee);
         return view('admin_layout')->with('detail_project', $manager_project);
