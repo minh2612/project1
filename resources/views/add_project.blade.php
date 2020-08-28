@@ -106,16 +106,14 @@
                     <input multiple type="file" name="project_file[]">
                 </div>
             </div>
-            <div class="row">
-                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
-                <div class="col-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                                <textarea id="elm1" name="project_note"></textarea>
-                        </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->  
+
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Mô tả</label>
+                <div class="col-sm-4">
+                    <textarea name="project_note" id="note"></textarea>
+                </div>
+            </div>
+              
             <button type="submit" name="add_project" class="btn btn-success waves-effect waves-light">Thêm dự án</button>
 		</form>
     </div><!-- container fluid -->
