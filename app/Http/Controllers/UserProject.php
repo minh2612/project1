@@ -27,109 +27,140 @@ class UserProject extends Controller
             $this->AuthUser();
              $status=1;
              $id=Auth::user()->e_id;
-           
-             $all_task= DB::table('tbl_employee_task')
+              $task_all=DB::table('tbl_employee_task')
              ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
-              ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
-             ->where('employee_id',$id)->where('tbl_task.task_status',$status)->get();
-          
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             
+             ->get();
+             $task_user=DB::table('tbl_employee_task')
+             ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             ->where('tbl_task.task_status',$status)
+             ->orderBy('tbl_task.priority_id', 'DESC')
+            ->orderBy('tbl_task.task_end', 'asc')
+             ->get();
 
-           $all_employee=DB::table('tbl_employee_task')
-             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')->get();
-              
+            $all_project=DB::table('tbl_project')->get();
+            $all_priority=DB::table('tbl_priority')->get();
+            $all_employee=DB::table('tbl_e')->get();
 
-             $manager_task = view('loading_task')->with('all_task', $all_task)->with('all_employee',$all_employee);
-             return view('admin_layout')->with('loading_task', $manager_task);
+
+
+            return view('loading_task',compact('task_user','all_project','all_priority','all_employee','task_all'));
+            
            // return view('users_dashboard')->with('name',$name);
         }
 
         public function wait_user_task(){
-             $this->AuthUser();
+              $this->AuthUser();
              $status=2;
              $id=Auth::user()->e_id;
-            //$name=DB::table('tbl_e')->where('e_id',$id)->get();
-             $all_task= DB::table('tbl_employee_task')
+              $task_all=DB::table('tbl_employee_task')
              ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
-              ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
-             ->where('employee_id',$id)->where('tbl_task.task_status',$status)->get();
-          
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             
+             ->get();
+             $task_user=DB::table('tbl_employee_task')
+             ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             ->where('tbl_task.task_status',$status)
+             ->orderBy('tbl_task.priority_id', 'DESC')
+            ->orderBy('tbl_task.task_end', 'asc')
+             ->get();
 
-           $all_employee=DB::table('tbl_employee_task')
-             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')->get();
-              
+            $all_project=DB::table('tbl_project')->get();
+            $all_priority=DB::table('tbl_priority')->get();
+            $all_employee=DB::table('tbl_e')->get();
 
-             $manager_task = view('wait_user_task')->with('all_task', $all_task)->with('all_employee',$all_employee);
-             return view('admin_layout')->with('wait_user_task', $manager_task);
-           // return view('users_dashboard')->with('name',$name);
+
+
+            return view('wait_user_task',compact('task_user','all_project','all_priority','all_employee','task_all'));
         }
 
          public function end_user_task(){
-            $this->AuthUser();
+              $this->AuthUser();
              $status=3;
              $id=Auth::user()->e_id;
-            //$name=DB::table('tbl_e')->where('e_id',$id)->get();
-             $all_task= DB::table('tbl_employee_task')
+              $task_all=DB::table('tbl_employee_task')
              ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
-              ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
-             ->where('employee_id',$id)->where('tbl_task.task_status',$status)->get();
-          
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             
+             ->get();
+             $task_user=DB::table('tbl_employee_task')
+             ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             ->where('tbl_task.task_status',$status)
+             ->orderBy('tbl_task.priority_id', 'DESC')
+            ->orderBy('tbl_task.task_end', 'asc')
+             ->get();
 
-           $all_employee=DB::table('tbl_employee_task')
-             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')->get();
-              
+            $all_project=DB::table('tbl_project')->get();
+            $all_priority=DB::table('tbl_priority')->get();
+            $all_employee=DB::table('tbl_e')->get();
 
-             $manager_task = view('refuse_user_task')->with('all_task', $all_task)->with('all_employee',$all_employee);
-             return view('admin_layout')->with('refuse_user_task', $manager_task);
-           // return view('users_dashboard')->with('name',$name);
+
+
+            return view('end_user_task',compact('task_user','all_project','all_priority','all_employee','task_all'));
         }
 
         public function refuse_user_task(){
             $this->AuthUser();
              $status=4;
              $id=Auth::user()->e_id;
-            //$name=DB::table('tbl_e')->where('e_id',$id)->get();
-             $all_task= DB::table('tbl_employee_task')
+              $task_all=DB::table('tbl_employee_task')
              ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
-              ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
-             ->where('employee_id',$id)->where('tbl_task.task_status',$status)->get();
-          
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             ->get();
+             $task_user=DB::table('tbl_employee_task')
+             ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             ->where('tbl_task.task_status',$status)
+             ->orderBy('tbl_task.priority_id', 'DESC')
+            ->orderBy('tbl_task.task_end', 'asc')
+             ->get();
 
-           $all_employee=DB::table('tbl_employee_task')
-             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')->get();
-              
+            $all_project=DB::table('tbl_project')->get();
+            $all_priority=DB::table('tbl_priority')->get();
+            $all_employee=DB::table('tbl_e')->get();
 
-             $manager_task = view('refuse_user_task')->with('all_task', $all_task)->with('all_employee',$all_employee);
-             return view('admin_layout')->with('refuse_user_task', $manager_task);
-           // return view('users_dashboard')->with('name',$name);
+
+
+            return view('refuse_user_task',compact('task_user','all_project','all_priority','all_employee','task_all'));
         }
-         public function count_task(){
-            $id=Auth::user()->e_id;
-            $run_task=DB::table('tbl_employee_task')
-             ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
-             ->where('tbl_task.task_status',1)->where('employee_id',$id)->count();
-
-
-              return view('admin_layout')->with('run_task', $run_task);
-
-         }
+      
          public function stack_user_task(){
-            $this->AuthUser();
+           $this->AuthUser();
              $status=0;
              $id=Auth::user()->e_id;
-            //$name=DB::table('tbl_e')->where('e_id',$id)->get();
-             $all_task= DB::table('tbl_employee_task')
+              $task_all=DB::table('tbl_employee_task')
              ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
-              ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
-             ->where('employee_id',$id)->where('tbl_task.task_status',$status)->get();
-          
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             ->get();
+             $task_user=DB::table('tbl_employee_task')
+             ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
+             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
+             ->where('tbl_employee_task.employee_id',$id)
+             ->where('tbl_task.task_status',$status)
+             ->orderBy('tbl_task.priority_id', 'DESC')
+            ->orderBy('tbl_task.task_end', 'asc')
+             ->get();
 
-           $all_employee=DB::table('tbl_employee_task')
-             ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')->get();
-              
+            $all_project=DB::table('tbl_project')->get();
+            $all_priority=DB::table('tbl_priority')->get();
+            $all_employee=DB::table('tbl_e')->get();
 
-             $manager_task = view('refuse_user_task')->with('all_task', $all_task)->with('all_employee',$all_employee);
-             return view('admin_layout')->with('refuse_user_task', $manager_task);
-           // return view('users_dashboard')->with('name',$name);
+
+
+            return view('loading_task',compact('task_user','all_project','all_priority','all_employee','task_all'));
         }
 
     

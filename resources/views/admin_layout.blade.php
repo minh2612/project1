@@ -14,6 +14,7 @@
         <link href="{{asset('assets/css/icons.css')}}"  rel="stylesheet" type="text/css">
         <link href="{{asset('assets/css/style.css')}}"  rel="stylesheet" type="text/css">
         <link href="{{asset('plugins/datatables/dataTables.bootstrap4.min.css')}}"  rel="stylesheet" type="text/css">
+        <link href="{{asset('plugins/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css')}}" rel="stylesheet" />
         <script src="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js')}}"></script>
         <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -47,7 +48,7 @@
                            
                             <li class="menu-title">Main</li>
                             <li>
-                                <a href="{{route('admin.index')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
+                                <a href="{{route('admin.dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
 
 
@@ -64,13 +65,13 @@
                        
                      
                          
-                             @hasrole(['admin','manager'])
+                       
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
-                                    <li><a href="{{URL::to('/all-project')}}">Danh sách dự án</a></li>
-                                    <li><a href="{{URL::to('/my-project')}}">Dự án của tôi</a></li>
+                                    <li><a href="{{URL::to('/all-project')}}">Danh sách tất cả dự án</a></li>
+                                    <li><a href="{{URL::to('/my-project')}}">Danh sách dự án của tôi</a></li>
                                 </ul>
                            </li> 
                       
@@ -83,15 +84,15 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
-                                    <li><a href="{{URL::to('/all-task')}}">Danh sách công việc</a></li>
-                                      <li><a href="{{URL::to('/my-task')}}">Công việc của tôi</a></li>
+                                    <li><a href="{{URL::to('/all-task')}}">Danh sách tất cả công việc</a></li>
+                                      <li><a href="{{URL::to('/my-task')}}">Danh sách công việc của tôi</a></li>
                                 </ul>
                             </li>                              
 
-                        @endhasrole
+               
                           
                             
-                          @hasrole(['admin'])
+                         
                           
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý phòng ban </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -134,7 +135,7 @@
                             </li>
 
                             
-                            @endhasrole
+               
                         
 
 
@@ -167,7 +168,7 @@
                                     <?php
                                     $avatar=Auth::user()->e_avatar;
                                     ?>
-                                        <img src="{{ URL::to('/public/avatar/'.$avatar)}}" alt="user" class="rounded-circle">
+                                        <img src="{{ URL::to('/public/avatar/'.$avatar)}}"  title="Smiley face" alt="user" class="rounded-circle">
 
                                         <?php
                                             $name = Auth::user()->e_name;
@@ -255,5 +256,6 @@
                 }
             });
         </script>
+        <script src="{{asset('plugins/dropzone/dist/dropzone.js')}}"></script>
     </body>
 </html>

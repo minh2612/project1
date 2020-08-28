@@ -77,11 +77,12 @@
 			        <input class="form-control" type="tel" name="e_phone" id="example-tel-input">
 			    </div>
 			</div>
+			
 
 	    	<div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Phòng ban</label>
-		        <div class="col-sm-4">
-		            <select class="form-control" name="department_id">
+		        <div class="col-sm-4 js-example-basic-multiple">
+		            <select class="form-control " name="department_id">
 	                    @foreach($e_department as $key => $department)
 	                    <option value="{{$department->department_id}}">{{$department->department_name}}</option>
 	                    @endforeach        
@@ -101,7 +102,7 @@
 		    <div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Chọn vai trò</label>
 		        <div class="col-sm-4">
-		            <select class="form-control"  name="roles[]" multiple >
+		            <select class="form-control chosen-select "  name="roles[]" multiple >
                        	@foreach($roles as $key => $roles)
 	                    <option value="{{$roles->id_roles}}">{{$roles->name}}</option>
 	                    @endforeach  

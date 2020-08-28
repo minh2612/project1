@@ -41,8 +41,11 @@
                             <table id="datatable" class="table table-bordered " style="background-color: white;border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Tên vai trò</th>                        
+                                        <th>STT</th>
+                                        <th>Tên vai trò</th>  
+                                        <th>Mô tả</th>
+                                        <th>Quyền</th>   
+                                        <th>Nhân viên</th>               
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -56,7 +59,21 @@
                                     @endphp
                                   <tr>
                                     <td>{{$i}}</td>
-                                    <td>{{ $roles->name}}</td>
+
+                                    <td >{{ $roles->name}}</td>
+                                    <td>{{$roles->roles_note}}</td>
+                                    <td style="width: 400px"> @foreach($all_permission as $permission)
+                                        @if($permission->roles_id_roles==$roles->id_roles)
+                                    
+                                          <p class="badge badge-success" style="font-size:85%;"> {{trans('auth.'.$permission->permission_name)}}</p>
+                                        @endif
+                                    @endforeach</td>
+                                    <td style="width: 200px"> @foreach($all_employee as $employee)
+                                        @if($employee->id_roles==$roles->id_roles)
+                                    
+                                          <p class="badge badge-success" style="font-size:85%;"> {{$employee->e_name}}</p>
+                                        @endif
+                                    @endforeach</td>
                                     <td>
                                           
                                         <a href="{{URL::to('/edit-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">

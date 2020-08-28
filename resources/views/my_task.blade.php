@@ -37,10 +37,11 @@
                     <tr>
                         <th>Tên công việc</th>
                         <th>Tên dự án</th>
-                        <th>Người làm</th>
-                        <th>Deadline</th>
                         <th>Mức độ ưu tiên</th>
-                        <th>Ghi chú</th>
+                        <th>Người tham gia</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Mô tả</th>
                         <th>Hành động</th>
                         <th>Trạng thái</th>
                         

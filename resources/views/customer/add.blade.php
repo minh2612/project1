@@ -85,10 +85,20 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Dịch vụ sử dụng</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="service">
+                    <select class="form-control js-example-basic-multiple" name="service[]" multiple="multiple">
                     @foreach($service as $sv)
                     <option value="{{$sv ->service_id}}">{{$sv ->service_name}}</option>
                     @endforeach                              
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Dịch vụ sử dụng</label>
+                <div class="col-sm-4">
+                    <select class="form-control abc" name="service[]" multiple="multiple">
+                    <option value="1">1</option>
+                    <option value="1">1</option>    
+                    <option value="1">1</option>                                
                     </select>
                 </div>
             </div>
@@ -118,5 +128,9 @@
         preview.style.fontSize ="1px";
         }
     }
+    $(document).ready(function() {
+    $('.abc').select2();
+    });
+
 </script>
 @endsection

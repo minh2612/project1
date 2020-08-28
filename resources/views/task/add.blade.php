@@ -12,7 +12,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Thêm công việc</h4>
+                            <h4 class="page-title m-0">Thêm công việc123</h4>
                             <?php
                             $message= Session::get('message');
                             if($message){
@@ -34,7 +34,7 @@
             </div>
         </div> 
         <!-- end page title -->
-        <form role="form" action="{{URL::to('/save-task/')}}" method="post" enctype="multipart/form-data">
+        <form role="form" action="{{URL::to('/save-task-in-project/')}}" method="post" enctype="multipart/form-data">
         	{{csrf_field()}}     	
 			<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Tên công việc</label>
@@ -94,14 +94,12 @@
                     </select>
                 </div>
             </div>			
-
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-2">
-                    <input multiple="" type="file" name="task_file[]">
+                    <input  type="file" name="task_file[]" multiple>
                 </div>
             </div>
-            
             <div class="row">
                 <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-12">
@@ -117,4 +115,5 @@
     </div><!-- container fluid -->
 
 </div> <!-- Page content Wrapper -->
+
 @endsection

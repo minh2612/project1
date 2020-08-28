@@ -25,7 +25,7 @@
         </div> 
         <!-- end page title -->
          @foreach($edit_task as $key=> $task)
-        <form role="form" action="{{URL::to('/update-task/'.$task->task_id)}}" method="post" enctype="multipart/form-data">
+        <form role="form" action="{{URL::to('/update-task-in-project/'.$task->task_id)}}" method="post" enctype="multipart/form-data">
         	{{csrf_field()}}     	
 			<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Tên công việc</label>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             
-            <div class="form-group row">
+			<div class="form-group row">
                 <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
                 <div class="col-sm-4">
                     <input class="form-control" value="{{$task->task_end}}" type="datetime-local" name="task_end">
@@ -67,15 +67,15 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div>      
 
             <div class="form-group row">
                 <label for="example-date-input" class="col-sm-2 col-form-label">File đính kèm</label>
                 <div class="col-sm-2">
-                    <input  type="file" name="task_file">
+                    <input  type="file" name="task_file" multiple>
                     <a href="{{URL::to('/download/'.$task->task_file)}}">{{ $task->task_file}}</a>
                 </div>
-            </div>      
+            </div>
             <div class="row">
                 <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
                 <div class="col-12">
@@ -85,8 +85,7 @@
                         </div>
                     </div>
                 </div> <!-- end col -->
-            </div> <!-- end row -->
-
+            </div> <!-- end row -->  
             <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật công việc</button>
 		</form>
 		@endforeach

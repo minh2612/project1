@@ -1,0 +1,222 @@
+public function save_task(Request $request){
+       //$this->AuthAdmin();
+        
+        $this->validate($request,
+         [
+            'task_name' => 'bail|required',
+            'task_start' => 'bail|required|after_or_equal:today',
+            'task_end' => 'bail|required|after:task_start',
+           
+          
+            
+        ],
+
+        [
+            'required' => ':attribute không du?c d? tr?ng',
+            'unique' => ':attribute dã t?n t?i',
+            'min' => ':attribute không du?c nh? hon :min',
+            'max' => ':attribute không du?c l?n hon :max',
+            'after' => ':attribute ph?i l?n hon ngày b?t d?u',
+            'after_or_equal' => ':attribute ph?i l?n hon ho?c b?ng ngày hôm nay',
+
+        ],
+
+        [
+            'task_name' => 'Tên d? án',
+            'task_start' => 'Ngày b?t d?u',
+            'task_end' => 'Ngày k?t thúc',
+            
+            
+        ]
+
+    );  
+        
+        $data =array();
+        $data1=array();
+        $id=Auth::user()->e_id;
+        $name1=DB::table('tbl_e')->where('e_id',$id)->value('e_name');
+        $project_name=DB::table('tbl_project')->where('project_id',$request->project_id)->value('project_name');
+        $data['task_manager']=$id;
+        $data['task_name'] = $request->task_name;
+        $data['task_start'] = $request->task_start;
+        $data['task_end'] = $request->task_end;
+        $data['task_priority'] = $request->task_priority;
+        $data['task_note'] = $request->task_note;
+        
+        if($request->task_start<=Carbon::now('Asia/Ho_Chi_Minh')){
+        $data['task_status'] = 1;
+    }
+    else{
+        $data['task_status'] = 0;
+    }
+        $data['project_id']=$request->project_id;
+        $get_image= $request->file('task_file');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public',  $new_image);
+            $data['task_file'] = $new_image;
+        }
+        $id=DB::table('tbl_task')->insertGetId($data);
+        foreach($request->employee_task as  $value) {
+             $data1['task_id']= $id;
+             $data1['employee_id']= $value;
+             $email=DB::table('tbl_e')->where('e_id',$value)->value('e_email');
+             
+               //$this->send_email($email,$name1);
+             DB::table('tbl_employee_task')->insert($data1);
+         }
+             $email1=DB::table('tbl_e')->where('e_id',$value)->value('e_email');
+                //send to this email
+                $to_name = $name1;
+                $to_email = $email1;
+
+                $data = array("task_name"=>$request->task_name,"project_name"=>$project_name,"task_start"=>$request->task_start,"task_end"=>$request->task_end,"task_priority"=>$request->task_priority,"task_note"=>$request->task_note); //body of mail.blade.php
+            
+                Mail::send('mail_assign',$data,function($message) use ($to_name,$to_email){
+                    $message->to($to_email)->subject('Thông báo');//send this mail with subject
+                    $message->from($to_email,$to_name);//send from this mail
+                });
+    
+        Session::put('message','Thêm công vi?c thành công');
+        return Redirect::to('all-task');
+  
+   	}
+
+
+
+
+///////////////////////////////////////////////////////mail_assign.blade.php
+B?n có công vi?c <b>{{$task_name}}</b> c?n th?c hi?n v?i m?c d? uu tiên <b>{{$task_priority}}</b>.
+<br>
+Công vi?c này s? b?t d?u t? ngày <b>{{$task_start}}</b> và k?t thúc vào ngày <b>{{$task_end}}</b>.
+<br>
+Sau dây là mô t? chi ti?t v? công vi?c l?n này: <br>{{$task_note}}
+<br><br>
+Chúc m?t ngày t?t lành ?
+
+////////////////////////////////////////////////////config/mail.php
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Mailer
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default mailer that is used to send any email
+    | messages sent by your application. Alternative mailers may be setup
+    | and used as needed; however, this mailer will be used by default.
+    |
+    */
+
+    'default' => env('MAIL_MAILER', 'smtp'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mailer Configurations
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure all of the mailers used by your application plus
+    | their respective settings. Several examples have been configured for
+    | you and you are free to add your own as your application requires.
+    |
+    | Laravel supports a variety of mail "transport" drivers to be used while
+    | sending an e-mail. You will specify which one you are using for your
+    | mailers below. You are free to add additional mailers as required.
+    |
+    | Supported: "smtp", "sendmail", "mailgun", "ses",
+    |            "postmark", "log", "array"
+    |
+    */
+    //'driver' => env('MAIL_DRIVER', 'smtp'),
+
+    'stream' => [
+    'ssl' => [
+        'allow_self_signed' => true,
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+    ],
+    ],
+
+
+
+    'mailers' => [
+        'smtp' => [
+            'transport' => 'smtp',
+            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+            'port' => env('MAIL_PORT', 465),
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
+            'auth_mode' => null,
+        ],
+
+        'ses' => [
+            'transport' => 'ses',
+        ],
+
+        'mailgun' => [
+            'transport' => 'mailgun',
+        ],
+
+        'postmark' => [
+            'transport' => 'postmark',
+        ],
+
+        'sendmail' => [
+            'transport' => 'sendmail',
+            'path' => '/usr/sbin/sendmail -bs',
+        ],
+
+        'log' => [
+            'transport' => 'log',
+            'channel' => env('MAIL_LOG_CHANNEL'),
+        ],
+
+        'array' => [
+            'transport' => 'array',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Global "From" Address
+    |--------------------------------------------------------------------------
+    |
+    | You may wish for all e-mails sent by your application to be sent from
+    | the same address. Here, you may specify a name and address that is
+    | used globally for all e-mails that are sent by your application.
+    |
+    */
+
+    'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'ducluong270198@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Duc Luong'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Markdown Mail Settings
+    |--------------------------------------------------------------------------
+    |
+    | If you are using Markdown based email rendering, you may configure your
+    | theme and component paths here, allowing you to customize the design
+    | of the emails. Or, you may simply stick with the Laravel defaults!
+    |
+    */
+
+    'markdown' => [
+        'theme' => 'default',
+
+        'paths' => [
+            resource_path('views/vendor/mail'),
+        ],
+    ],
+
+];
+
+    

@@ -16,13 +16,6 @@ use Carbon\Carbon;
                             <a href="{{URL::to('/add-task/')}}" class="active styling-edit" ui-toggle-class="">
                             <button type="button" class="btn btn-success waves-effect waves-light">Thêm công việc</button></a> 
                             <p>&nbsp;</p>
-                            <?php
-                                $message= Session::get('message');
-                                 if($message){
-                                      echo '<span class="text-alert">'.$message.'</span>';
-                                      Session::put('message', null);
-                                    }
-                            ?>
                             </div>
                                     
                         </div>
@@ -33,6 +26,7 @@ use Carbon\Carbon;
                 <!-- end page-title-box -->
             </div>
         </div> 
+
         <!-- end page title -->     
         <div class="table-responsive">
             <table id="datatable" class="table table-bordered" style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -44,6 +38,7 @@ use Carbon\Carbon;
                         <th>Deadline</th>
                         <th>Mức độ ưu tiên</th>
                         <th>Ghi chú</th>
+                        <th>File đính kèm</th>
                         <th>Hành động</th>
                         <th>Trạng thái</th>
                         
@@ -77,6 +72,16 @@ use Carbon\Carbon;
                             @endif
                             @endforeach</td>
                         <td>{{$task->task_note}}</td>
+                        <td><a href="{{URL::to('/download/'.$task->task_file)}}">{{ $task->task_file}}</a>
+                            <div class="form-group row">
+                                <div class="col-sm-2">
+                                    <input  type="file" name="task_file[]" multiple>
+                                </div>
+                            </div>
+                            <a href="{{URL::to('/upload-task-file-in-project/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
+                            <i class="fas fa-file-upload"></i>
+                        </td>
+
                         <td>
                         <a href="{{URL::to('/detail-task/'.$task->task_id)}}" class="active styling-edit" ui-toggle-class="">
                             <i class="fa fa-eye"></i>
@@ -114,13 +119,15 @@ use Carbon\Carbon;
                             ?>
                             </span>
                         </td>      
-                    </tr>
-                @endforeach                 
-                </tbody>
-            </table>
-
+                                    </tr>
+                                @endforeach                 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div><!-- container fluid -->
-
 </div> <!-- Page content Wrapper -->
 @endsection
