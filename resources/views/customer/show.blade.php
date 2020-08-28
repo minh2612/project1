@@ -66,11 +66,7 @@
                                         <td>{{ $c->customer_phone }}</td>
                                         <td>{{ $c->customer_group_name }}</td>
                                         
-                                        <td>@foreach($service as $s) 
-                                            @if($c->service_id==$s->service_id)
-                                            {{$s->service_name}}<br>
-                                            @endif
-                                            @endforeach</td>
+                                        <td>{{ $c->service_id }}</td>
                                         <td>
                                             <a href="{{URL::to('/edit-customer/'.$c->customer_id)}}" class="active styling-edit" ui-toggle-class="">
                                                 <i class="fa fa-edit"></i>
