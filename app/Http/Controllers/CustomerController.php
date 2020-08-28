@@ -35,8 +35,9 @@ class CustomerController extends Controller
 
     public function show(){
         $this->AuthLogin();
-        $customer= DB::table('tbl_customer')->join('tbl_sex','tbl_sex.sex_id','=','tbl_customer.sex_id')->join('tbl_customer_group','tbl_customer_group.customer_group_id','=','tbl_customer.customer_group_id')->join('tbl_service','tbl_service.service_id','=','tbl_customer.service_id')->orderby('tbl_customer_group.customer_group_id','desc')->get();
-        $show= view('customer.show')->with('customer', $customer);
+        $customer= DB::table('tbl_customer')->join('tbl_sex','tbl_sex.sex_id','=','tbl_customer.sex_id')->join('tbl_customer_group','tbl_customer_group.customer_group_id','=','tbl_customer.customer_group_id')->orderby('tbl_customer_group.customer_group_id','desc')->get();
+        $service = DB::table('tbl_service')->get(); 
+        $show= view('customer.show')->with('customer', $customer)->with('service', $service);
         return view('admin_layout')->with('customer', $show);
     }
 
@@ -73,6 +74,10 @@ class CustomerController extends Controller
         $data['sex_id'] = $request->sex;
         $data['customer_group_id'] = $request->customer_group;
         $data['service_id'] = $request->service;
+        foreach ($request->service as $s) {
+            $service1[] = $s;
+        }
+        $data['service_id'] = implode(',', $service1);
         $data['customer_note'] = $request->note;
         $data['customer_image'] = $request->image;
         $data['customer_created_day'] =Carbon::now('Asia/Ho_Chi_Minh');
