@@ -219,14 +219,8 @@
         <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
         <!-- CK Editor -->
-        <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
-        <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-        </script>
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script type="text/javascript">CKEDITOR.replace( 'note' );</script>
         <!-- Datatable init js -->
         <script src="{{asset('assets/pages/datatables.init.js')}}"></script>
         <script src="{{asset('plugins/tinymce/tinymce.min.js')}}"></script>    
