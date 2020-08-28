@@ -139,7 +139,12 @@ class CustomerController extends Controller
         $data['customer_phone'] = $request->phone;
         $data['sex_id'] = $request->sex;
         $data['customer_group_id'] = $request->customer_group;
-        $data['service_id'] = $request->service;
+        if($request->service != ''){
+        foreach ($request->service as $s){
+            $service1[] = $s;
+        }
+        $data['service_id'] = implode(',', $service1);
+        }
         $data['customer_note'] = $request->note;
         $data['customer_created_day'] =Carbon::now('Asia/Ho_Chi_Minh');
         $get_image = $request->file('image');
