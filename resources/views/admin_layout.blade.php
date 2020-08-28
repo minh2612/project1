@@ -19,7 +19,6 @@
         <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="jquery.form.js"></script>
-        <script src="{{asset('ckeditor/ckeditor.js')}}"></script> 
     </head>
 
     <body class="fixed-left">
