@@ -46,11 +46,10 @@ function showPreview(event){
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Ảnh</label>
 			    <div class="col-sm-4">
 			        <img src="{{ URL::to('/public/avatar/'.$employee->e_avatar)}}" height="100" width="100" class="img-thumbnail">@php echo" ====>"; @endphp 
-			        <input name="e_avatar" height="100" width="100" class="img-thumbnail" type="file"  onchange="showPreview(event);"/>
+			        <input name="e_avatar"class="img-thumbnail" type="file"  onchange="showPreview(event);"/>
 
-			    
-                <img id="image1";>
-                         
+                	<img  style="height:100px; width:100px;"  id="image1";>
+                      
 			    </div>
 			</div>	
 			<div class="form-group row">
