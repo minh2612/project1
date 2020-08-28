@@ -51,9 +51,9 @@
                         <td>
                             {{$task->project_name}}<br>
                         </td>
-                        <td>@foreach($employee as $key => $employee1) 
-                            @if($task->task_id==$employee1->task_id)
-                            {{$employee1->e_name}}<br>
+                        <td>@foreach($employee as $key => $value) 
+                            @if($task->task_id==$value->task_id)
+                            <img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$value->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$value->e_name}}"><br><br>
                             @endif
                             @endforeach</td>            
                         <td>{{$task->task_end}}</td>
