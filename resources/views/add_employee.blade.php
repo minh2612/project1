@@ -24,33 +24,13 @@
                 <!-- end page-title-box -->
             </div>
         </div> 
-
-        <script>
-       
-
-                         
-function showPreview(event){
-  if(event.target.files.length > 0){
-    var src = URL.createObjectURL(event.target.files[0]);
-    var preview = document.getElementById("image1");
-    preview.src = src;
-    preview.style.fontSize ="1px";
-  }
-}
-</script>
         <!-- end page title -->
         <form role="form" action="{{URL::to('/save-employee')}}" method="post" enctype="multipart/form-data">
         	{{csrf_field()}}  
         	<div class="form-group row">
 			    <label for="example-name-input" class="col-sm-2 col-form-label">Ảnh</label>
-			    <div style= "" class="col-sm-2">
-			        <div  style="width: 100px;" class="col-sm-4">
-			         
-			        <input style="" name="e_avatar" class="img-thumbnail" type="file"  onchange="showPreview(event);"/>
-
-                	<img style="height:100px; width:100px;"  id="image1";>
-                      
-			    </div>
+			    <div class="col-sm-2">
+			        <input type="file" name="e_avatar">
 			    </div>
 			</div> 	
 			<div class="form-group row">
