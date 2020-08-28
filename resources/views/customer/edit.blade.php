@@ -1,5 +1,8 @@
 @extends('admin_layout')
 @section('admin_content')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
@@ -104,34 +107,37 @@ function showPreview(event){
 		            </select>
 		        </div>
 		    </div>
+
 		    <div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Dịch vụ sử dụng</label>
 		        <div class="col-sm-4">
-		            <select class="form-control" name="service">
+		            <select class="form-control select2" name="service[]" multiple="multiple">
                     @foreach($service as $s)
-                        @if($s->service_id == $c->service_id)
-                        <option selected value="{{$s->service_id}}">{{$s->service_name}}</option>
+                        @if($s->service_name == $c->service_id)
+                        <option selected value="{{$s->service_name}}">{{$s->service_name}}</option>
                         @else
-                        <option value="{{$s->service_id}}">{{$s->service_name}}</option>
+                        <option value="{{$s->service_name}}">{{$s->service_name}}</option>
                         @endif
                     @endforeach                         
 		            </select>
 		        </div>
 		    </div>
-		    <div class="row">
-                <label class="col-sm-2 col-form-label">Ghi chú</label>
-                <div class="col-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <textarea id="elm1" name="note">{{$c->customer_note}}</textarea>
-                        </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
+
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Mô tả</label>
+                <div class="col-sm-4">
+                    <textarea name="note" id="note">{{$c->customer_note}}</textarea>
+                </div>
+            </div>
             <button type="submit" name="update_customer" class="btn btn-success waves-effect waves-light">Cập nhật khách hàng</button>
 		</form>
 		@endforeach
     </div><!-- container fluid -->
 
 </div> <!-- Page content Wrapper -->
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('.select2').select2();
+    });
+</script>
 @endsection
