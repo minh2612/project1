@@ -1,7 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
 <div class="page-content-wrapper ">
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
