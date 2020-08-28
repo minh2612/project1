@@ -92,6 +92,7 @@ class ServiceController extends Controller
         	
         $data = array();
         $data['service_name'] = $request->name;
+        // $data['service_note']  = $_POST['note'];
         $data['service_note'] = $request->note;
         DB::table('tbl_service')->where('service_id',$service_id)->update($data);
         Session::put('message','Cập nhật dịch vụ thành công');
