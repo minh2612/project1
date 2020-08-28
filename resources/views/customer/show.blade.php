@@ -8,10 +8,10 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="row">
-                            <h4 class="page-title m-0">Danh sách khách hàng</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-customer/')}}" class="active styling-edit" ui-toggle-class="">
-                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm khách hàng</button></a> 
+                            <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm khách hàng</button></a>
+                            <h4  style="padding-left: 430px" class="page-title m-0">Danh sách khách hàng</h4> 
                             <p>&nbsp;</p>
                             </div>
                         </div>
@@ -65,7 +65,12 @@
                                         <td>{{ $c->customer_address }}</td>
                                         <td>{{ $c->customer_phone }}</td>
                                         <td>{{ $c->customer_group_name }}</td>
-                                        <td>{{ $c->service_name }}</td>
+                                        
+                                        <td>@foreach($service as $s) 
+                                            @if($c->service_id==$s->service_id)
+                                            {{$s->service_name}}<br>
+                                            @endif
+                                            @endforeach</td>
                                         <td>
                                             <a href="{{URL::to('/edit-customer/'.$c->customer_id)}}" class="active styling-edit" ui-toggle-class="">
                                                 <i class="fa fa-edit"></i>
