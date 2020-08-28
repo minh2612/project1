@@ -502,11 +502,13 @@ class ProjectController extends Controller
  	}
 
    	public function edit_task($task_id){
-   
+        $id=Auth::user()->e_id;
+        $manager=DB::table('tbl_e')->where('e_id',$id)->first();
+        $e=DB::table('tbl_e')->where('department_id',$manager->department_id)->get();
         $edit_task=DB::table('tbl_task')->where('task_id',$task_id)->get();
         $project=DB::table('tbl_project')->get();
         $priority=DB::table('tbl_priority')->get();
-        $manager_task = view('edit_task')->with('edit_task',$edit_task)->with('project', $project)->with('priority', $priority);
+        $manager_task = view('edit_task')->with('edit_task',$edit_task)->with('project', $project)->with('priority', $priority)->with('e',$e);
 
         return view('admin_layout')->with('edit_task', $manager_task);
 
@@ -536,6 +538,8 @@ class ProjectController extends Controller
    	public function update_task(Request $request,$task_id){
 
         $data = array();
+        $id=Auth::user()->e_id;
+        $data['task_manager']=$id;
         $data['task_name'] = $request->task_name;
         $data['project_id'] = $request->project_name;
         $data['task_end'] = $request->task_end;
@@ -549,6 +553,15 @@ class ProjectController extends Controller
             $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public',  $new_image);
             $data['task_file'] = $new_image;
+        }
+        if($request->employee_task != '')
+        {
+        DB::table('tbl_employee_task')->where('task_id',$task_id)->delete();
+        foreach($request->employee_task as  $value) {
+             $data1['task_id']= $task_id;
+             $data1['employee_id']= $value;                 
+              DB::table('tbl_employee_task')->where('task_id',$task_id)->insert($data1);
+         }
         }
         if( $request->task_name==""){
             Session::put('message','Mời nhập đầy đủ thông tin');
