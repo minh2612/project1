@@ -15,11 +15,14 @@
         <link href="{{asset('assets/css/style.css')}}"  rel="stylesheet" type="text/css">
         <link href="{{asset('plugins/datatables/dataTables.bootstrap4.min.css')}}"  rel="stylesheet" type="text/css">
         <link href="{{asset('plugins/dropzone/dist/dropzone.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css')}}" rel="stylesheet" />
-        <script src="{{asset('//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js')}}"></script>
+        <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js')}}" integrity="sha256-OFRAJNoaD8L3Br5lglV7VyLRf0itmoBzWUoM+Sji4/8=" crossorigin="anonymous"></script>
+        <script src="{{asset('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js')}}"></script>
+        <link href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css')}}" rel="stylesheet" />
+        <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js')}}"></script>
         <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="jquery.form.js"></script>
+        <script src="{{asset('ckeditor/ckeditor.js')}}"></script> 
     </head>
 
     <body class="fixed-left">
@@ -48,11 +51,8 @@
                            
                             <li class="menu-title">Main</li>
                             <li>
-                                <a href="{{route('admin.index')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
+                                <a href="{{URL::to('/admin-dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
-
-
-                            
                     
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý nhân viên </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -62,10 +62,7 @@
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
                                 </ul>
                             </li>
-                       
-                     
-                         
-                       
+                          
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -209,7 +206,6 @@
         <!-- END wrapper -->
 
         <!-- jQuery  -->
-        <script src="{{asset('assets/js/jquery.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
         <script src="{{asset('assets/js/detect.js')}}"></script>
@@ -222,6 +218,15 @@
         <!-- Required datatable js -->
         <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+        <!-- CK Editor -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+        <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+        </script>
         <!-- Datatable init js -->
         <script src="{{asset('assets/pages/datatables.init.js')}}"></script>
         <script src="{{asset('plugins/tinymce/tinymce.min.js')}}"></script>    
@@ -230,32 +235,23 @@
         <script type="text/javascript">
         document.querySelector("#today").valueAsDate = new Date();
         </script>
-        <script>
-            $(document).ready(function () {
-                if($("#elm1").length > 0){
-                    tinymce.init({
-                        selector: "textarea#elm1",
-                        theme: "modern",
-                        height:300,
-                        plugins: [
-                            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                            "save table contextmenu directionality emoticons template paste textcolor"
-                        ],
-                        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-                        style_formats: [
-                            {title: 'Bold text', inline: 'b'},
-                            {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
-                            {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
-                            {title: 'Example 1', inline: 'span', classes: 'example1'},
-                            {title: 'Example 2', inline: 'span', classes: 'example2'},
-                            {title: 'Table styles'},
-                            {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
-                        ]
-                    });
+        <script src="{{asset('plugins/dropzone/dist/dropzone.js')}}"></script>
+        <!-- Show Image -->
+        <script type="text/javascript">
+            function showPreview(event){
+                if(event.target.files.length > 0){
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("show_image");
+                preview.src = src;
+                preview.style.fontSize ="1px";
                 }
+            }
+        </script>
+        <!-- Select2 -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+            $('.select2').select2();
             });
         </script>
-        <script src="{{asset('plugins/dropzone/dist/dropzone.js')}}"></script>
     </body>
 </html>
