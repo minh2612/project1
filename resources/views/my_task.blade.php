@@ -83,7 +83,6 @@
                                                 <a href="{{URL::to('/start-task/'.$task->task_id)}}"><button type="button"  style="width:200px;" class="btn btn-primary waves-effect waves-light">Chưa hoạt động</button></a>
                                             <?php
                                             }
-
                                             if($task->task_status==1){
                                             ?>
                                                 <a href="{{URL::to('/submit-task/'.$task->task_id)}}"><button type="button" style="width:200px;" class="btn btn-info waves-effect waves-light">Đang xử lý</button></a>

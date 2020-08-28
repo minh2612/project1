@@ -1,5 +1,8 @@
 @extends('admin_layout')
 @section('admin_content')
+@php
+use Carbon\Carbon;
+@endphp
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
@@ -94,27 +97,26 @@
                                                 <a href="{{URL::to('/start-task/'.$task->task_id)}}"><button type="button"  style="width:150px;" class="btn btn-primary waves-effect waves-light">Chưa hoạt động</button></a>
                                             <?php
                                             }
+                            if($task->task_status==1){
+                            ?>
+                                <a href="{{URL::to('/submit-task/'.$task->task_id)}}"><button type="button" style="width:150px;" class="btn btn-info waves-effect waves-light">Đang làm</button></a>
+                            <?php
+                            }
 
-                                            if($task->task_status==1){
-                                            ?>
-                                                <a href="{{URL::to('/submit-task/'.$task->task_id)}}"><button type="button" style="width:150px;" class="btn btn-info waves-effect waves-light">Đang làm</button></a>
-                                            <?php
-                                            }
+                            if($task->task_status==2){
+                            ?>
+                               <button type="button" style="width:150px;" class="btn btn-danger waves-effect waves-light">Đang đợi duyệt</button>
+                            <?php
+                            }
 
-                                            if($task->task_status==2){
-                                            ?>
-                                               <button type="button" style="width:150px;" class="btn btn-danger waves-effect waves-light">Đang đợi duyệt</button>
-                                            <?php
-                                            }
-
-                                            if($task->task_status==3){
-                                            ?>
-                                                <button style="width:150px;" type="button" class="btn btn-success waves-effect waves-light">Hoàn tất</button>
-                                            <?php
-                                            }
-                                            ?>
-                                            </span>
-                                        </td>      
+                            if($task->task_status==3){
+                            ?>
+                                <button style="width:150px;" type="button" class="btn btn-success waves-effect waves-light">Hoàn tất</button>
+                            <?php
+                            }
+                            ?>
+                            </span>
+                        </td>      
                                     </tr>
                                 @endforeach                 
                                 </tbody>

@@ -84,7 +84,7 @@ class EmployeeController extends Controller
              'e_avatar' => 'bail|required',
             'department_id' => 'bail|required',
             'e_name' => 'bail|required||max:50',
-            'e_email' => 'bail|unique:tbl_e|required|email|min:5|max:25',
+            'e_email' => 'bail|unique:tbl_e|required|email|min:5|max:255',
             'e_address' => 'bail|required',
             'e_phone' => 'bail|required|alpha_num',
             'e_cmnd' => 'bail|required|alpha_num',
@@ -179,7 +179,7 @@ class EmployeeController extends Controller
             $this->validate($request,
         [
                        
-            'e_email' => 'bail|email|min:5|max:25',
+            'e_email' => 'bail|email|min:5|max:255',
             'e_phone' => 'bail|alpha_num',
             
                 

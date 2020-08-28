@@ -47,30 +47,28 @@ class HomeController extends Controller
     
 
     public function show_dashboard(Request $request){
-       // dd(Auth::user()->)
-        // $routeCollection = Route::getRoutes();
-
-
-        // foreach ($routeCollection as $value) {
-              
-             
-                
-        //         var_dump($value->getName() );
-               
-         
-        // }
+      
              $id=Auth::user()->e_id;
              
              $task_user=DB::table('tbl_employee_task')
              ->join('tbl_task','tbl_task.task_id','=','tbl_employee_task.task_id')
              ->join('tbl_e','tbl_e.e_id','=','tbl_employee_task.employee_id')
-             ->where('tbl_employee_task.employee_id',$id)->orderBy('priority_id', 'asc')->get();
-             // $priority->join('tbl_priority','tbl_priority.priority_id','=','tbl_task.priority_id')
-             $all_project=DB::table('tbl_project')->get();
-           
-       
-            return view('admin_dashboard')->with( 'task_user',$task_user)->with( 'all_project',$all_project);
+             ->where('tbl_employee_task.employee_id',$id)
+             ->orderBy('tbl_task.priority_id', 'DESC')
+            ->orderBy('tbl_task.task_end', 'asc')
+             ->get();
+
+            $all_project=DB::table('tbl_project')->get();
+            $all_priority=DB::table('tbl_priority')->get();
+            $all_employee=DB::table('tbl_e')->get();
+
+
+
+            return view('admin_dashboard',compact('task_user','all_project','all_priority','all_employee'));
+            
       }
+
+      
     
 
         public function logout(Request $request) {
@@ -112,7 +110,7 @@ class HomeController extends Controller
              
          else{
             Session::put('message','Sai tên đăng nhập hoặc mật khẩu');
-            return view('/');
+            return Redirect('/');
          }    
        }
    }

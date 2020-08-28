@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-
+                                       
         <!-- Begin page -->
         <div class="account-pages">
             <div class="container">
@@ -87,18 +87,18 @@
                                             </div>
                                         </div>
                                           <div>
-                                       
+                                       <?php
+                                            $message= Session::get('message');
+                                            if($message){
+                                                echo '<span style="color:red" class="text-alert">'.$message.'</span>';
+                                                Session::put('message', null);
+                                            }
+                                        ?>
 
                                     
                                     </div>
                                     </form>
-                                    <?php
-                                        $message= Session::get('message');
-                                        if($message){
-                                            echo '<span class="text-alert">'.$message.'</span>';
-                                            Session::put('message', null);
-                                        }
-                                        ?>
+                                   
                                 </div>                            
                             </div>
                         </div>

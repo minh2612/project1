@@ -126,6 +126,7 @@ Route::get('/refuse-user-task','UserProject@refuse_user_task')->name('user.task.
 Route::get('/end-user-task','UserProject@end_user_task')->name('user.task.end');
 Route::get('/stack-user-task','UserProject@stack_user_task')->name('user.task.stack');
 Route::get('/start-user-task/{task_id}','UserProject@start_user_task')->name('user.task.start');
+Route::get('/restart-user-task/{task_id}','UserProject@restart_user_task')->name('user.task.restart');
 Route::get('/submit-user-task/{task_id}','UserProject@submit_user_task')->name('user.task.submit');
 
 //permission

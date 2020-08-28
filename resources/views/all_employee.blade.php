@@ -37,53 +37,51 @@
                     <div class="card-body">    	
             	<div class="table-responsive">
                       <table id="datatable" class="table table-bordered " style="background-color: white;border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-                          <thead>
-                              <tr>
-                              
-                                 
-                                  <th>Tên nhân viên</th>
-                                  <th>Email</th>
-                                  <th>Hành động</th>
-                                  
-
-                             
-
-                              </tr>
-                          </thead>
-                          <tbody>
-                              
-                          @foreach($all_employee as $key => $user)
-                      <form action="{{url('/assign-roles')}}" method="POST">
-                        @csrf
-                        <tr>
-                          <td>
-                            <img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$user->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$user->e_name}}"> 
-                            {{ $user->e_name }}
-                          </td>
-                          <td>{{ $user->e_email }} <input type="hidden" name="e_email" value="{{ $user->e_email }}"   ></td>
+                <thead>
+                    <tr>
+                    
                        
-                           <td>
-                               <a href="{{URL::to('/detail-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
-                                  <i class="fa fa-eye"></i>  
-                              <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
-                                  <i class="fa fa-edit"></i>
-                               
-                              <a onclick="return confirm('Bạn có chắc là muốn xóa nhân viên này ko?')" href="{{URL::to('/delete-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
-                                  <i class="fa fa-trash-alt"></i>
-                          </td>
-                         <!--  <td><input type="checkbox" name="admin_role" {{$user->hasRole('admin') ? 'checked' : ''}}></td>
-                          <td><input type="checkbox" name="manager_role"  {{$user->hasRole('manager') ? 'checked' : ''}}></td>
-                          <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
-                            
-                        <td> 
-                          
-                           <input type="submit" value="Cấp quyền" class="btn btn-sm btn-default">
-                        </td>  -->
-                             
-                        </tr>
-                      </form>
-                    @endforeach     
+                        <th>Tên nhân viên</th>
+                        <th>Hình ảnh</th>
+                        <th>Email</th>
+                        <th>Phòng ban</th>
+                        <th>Chức vụ</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                @foreach($all_employee as $key => $user)
+            <form action="{{url('/assign-roles')}}" method="POST">
+              @csrf
+              <tr>
+               
+                
+               
+                <td>{{ $user->e_name }}</td>
+                <td><img src="{{ URL::to('/public/avatar/'.$user->e_avatar)}}" style="height: 60px; width: 60px;" class="rounded-circle"></td>
+                <td>{{ $user->e_email }} <input type="hidden" name="e_email" value="{{ $user->e_email }}"   ></td>
+               
+                 <td>
+                      
+                    <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
+                        <i class="fa fa-edit"></i>
+                     
+                    <a onclick="return confirm('Bạn có chắc là muốn xóa nhân viên này ko?')" href="{{URL::to('/delete-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
+                        <i class="fa fa-trash-alt"></i>
+                </td>
+               <!--  <td><input type="checkbox" name="admin_role" {{$user->hasRole('admin') ? 'checked' : ''}}></td>
+                <td><input type="checkbox" name="manager_role"  {{$user->hasRole('manager') ? 'checked' : ''}}></td>
+                <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
+                  
+              <td> 
+                
+                 <input type="submit" value="Cấp quyền" class="btn btn-sm btn-default">
+              </td>  -->
+                   
+              </tr>
+            </form>
+          @endforeach     
 
                           </tbody>
                       </table>
