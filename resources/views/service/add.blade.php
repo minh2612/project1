@@ -41,5 +41,6 @@
     </div><!-- container fluid -->
 </div> <!-- Page content Wrapper -->
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script type="text/javascript">CKEDITOR.replace( 'note' );</script>
 @endsection
