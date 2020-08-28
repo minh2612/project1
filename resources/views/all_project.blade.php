@@ -9,10 +9,10 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="row">
-                            <h4 class="page-title m-0">Danh sách dự án</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-project/')}}" class="active styling-edit" ui-toggle-class="">
-                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm dự án</button></a> 
+                            <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm dự án</button></a> 
+                            <h4 style="padding-left: 430px"  class="page-title m-0">Danh sách dự án</h4>
                             <p>&nbsp;</p>
                             </div>        
                         </div>
@@ -67,7 +67,7 @@
                                         <td>{{$project->project_name}}</td>
                                         <td>{{$project->service_name}}</td>
                                         <td>{{$project->customer_name}}</td>
-                                        <td>{{$project->e_name}}</td>                      
+                                        <td><img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$project->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$project->e_name}}"></td>                      
                                         <td>{{$project->project_start}}</td>
                                         <td>{{$project->project_end}}</td>
                                         <td><a href="{{URL::to('/download/'.$project->project_file)}}">{{ $project->project_file}}</a>
