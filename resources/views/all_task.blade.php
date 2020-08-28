@@ -7,11 +7,11 @@
             <div class="col-sm-12">
                 <div class="page-title-box">
                     <div class="row align-items-center">
-                        <div class="row">
-                            <h4 class="page-title m-0">Danh sách công việc</h4>
+                        <div class="row">                           
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-task/')}}" class="active styling-edit" ui-toggle-class="">
-                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm công việc</button></a> 
+                            <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm công việc</button></a>
+                            <h4 style="padding-left: 430px" class="page-title m-0">Danh sách công việc</h4> 
                             <p>&nbsp;</p>
                             </div>
                                     
@@ -62,7 +62,7 @@
                                             @endforeach</td>
                                         <td>@foreach($all_employee as $key => $value) 
                                             @if($task->task_id==$value->task_id)
-                                            {{$value->e_name}}<br>
+                                            <img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$value->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$value->e_name}}"><br>
                                             @endif
                                             @endforeach</td>            
                                         <td>{{$task->task_end}}</td>
