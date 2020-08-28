@@ -70,15 +70,24 @@
                                         <td>{{$project->e_name}}</td>                      
                                         <td>{{$project->project_start}}</td>
                                         <td>{{$project->project_end}}</td>
-                                        <td><a href="{{URL::to('/download/'.$project->project_file)}}">{{ $project->project_file}}</a>
+                                        <!-- @php
+                                            $file=explode(',', $project->project_file);
+
+                                        @endphp -->
+                                        <td>
+                                            @foreach(explode(',', $project->project_file) as $dowloadfile)
+                                            <a href="{{URL::to('/download/'.$dowloadfile)}}">{{ $dowloadfile}}</a>
+                                            
+                                            @endforeach
                                             <div class="form-group row">
                                                 <div class="col-sm-2">
                                                     <input  type="file" name="task_file[]" multiple>
                                                 </div>
                                             </div>
-                                            <a href="{{URL::to('/upload-project-file/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                                             <a href="{{URL::to('/upload-project-file/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
                                             <i class="fas fa-file-upload"></i>
                                         </td>
+                                        
                                         @php
                                             $i = 0;
                                         @endphp
