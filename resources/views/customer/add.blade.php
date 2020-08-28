@@ -110,5 +110,6 @@
         $('.select2').select2();
         });
     </script>
+    <script type="text/javascript">CKEDITOR.replace( 'note' );</script>
 @endsection
 
