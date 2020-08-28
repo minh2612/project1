@@ -91,16 +91,15 @@
                 <div class="col-sm-4">
                     <select class="form-control select2" name="service[]" multiple="multiple">
                     @foreach($service as $sv)
-                    <option value="{{$sv ->service_id}}">{{$sv ->service_name}}</option>
+                    <option value="{{$sv ->service_name}}">{{$sv ->service_name}}</option>
                     @endforeach                              
                     </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Mô tả</label>
+                <label for="example-name-input" class="col-sm-2 col-form-label">Mô tả</label>
                 <div class="col-sm-4">
-                <div id="editor" name="note">
-                </div>
+                    <textarea name="note" id="note"></textarea>
                 </div>
             </div>
             <button type="submit" name="add" class="btn btn-success waves-effect waves-light">Thêm khách hàng</button>
