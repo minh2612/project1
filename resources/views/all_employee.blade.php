@@ -34,7 +34,10 @@
                     
                        
                         <th>Tên nhân viên</th>
+                        <th>Hình ảnh</th>
                         <th>Email</th>
+                        <th>Phòng ban</th>
+                        <th>Chức vụ</th>
                         <th>Hành động</th>
                         
 
@@ -52,11 +55,11 @@
                 
                
                 <td>{{ $user->e_name }}</td>
+                <td><img src="{{ URL::to('/public/avatar/'.$user->e_avatar)}}" style="height: 60px; width: 60px;" class="rounded-circle"></td>
                 <td>{{ $user->e_email }} <input type="hidden" name="e_email" value="{{ $user->e_email }}"   ></td>
-             
+               
                  <td>
-                     <a href="{{URL::to('/detail-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
-                        <i class="fa fa-eye"></i>  
+                      
                     <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
                         <i class="fa fa-edit"></i>
                      
