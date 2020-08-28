@@ -27,26 +27,28 @@
         <!-- end page title -->
   
 		   	
-			<form role="form" method="post" action="{{URL::to('/update-roles/'.$role->id_roles)}}" enctype="multipart/form-data">
+			<form role="form" method="post" action="{{URL::to('/update-roles/'.$role12->id_roles)}}" enctype="multipart/form-data">
             {{csrf_field()}}     
            
 
                            
            
+              
                
                <div  class="form-group row" style="padding-left: 20px;">
                 <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Tên vai trò</label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="text" name="name" id="today">
+                    <input class="form-control" type="text" name="name" id="today" value="{{$roles12->name}}">
                 </div>
             </div>
                
            <div class="form-group row"  style="padding-left: 20px;">
                 <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Mô tả</label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="text" name="roles_note" id="today">
+                    <input class="form-control" type="text" name="roles_note" id="today" value="{{$roles12->roles_note}}">
                 </div>
             </div>
+          
             <div class="form-group row"  style="padding-left: 20px;">
                 <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Chọn quyền</label>
             </div>
