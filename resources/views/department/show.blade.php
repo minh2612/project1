@@ -8,10 +8,10 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="row">
-                            <h4 class="page-title m-0">Danh sách phòng ban</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-department/')}}" class="active styling-edit" ui-toggle-class="">
-                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm phòng ban</button></a> 
+                            <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm phòng ban</button></a>
+                            <h4 style="padding-left: 430px" class="page-title m-0">Danh sách phòng ban</h4> 
                             <p>&nbsp;</p>
                             </div>                            
                         </div>
