@@ -1,5 +1,9 @@
 @extends('admin_layout')
 @section('admin_content')
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <div class="page-content-wrapper ">
     <div class="container-fluid">
         <div class="row">
@@ -85,7 +89,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Dịch vụ sử dụng</label>
                 <div class="col-sm-4">
-                    <select class="form-control js-example-basic-multiple" name="service[]" multiple="multiple">
+                    <select class="form-control select2" name="service[]" multiple="multiple">
                     @foreach($service as $sv)
                     <option value="{{$sv ->service_id}}">{{$sv ->service_name}}</option>
                     @endforeach                              
@@ -93,44 +97,20 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Dịch vụ sử dụng</label>
+                <label class="col-sm-2 col-form-label">Mô tả</label>
                 <div class="col-sm-4">
-                    <select class="form-control abc" name="service[]" multiple="multiple">
-                    <option value="1">1</option>
-                    <option value="1">1</option>    
-                    <option value="1">1</option>                                
-                    </select>
+                <div id="editor" name="note">
+                </div>
                 </div>
             </div>
-            <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Ghi chú</label>
-            </div>
-            <div class="row">
-                <label class="col-sm-2 col-form-label">Ghi chú</label>
-                <div class="col-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <textarea id="elm1" name="note"></textarea>
-                        </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
             <button type="submit" name="add" class="btn btn-success waves-effect waves-light">Thêm khách hàng</button>
         </form>
     </div><!-- container fluid -->
 </div> <!-- Page content Wrapper -->
-<script type="text/javascript">
-    function showPreview(event){
-        if(event.target.files.length > 0){
-        var src = URL.createObjectURL(event.target.files[0]);
-        var preview = document.getElementById("show_image");
-        preview.src = src;
-        preview.style.fontSize ="1px";
-        }
-    }
-    $(document).ready(function() {
-    $('.abc').select2();
-    });
-
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('.select2').select2();
+        });
+    </script>
 @endsection
+
