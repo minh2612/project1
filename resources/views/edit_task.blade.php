@@ -1,5 +1,13 @@
 @extends('admin_layout')
 @section('admin_content')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('.select2').select2();
+    });
+</script>
 <div class="page-content-wrapper ">
     <div class="container-fluid">
         <div class="row">
@@ -47,7 +55,21 @@
                     </select>
                 </div>
             </div>
-            
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Người nhận</label>
+                <div class="col-sm-4">
+                    
+                    <select multiple="true" class="form-control select2" name="employee_task[]" >
+               
+                       @foreach($e as $key => $e1)
+                        <option value="{{$e1 ->e_id}}">{{$e1 ->e_name}}</option>
+                       
+                        @endforeach     
+                     
+                    </select>
+                
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="example-datetime-local-input" class="col-sm-2 col-form-label">Ngày kết thúc</label>
                 <div class="col-sm-4">
@@ -75,17 +97,13 @@
                     <input  type="file" name="task_file">
                     <a href="{{URL::to('/download/'.$task->task_file)}}">{{ $task->task_file}}</a>
                 </div>
-            </div>      
-            <div class="row">
-                <label for="example-name-input" class="col-sm-2 col-form-label">Ghi chú</label>
-                <div class="col-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                                <textarea id="elm1" name="task_note">{{$task->task_note}}</textarea>
-                        </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
+            </div>   
+            <div class="form-group row">
+                <label for="example-name-input" class="col-sm-2 col-form-label">Mô tả</label>
+                <div class="col-sm-4">
+                    <textarea name="task_note" id="note">{{$task->task_note}}</textarea>
+                </div>
+            </div>   
 
             <button type="submit" name="update_employee" class="btn btn-success waves-effect waves-light">Cập nhật công việc</button>
 		</form>
