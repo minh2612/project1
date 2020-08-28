@@ -7,11 +7,11 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <div class="row">
-                            <h4 class="page-title m-0">Danh sách chức vụ</h4>
+                            <div class="row">    
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-position/')}}" class="active styling-edit" ui-toggle-class="">
-                            <button type="button" class="btn btn-success waves-effect waves-light">Thêm chức vụ</button></a> 
+                            <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm chức vụ</button></a>
+                            <h4 style="padding-left: 430px" class="page-title m-0">Danh sách chức vụ</h4> 
                             <p>&nbsp;</p>
                             </div>                            
                         </div>
