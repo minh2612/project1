@@ -36,8 +36,7 @@ class CustomerController extends Controller
     public function show(){
         $this->AuthLogin();
         $customer= DB::table('tbl_customer')->join('tbl_sex','tbl_sex.sex_id','=','tbl_customer.sex_id')->join('tbl_customer_group','tbl_customer_group.customer_group_id','=','tbl_customer.customer_group_id')->orderby('tbl_customer_group.customer_group_id','desc')->get();
-        $service = DB::table('tbl_service')->get(); 
-        $show= view('customer.show')->with('customer', $customer)->with('service', $service);
+        $show= view('customer.show')->with('customer', $customer);
         return view('admin_layout')->with('customer', $show);
     }
 
