@@ -55,8 +55,7 @@
                 <td>{{ $user->e_email }} <input type="hidden" name="e_email" value="{{ $user->e_email }}"   ></td>
              
                  <td>
-                     <a href="{{URL::to('/detail-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
-                        <i class="fa fa-eye"></i>  
+                     
                     <a href="{{URL::to('/edit-employee/'.$user->e_id)}}" class="active styling-edit" ui-toggle-class="">
                         <i class="fa fa-edit"></i>
                      
