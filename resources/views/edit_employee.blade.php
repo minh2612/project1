@@ -1,5 +1,13 @@
 @extends('admin_layout')
 @section('admin_content')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('.select2').select2();
+    });
+</script>
 <div class="page-content-wrapper ">
 
     <div class="container-fluid">
@@ -127,7 +135,7 @@ function showPreview(event){
 		      <div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Chọn vai trò</label>
 		        <div class="col-sm-4">
-		            <select class="form-control chosen-select "  name="roles[]" multiple >
+		            <select class="form-control select2 "  name="roles[]" multiple >
                        	@foreach($roles as $key => $roles)
 	                    <option value="{{$roles->id_roles}}">{{$roles->name}}</option>
 	                    @endforeach  
