@@ -9,7 +9,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <h4 class="page-title m-0">Cập nhật quyền</h4>
-                         	<?php
+                            <?php
                             $message= Session::get('message');
                             if($message){
                                 echo '<span class="text-alert">'.$message.'</span>';
@@ -26,41 +26,15 @@
         </div> 
         <!-- end page title -->
   
-<<<<<<< Updated upstream
-		   	
-			<form role="form" method="post" action="{{URL::to('/update-roles/'.$role12->id_roles)}}" enctype="multipart/form-data">
-=======
-		         
-			<form role="form" method="post" action="{{URL::to('/update-roles/'.$e->e_id)}}" enctype="multipart/form-data">
->>>>>>> Stashed changes
+                 
+            <form role="form" method="post" action="{{URL::to('/update-roles/'.$e->e_id)}}" enctype="multipart/form-data">
             {{csrf_field()}}     
            
 
                            
            
-              
                
-<<<<<<< Updated upstream
-               <div  class="form-group row" style="padding-left: 20px;">
-                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Tên vai trò</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="name" id="today" value="{{$roles12->name}}">
-                </div>
-            </div>
-               
-           <div class="form-group row"  style="padding-left: 20px;">
-                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Mô tả</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="roles_note" id="today" value="{{$roles12->roles_note}}">
-                </div>
-            </div>
-          
-            <div class="form-group row"  style="padding-left: 20px;">
-                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Chọn quyền</label>
-            </div>
-=======
             
->>>>>>> Stashed changes
 
           <div style="margin-left: 20px;   width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall1" class='' type="checkbox"> <span class="badge badge-success">VAI TRÒ</span> </h6>
