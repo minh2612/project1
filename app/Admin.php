@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Roles;
+use DB;
 
 class Admin extends Authenticatable
 {
@@ -27,8 +28,9 @@ class Admin extends Authenticatable
  		return null!==$this->roles()->whereIn('name',$roles)->first();
  	}
  	public function hasRole($role){
- 		return null!==$this->roles()->where('name',$role)->first();
-
+ 		// $roles=DB::table('tbl_roles')->where('name',$role)->first();
+ 		 return null!==$this->roles()->where('name',$role)->first();
+        
  	}
 
  	

@@ -76,7 +76,7 @@
                                         <ul>
                                             <ul>
                                                 @foreach($errors->all() as $error)
-                                                     <li>{{$error}}</li>
+                                                     <li style="color:red">{{$error}}</li>
                                                 @endforeach
                                             </ul>     
                                         </ul>

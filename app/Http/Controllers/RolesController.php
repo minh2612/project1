@@ -29,27 +29,32 @@ class RolesController extends Controller
       
 
      
-        $all_roles= DB::table('tbl_roles')->get();
-        $all_permission =DB::table('roles_permission')
-        ->join('tbl_roles','tbl_roles.id_roles','=','roles_permission.roles_id_roles')
-        ->join('tbl_permission','tbl_permission.id_permission','=','roles_permission.permission_id_permission')
-        ->get();
-        $all_employee=DB::table('admin_roles')
+         $all_role= DB::table('tbl_roles')->get();
+        // ->->join('admin_roles','tbl_roles.id_roles','=','admin_roles.roles_id_roles')
+        // ->get();
+        // $all_permission =DB::table('roles_permission')
+        // ->join('tbl_roles','tbl_roles.id_roles','=','roles_permission.roles_id_roles')
+        // ->join('tbl_permission','tbl_permission.id_permission','=','roles_permission.permission_id_permission')
+        // ->get();
+        $all_employee=DB::table('tbl_e')->get();
+        $all_roles=DB::table('admin_roles')
         ->join('tbl_roles','tbl_roles.id_roles','=','admin_roles.roles_id_roles')
         ->join('tbl_e','tbl_e.e_id','=','admin_roles.admin_e_id')
         ->get();
+        
 
-
-        return view('all_roles',compact('all_roles','all_permission','all_employee'));
+        return view('all_roles',compact('all_roles','all_employee','all_role'));
         
 
         }
   
     public function add_roles()
     {
-        $permission=DB::table('tbl_permission')->get();
 
-        return view('add_roles',compact('permission',$permission));     
+        $all_employee=DB::table('tbl_e')->get();
+        $permission=DB::table('tbl_roles')->get();
+
+        return view('add_roles',compact('permission','all_employee'));     
 
 }
     public function all_position(){
@@ -61,35 +66,17 @@ class RolesController extends Controller
         }
 
     public function save_roles(Request $request){
-          $this->validate($request,
-         [
-            'name' => 'bail|required|unique:tbl_roles',
-            'roles_note' => 'bail|required',
-        ],
+      
 
-        [    'unique' => ':attribute đã tồn tại',
-            'required' => ':attribute không được để trống',
-        ],
-
-        [
-            'name' => 'Vai trò',
-            'roles_note' => 'Mô tả',     
-        ]
-
-    );  
-           
-         $roleCreate = $this->role->create([
-                'name' => $request->name,
-                'roles_note' => $request->roles_note
-                
-            ]);
-            // $data= array();
-            // $data['name']=$request->name;
-            // $data['roles_note']=$request->roles_note;
-            // DB::table('tbl_roles')->insert($data);
-
-            // Insert data to role_permission
-            $roleCreate->Permission()->attach($request->permission);
+             $data1=array();
+         foreach($request->permission as  $value) {
+             $data1['admin_e_id']= $request->e_id;
+             $data1['roles_id_roles']= $value;
+             DB::table('admin_roles')->insert($data1);
+          
+         }
+          
+       
             Session::put('message','Thêm vai trò thành công');
             return redirect()->route('admin.roles.add');
     }
@@ -97,45 +84,27 @@ class RolesController extends Controller
     
        public function edit_roles($id)
     {
-        $permission = $this->permission->all();
-
-        $role = $this->role->findOrfail($id);
-
-    
-       
-        $getAllPermissionOfRole = DB::table('roles_permission')->where('roles_id_roles', $id)->pluck('permission_id_permission');
+         $hasrole=DB::table('admin_roles')
+        ->join('tbl_roles','tbl_roles.id_roles','=','admin_roles.roles_id_roles')
+        ->join('tbl_e','tbl_e.e_id','=','admin_roles.admin_e_id')->where('admin_roles.admin_e_id',$id)
+        ->get()->pluck('roles_id_roles');
+         $e=DB::table('tbl_e')->where('e_id',$id)->first();
+        $permission=DB::table('tbl_roles')->get();
   
-        return view('edit_roles', compact('permission', 'role', 'getAllPermissionOfRole'));
+        return view('edit_roles', compact('permission', 'hasrole','e'));
     }
 
     public function update_roles(Request $request, $id)
     {       
-             $this->validate($request,
-         [
-            'name' => 'bail|required',
-            'roles_note' => 'bail|required',
-        ],
-
-        [  
-            'required' => ':attribute không được để trống',
-        ],
-
-        [
-            'name' => 'Vai trò',
-            'roles_note' => 'Mô tả',     
-        ]
-
-    );  
             // $this->role->where('id_roles', $id)->update([
             //     'name' => $request->name,
             //     'roles_note' => $request->roles_note
             // ]);
-             $data= array();
-             $data['name']=$request->name;
-             $data['roles_note']=$request->roles_note;
-             DB::table('tbl_roles')->where('id_roles', $id)->update($data);
+             
+         
+             
 
-            DB::table('roles_permission')->where('roles_id_roles', $id)->delete();
+            DB::table('admin_roles')->where('admin_e_id', $id)->delete();
             // $roleCreate = $this->role->find($id);
 
             // $roleCreate->Permissions()->attach($request->permission);
@@ -143,9 +112,9 @@ class RolesController extends Controller
             foreach ($request->permission as $key => $value) {
                 if($value){
                 $data=array();
-                $data['roles_id_roles']=$id;
-                $data['permission_id_permission']=$value;
-                DB::table('roles_permission')->insert($data);
+                $data['admin_e_id']=$id;
+                $data['roles_id_roles']=$value;
+                DB::table('admin_roles')->insert($data);
                 $data="";
 
             } 
@@ -158,9 +127,9 @@ class RolesController extends Controller
         }
          public function delete_roles($id){
        
-        DB::table('roles_permission')->where('roles_id_roles',$id) ->delete();
-        DB::table('admin_roles')->where('roles_id_roles',$id) ->delete();
-        DB::table('tbl_roles')->where('id_roles',$id) ->delete();
+      
+        DB::table('admin_roles')->where('admin_e_id',$id) ->delete();
+     
         Session::put('message', 'Xóa vai trò thành công');
         return Redirect::to('all-roles');
     }

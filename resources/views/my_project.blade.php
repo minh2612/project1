@@ -9,18 +9,19 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="row">
+<<<<<<< Updated upstream
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-project/')}}" class="active styling-edit" ui-toggle-class="">
                             <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm dự án</button></a> 
                             <h4 style="padding-left: 430px" class="page-title m-0">Danh sách dự án của tôi</h4>
+=======
+                            
                             <p>&nbsp;</p>
-                            <?php
-                                $message= Session::get('message');
-                                 if($message){
-                                      echo '<span class="text-alert">'.$message.'</span>';
-                                      Session::put('message', null);
-                                    }
-                            ?>
+                            <a href="{{URL::to('/add-project/')}}" style="padding-left: 13px;" class="active styling-edit" ui-toggle-class="">
+                            <button  type="button" class="btn btn-success waves-effect waves-light ">Thêm công việc</button></a> 
+                            <h4  style="padding-left: 460px;" class="page-title m-0 ">Danh sách dự án đang quản lý</h4>
+>>>>>>> Stashed changes
+                            <p>&nbsp;</p>
                             </div>        
                         </div>
                         <!-- end col -->
@@ -29,12 +30,24 @@
                 </div>
                 <!-- end page-title-box -->
             </div>
+<<<<<<< Updated upstream
         </div> 
+=======
+        </div>
+        <?php
+            $message= Session::get('message');
+             if($message){
+                  echo '<span class="text-alert">'.$message.'</span>';
+                  Session::put('message', null);
+                }
+        ?> 
+>>>>>>> Stashed changes
         <!-- end page title -->
         <div class="row">
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">     
+<<<<<<< Updated upstream
                         <div class="table-responsive" style="width: 100%">
                             <table id="datatable" class="table table-bordered " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
@@ -74,6 +87,60 @@
                                         <td>{{$project->project_start}}</td>
                                         <td>{{$project->project_end}}</td>
                                         <td>{{$project->project_node}}</td>
+=======
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên dự án</th>
+                                        <th>Loại dự án</th>
+                                        <th>Tên khách hàng</th>
+                                     
+                                        <th>Ngày bắt đầu</th>
+                                        <th>Ngày kết thúc</th>
+                                        <th>File đính kèm</th>
+                                        <th>Tổng số<br>công việc</th>
+                                        <th>Công việc<br>đã xử lý</th>
+                                        <th>Công việc<br>chưa xử lý</th>
+                                        <th>Hành động</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $e=0;
+                                    @endphp
+                                    @foreach($all_project as $key => $project)
+                                    @php
+                                    $e++;
+                                    @endphp
+                                    <tr>
+                                        <td>{{$e}}</td>
+                                        <td>{{$project->project_name}}</td>
+                                        <td>{{$project->service_name}}</td>
+                                        <td>{{$project->customer_name}}</td>                  
+                                        <td>{{$project->project_start}}</td>
+                                        <td>{{$project->project_end}}</td>
+                                        <!-- @php
+                                            $file=explode(',', $project->project_file);
+
+                                        @endphp -->
+                                        <td>
+                                            @foreach(explode(',', $project->project_file) as $dowloadfile)
+                                            <a href="{{URL::to('/download/'.$dowloadfile)}}">{{ $dowloadfile}}</a>
+                                            
+                                            @endforeach
+                                            <div class="form-group row">
+                                                <div class="col-sm-2">
+                                                    <input  type="file" name="task_file[]" multiple>
+                                                </div>
+                                            </div>
+                                             <a href="{{URL::to('/upload-project-file/'.$project->project_id)}}" class="active styling-edit" ui-toggle-class="">
+                                            <i class="fas fa-file-upload"></i>
+                                        </td>
+                                        
+>>>>>>> Stashed changes
                                         @php
                                             $i = 0;
                                         @endphp

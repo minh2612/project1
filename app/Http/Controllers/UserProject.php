@@ -169,7 +169,7 @@ class UserProject extends Controller
             //$this->AuthLogin();
             DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>1]);
            
-            return Redirect::to('user-dashboard');
+            return Redirect::to('refuse-user-task');
         }
 
   
@@ -179,7 +179,7 @@ class UserProject extends Controller
         //$this->AuthLogin();
         DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>1]);
        
-        return Redirect::to('user-dashboard');
+        return Redirect::to('stack-user-task');
 
     }
 
@@ -188,7 +188,7 @@ class UserProject extends Controller
         //$this->AuthLogin();
          DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>2]);
          
-        return Redirect::to('user-dashboard');
+        return Redirect::to('loading-task');
  }
 
 

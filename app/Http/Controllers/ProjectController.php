@@ -78,16 +78,16 @@ class ProjectController extends Controller
     	$id=Auth::user()->e_id;
 
         $all_task= DB::table('tbl_task')->get();
-        $all_project= DB::table('tbl_project')->where('project_manager',$id)->get();
+         $all_project= DB::table('tbl_project')->join('tbl_service','tbl_service.service_id','=','tbl_project.service_id')->join('tbl_customer','tbl_customer.customer_id','=','tbl_project.customer_id')->where('project_manager',$id)->get();
         $all_customer= DB::table('tbl_customer')->get();
-        $all_employee= DB::table('tbl_e')->get();
+       
 
         // $all_employee=DB::table('tbl_employee_project')
         // ->join('tbl_project','tbl_project.project_id','=','tbl_employee_project.project_id')
         // ->join('tbl_e','tbl_employee_project.employee_id','=','tbl_e.e_id')->get();
 
 
-        $manager_project = view('my_project')->with('all_project', $all_project)->with('all_customer',  $all_customer)->with('all_task',$all_task)->with('all_employee',$all_employee);
+        $manager_project = view('my_project')->with('all_project', $all_project)->with('all_customer',  $all_customer)->with('all_task',$all_task);
         return view('admin_layout')->with('my_project', $manager_project);
     }
     
@@ -99,24 +99,28 @@ class ProjectController extends Controller
         $all_priority= DB::table('tbl_priority')->get();
         $all_employee=DB::table('tbl_employee_task')
         ->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->get();
+        $employee=DB::table('tbl_e')->get();
 
 
-        $manager_task = view('all_task')->with('all_employee',  $all_employee)->with('all_task',$all_task)->with('all_project',  $all_project)->with('all_priority',  $all_priority);
+
+        $manager_task = view('all_task')->with('all_employee',  $all_employee)->with('all_task',$all_task)->with('all_project',  $all_project)->with('all_priority',  $all_priority)->with('employee',  $employee);
         return view('admin_layout')->with('all_task', $manager_task);
     }
 
       public function my_task()
     {
+
         $id=Auth::user()->e_id;
-        $all_task= DB::table('tbl_task')->join('tbl_project','tbl_project.project_id','=','tbl_task.project_id')
-        ->where('tbl_project.project_manager',$id)->get();
+        
+        $all_task= DB::table('tbl_task')->where('task_manager',$id)->get();
         $all_project= DB::table('tbl_project')->get();
+        $all_priority= DB::table('tbl_priority')->get();
         $all_employee=DB::table('tbl_employee_task')
         ->join('tbl_e','tbl_employee_task.employee_id','=','tbl_e.e_id')->get();
+        
+        $manager_task = view('my_task')->with('all_employee',  $all_employee)->with('all_task',$all_task)->with('all_project',  $all_project)->with('all_priority',  $all_priority);
 
-
-        $manager_task = view('my_task')->with('all_employee',  $all_employee)->with('all_task',$all_task)->with('all_project',  $all_project);
-        return view('admin_layout')->with('my_task', $manager_task);
+        return view('admin_layout')->with('all_task', $manager_task);
     }
 
     public function download($task_file)
