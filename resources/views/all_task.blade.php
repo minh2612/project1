@@ -44,9 +44,12 @@ use Carbon\Carbon;
                                     <tr>
                                         <th>Tên công việc</th>
                                         <th>Tên dự án</th>
-                                        <th>Người làm</th>
-                                        <th>Deadline</th>
-                                        <th>Mức độ ưu tiên</th>
+                                         <th>Mức độ ưu tiên</th>
+                                        <th>Người quản lý</th>
+                                        <th>Người tham gia</th>
+                                        <th>Ngày bắt đầu</th>
+                                        <th>Ngày kết thúc</th>
+                                       
                                         <th>File đính kèm</th>
                                         <th>Hành động</th>
                                         <th>Trạng thái</th>
@@ -63,17 +66,30 @@ use Carbon\Carbon;
                                             {{$value1->project_name}}<br>
                                             @endif
                                             @endforeach</td>
-                                        <td>@foreach($all_employee as $key => $value) 
-                                            @if($task->task_id==$value->task_id)
-                                            <img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$value->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$value->e_name}}"><br>
-                                            @endif
-                                            @endforeach</td>            
-                                        <td>{{$task->task_end}}</td>
-                                        <td>@foreach($all_priority as $key => $value2) 
+                                            <td>@foreach($all_priority as $key => $value2) 
                                             @if($task->priority_id==$value2->priority_id)
                                             {{$value2->priority_name}}<br>
                                             @endif
-                                            @endforeach</td>
+                                            @endforeach</td> 
+                                         <td>@foreach($employee as $key => $value3) 
+                                            @if($task->task_manager==$value3->e_id)
+                                           <img src="{{ URL::to('/public/avatar/'.$value3->e_avatar)}}" title="{{$value3->e_name}}" height="35" width="35"  class="rounded-circle">
+                                            @endif
+                                        @endforeach</td>     
+
+                                        <td>@foreach($all_employee as $key => $value) 
+                                            @if($task->task_id==$value->task_id)
+<<<<<<< Updated upstream
+                                            <img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$value->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$value->e_name}}"><br>
+=======
+                                           <img src="{{ URL::to('/public/avatar/'.$value->e_avatar)}}" title="{{$value->e_name}}" height="35" width="35"  class="rounded-circle">
+>>>>>>> Stashed changes
+                                            @endif
+                                            @endforeach</td>    
+
+                                        <td>{{$task->task_start}}</td>        
+                                        <td>{{$task->task_end}}</td>
+                                        
                                         <td><a href="{{URL::to('/download/'.$task->task_file)}}">{{ $task->task_file}}</a>
                                             <div class="form-group row">
                                                 <div class="col-sm-2">
