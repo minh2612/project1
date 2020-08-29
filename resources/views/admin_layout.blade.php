@@ -49,14 +49,12 @@
                             <li>
                                 <a href="{{route('admin.dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
-<<<<<<< Updated upstream
-                    
-=======
+
 
 
                             
                             @hasrole(['employeee.admin.all'])
->>>>>>> Stashed changes
+
                             <li class="has_sub">
                                 
 
@@ -67,10 +65,7 @@
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
                                    
                                 </ul>
-                            </li>
-<<<<<<< Updated upstream
-                          
-=======
+
                             @endhasrole
                      
                          
