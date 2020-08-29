@@ -50,10 +50,7 @@
                                 <a href="{{route('admin.dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
 
-
-
-                            
-                            @hasrole(['employeee.admin.all'])
+                            @hasrole(['admin.employee.all'])
 
                             <li class="has_sub">
                                 
