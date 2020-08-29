@@ -8,7 +8,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Cập nhật vai trò</h4>
+                            <h4 class="page-title m-0">Cập nhật quyền</h4>
                          	<?php
                             $message= Session::get('message');
                             if($message){
@@ -26,8 +26,13 @@
         </div> 
         <!-- end page title -->
   
+<<<<<<< Updated upstream
 		   	
 			<form role="form" method="post" action="{{URL::to('/update-roles/'.$role12->id_roles)}}" enctype="multipart/form-data">
+=======
+		         
+			<form role="form" method="post" action="{{URL::to('/update-roles/'.$e->e_id)}}" enctype="multipart/form-data">
+>>>>>>> Stashed changes
             {{csrf_field()}}     
            
 
@@ -35,6 +40,7 @@
            
               
                
+<<<<<<< Updated upstream
                <div  class="form-group row" style="padding-left: 20px;">
                 <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Tên vai trò</label>
                 <div class="col-sm-4">
@@ -52,14 +58,17 @@
             <div class="form-group row"  style="padding-left: 20px;">
                 <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Chọn quyền</label>
             </div>
+=======
+            
+>>>>>>> Stashed changes
 
-         <div style="margin-left: 20px;   width: 400px;" class="container float-left">
+          <div style="margin-left: 20px;   width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall1" class='' type="checkbox"> <span class="badge badge-success">VAI TRÒ</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'role'))
+                @if(strpos($permission1->name,'role'))
                     <div class="form-check" >
-                        <input type="checkbox" class="1" name="permission[]"  {{ $getAllPermissionOfRole->contains($permission1->id_permission) ? 'checked' : ''}} value="{{$permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input type="checkbox" class="1" name="permission[]"  {{ $hasrole->contains($permission1->id_roles) ? 'checked' : ''}} value="{{$permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
                 @endforeach
@@ -70,10 +79,10 @@
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall2" class='' type="checkbox"> <span class="badge badge-success">NHÂN VIÊN</span> </h6>
             
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'employee'))
+                @if(strpos($permission1->name,'employee'))
                 <div class="form-check" >
-                        <input type="checkbox" class="2" name="permission[]"  {{ $getAllPermissionOfRole->contains($permission1->id_permission) ? 'checked' : ''}} value="{{$permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input type="checkbox" class="2" name="permission[]"  {{ $hasrole->contains($permission1->id_roles) ? 'checked' : ''}} value="{{$permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
             @endforeach    
@@ -82,10 +91,10 @@
          <div style="margin-left: 20px;   width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall3" class='' type="checkbox"> <span class="badge badge-success">DỰ ÁN</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'project'))
+                @if(strpos($permission1->name,'project'))
                     <div class="form-check" >
-                        <input type="checkbox" class="3" name="permission[]"  {{ $getAllPermissionOfRole->contains($permission1->id_permission) ? 'checked' : ''}} value="{{$permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input type="checkbox" class="3" name="permission[]"  {{ $hasrole->contains($permission1->id_roles) ? 'checked' : ''}} value="{{$permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
                 @endforeach
@@ -94,10 +103,10 @@
          <div style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall4" class='' type="checkbox"> <span class="badge badge-success">CÔNG VIỆC</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'task'))
+                @if(strpos($permission1->name,'task'))
                     <div class="form-check" >
-                        <input type="checkbox" class="4" name="permission[]"  {{ $getAllPermissionOfRole->contains($permission1->id_permission) ? 'checked' : ''}} value="{{$permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input type="checkbox" class="4" name="permission[]"  {{ $hasrole->contains($permission1->id_roles) ? 'checked' : ''}} value="{{$permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
                 @endforeach
@@ -112,10 +121,10 @@
          <div style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left"  >
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall5" class='' type="checkbox"> <span class="badge badge-success">CHỨC VỤ</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'position'))
+                @if(strpos($permission1->name,'position'))
                     <span ><div class="form-check" >
-                        <input type="checkbox" class="5" name="permission[]"  {{ $getAllPermissionOfRole->contains($permission1->id_permission) ? 'checked' : ''}} value="{{$permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input type="checkbox" class="5" name="permission[]"  {{ $hasrole->contains($permission1->id_roles) ? 'checked' : ''}} value="{{$permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div></span>
                 @endif
             @endforeach    
@@ -124,10 +133,10 @@
         <div  style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall6" class='' type="checkbox"><span class="badge badge-success"> PHÒNG BAN</span></h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'department'))
+                @if(strpos($permission1->name,'department'))
                     <span><div class="form-check" >
-                        <input type="checkbox" class="6" name="permission[]"  {{ $getAllPermissionOfRole->contains($permission1->id_permission) ? 'checked' : ''}} value="{{$permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input type="checkbox" class="6" name="permission[]"  {{ $hasrole->contains($permission1->id_roles) ? 'checked' : ''}} value="{{$permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div></span>
                 @endif
             @endforeach  
@@ -140,8 +149,9 @@
                @endforeach
             </ul>
                       
-                 <button  style="margin-right: 800px; margin-top: 80px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Cập nhật</button>        
+                 <button  style="margin-right: 800px; margin-top: 80px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Cập nhật quyền</button>        
         </form>
+      
         
         </div> 
 
