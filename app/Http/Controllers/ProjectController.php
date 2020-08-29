@@ -124,7 +124,6 @@ class ProjectController extends Controller
 
         return response()->download(storage_path('../public/'.$task_file));
     }
-
     public function detail_task($task_id){
         //this->AuthAdmin();
 
@@ -256,6 +255,23 @@ class ProjectController extends Controller
         return Redirect::to('all-task/');
   
    	}
+    //     public function upload_task_file(Request $request, $task_id){
+        
+    //     $data = array();
+    //     $get_image= $request->file('task_file');
+    //     if($get_image){
+    //         $get_name_image = $get_image->getClientOriginalName();
+    //         $name_image = current(explode('.',$get_name_image));
+    //         $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+    //         $get_image->move('public',  $new_image);
+    //         $data['task_file'] = $new_image;
+    //     }
+    //     DB::table('tbl_task')->where('task_id',$task_id)->update($data);
+    //     Session::put('message','Gửi file thành công');
+    //     return Redirect::to('all-task/'); 
+    //     }  
+  
+    // }
     public function save_task_in_project(Request $request){
         $this->validate($request,
         [
@@ -538,15 +554,15 @@ class ProjectController extends Controller
             $get_image->move('public',  $new_image);
             $data['task_file'] = $new_image;
         }
-        if($request->employee_task != '')
-        {
-        DB::table('tbl_employee_task')->where('task_id',$task_id)->delete();
         foreach($request->employee_task as  $value) {
-             $data1['task_id']= $task_id;
-             $data1['employee_id']= $value;                 
-              DB::table('tbl_employee_task')->where('task_id',$task_id)->insert($data1);
+             $data1['task_id']= $id;
+             $data1['employee_id']= $value;
+
+             $email=DB::table('tbl_e')->where('e_id',$value)->value('e_email');
+                 
+              DB::table('tbl_employee_task')->where('task_id',$task_id)->update($data1);
          }
-        }
+        
         if( $request->task_name==""){
             Session::put('message','Mời nhập đầy đủ thông tin');
              return Redirect::to('edit-task/'.$task_id);
@@ -611,6 +627,14 @@ class ProjectController extends Controller
         $data['project_manager'] = $request->project_manager;
         $data['project_end'] = $request->project_end;
         $data['project_note'] = $request->project_note;
+        $get_image= $request->file('project_file');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public',  $new_image);
+            $data['project_file'] = $new_image;
+        }
         if( $request->project_name==""){
             Session::put('message','Mời nhập đầy đủ thông tin');
              return Redirect::to('edit-project/'.$project_id);
