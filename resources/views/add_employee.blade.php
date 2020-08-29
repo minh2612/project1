@@ -108,7 +108,7 @@
 		            </select>
 		        </div>
 		    </div>
-		    <div class="form-group row">
+<!-- 		    <div class="form-group row">
 		        <label class="col-sm-2 col-form-label">Chọn vai trò</label>
 		        <div class="col-sm-4">
 		            <select class="form-control select2 "  name="roles[]" multiple >
@@ -117,7 +117,7 @@
 	                    @endforeach  
 	                </select>
 		        </div>
-		    </div>
+		    </div> -->
 		    <ul>
 		    	@foreach($errors->all() as $error)
 		    	     <li>{{$error}}</li>
