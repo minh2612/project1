@@ -9,18 +9,11 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="row">
-<<<<<<< Updated upstream
-                            <p>&nbsp;</p>
-                            <a href="{{URL::to('/add-project/')}}" class="active styling-edit" ui-toggle-class="">
-                            <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm dự án</button></a> 
-                            <h4 style="padding-left: 430px" class="page-title m-0">Danh sách dự án của tôi</h4>
-=======
                             
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-project/')}}" style="padding-left: 13px;" class="active styling-edit" ui-toggle-class="">
                             <button  type="button" class="btn btn-success waves-effect waves-light ">Thêm công việc</button></a> 
                             <h4  style="padding-left: 460px;" class="page-title m-0 ">Danh sách dự án đang quản lý</h4>
->>>>>>> Stashed changes
                             <p>&nbsp;</p>
                             </div>        
                         </div>
@@ -30,9 +23,6 @@
                 </div>
                 <!-- end page-title-box -->
             </div>
-<<<<<<< Updated upstream
-        </div> 
-=======
         </div>
         <?php
             $message= Session::get('message');
@@ -41,53 +31,11 @@
                   Session::put('message', null);
                 }
         ?> 
->>>>>>> Stashed changes
         <!-- end page title -->
         <div class="row">
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">     
-<<<<<<< Updated upstream
-                        <div class="table-responsive" style="width: 100%">
-                            <table id="datatable" class="table table-bordered " style="background-color: white; border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Tên dự án</th>
-
-                                        
-                                        <th>Tên khách hàng</th>
-                                        <th>Người quản lý dự án</th>
-                                        <th>Ngày bắt đầu</th>
-                                        <th>Ngày kết thúc</th>
-                                        <th>Ghi chú</th>
-                                        <th>Tổng số<br>công việc</th>
-                                        <th>Công việc<br>đã xử lý</th>
-                                        <th>Công việc<br>chưa xử lý</th>
-
-                                        <th>Hành động</th>
-                                        <th>Trạng thái</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($all_project as $key => $project)
-                                    <tr>
-                            
-                                        <td>{{$project->project_name}}</td>
-                    
-                                        <td>@foreach($all_customer as $key => $value) 
-                                            @if($project->customer_id==$value->customer_id)
-                                            {{$value->customer_name}}<br>
-                                            @endif
-                                            @endforeach</td>
-                                        <td>@foreach($all_employee as $key => $value) 
-                                            @if($project->project_manager==$value->e_id)
-                                            {{$value->e_name}}<br>
-                                            @endif
-                                            @endforeach</td>                      
-                                        <td>{{$project->project_start}}</td>
-                                        <td>{{$project->project_end}}</td>
-                                        <td>{{$project->project_node}}</td>
-=======
                         <div class="table-responsive">
                             <table id="datatable" class="table table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
@@ -140,7 +88,6 @@
                                             <i class="fas fa-file-upload"></i>
                                         </td>
                                         
->>>>>>> Stashed changes
                                         @php
                                             $i = 0;
                                         @endphp
