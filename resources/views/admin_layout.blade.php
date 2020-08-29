@@ -75,7 +75,7 @@
                      
                          
                            @hasrole(['admin.project.all'])
->>>>>>> Stashed changes
+
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
