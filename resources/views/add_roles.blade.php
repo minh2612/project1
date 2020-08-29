@@ -8,7 +8,7 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h4 class="page-title m-0">Thêm vai trò</h4>
+                            <h4 class="page-title m-0">Thêm quyền</h4>
                             <?php
                             $message= Session::get('message');
                             if($message){
@@ -29,18 +29,15 @@
             {{csrf_field()}}  
                    
            <div  class="form-group row" style="padding-left: 20px;">
-                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Tên vai trò</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="name" id="today">
-                </div>
+                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Nhân viên</label>
+                    <select class="form-control " name="e_id">
+                        @foreach($all_employee as $key => $employee)
+                        <option value="{{$employee->e_id}}">{{$employee->e_name}}</option>
+                        @endforeach        
+                   </select>
             </div>
                
-           <div class="form-group row"  style="padding-left: 20px;">
-                <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Mô tả</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" name="roles_note" id="today">
-                </div>
-            </div>
+          
             <div class="form-group row"  style="padding-left: 20px;">
                 <label for="example-date-input" style="padding-left: 20px;" class="col-sm-2 col-form-label">Chọn quyền</label>
             </div>
@@ -48,10 +45,10 @@
          <div style="margin-left: 20px;   width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall1" class='' type="checkbox"> <span class="badge badge-success">VAI TRÒ</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'role'))
+                @if(strpos($permission1->name,'role'))
                     <div class="form-check" >
-                        <input  type="checkbox" class="1" name="permission[]" value="{{ $permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input  type="checkbox" class="1" name="permission[]" value="{{ $permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
                 @endforeach
@@ -62,10 +59,11 @@
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall2" class='' type="checkbox"> <span class="badge badge-success">NHÂN VIÊN</span> </h6>
             
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'employee'))
+                @if(strpos($permission1->name,'employee'))
+               
                 <div class="form-check" >
-                        <input  type="checkbox" class="2" name="permission[]" value="{{ $permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input  type="checkbox" class="2" name="permission[]" value="{{ $permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
             @endforeach    
@@ -74,10 +72,10 @@
          <div style="margin-left: 20px;   width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall3" class='' type="checkbox"> <span class="badge badge-success">DỰ ÁN</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'project'))
+                @if(strpos($permission1->name,'project'))
                     <div class="form-check" >
-                        <input  type="checkbox" class="3" name="permission[]" value="{{ $permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input  type="checkbox" class="3" name="permission[]" value="{{ $permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
                 @endforeach
@@ -86,10 +84,10 @@
          <div style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall4" class='' type="checkbox"> <span class="badge badge-success">CÔNG VIỆC</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'task'))
+                @if(strpos($permission1->name,'task'))
                     <div class="form-check" >
-                        <input  type="checkbox" class="4" name="permission[]" value="{{ $permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input  type="checkbox" class="4" name="permission[]" value="{{ $permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div>
                 @endif
                 @endforeach
@@ -104,10 +102,10 @@
          <div style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left"  >
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall5" class='' type="checkbox"> <span class="badge badge-success">CHỨC VỤ</span> </h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'position'))
+                @if(strpos($permission1->name,'position'))
                     <span ><div class="form-check" >
-                        <input  type="checkbox" class="5" name="permission[]" value="{{ $permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input  type="checkbox" class="5" name="permission[]" value="{{ $permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div></span>
                 @endif
             @endforeach    
@@ -116,16 +114,16 @@
         <div  style="margin-left: 20px; margin-top: 30px;  width: 400px;" class="container float-left">
             <h6 style="padding-bottom:10px; " class="page-title m-0"><input id="checkall6" class='' type="checkbox"><span class="badge badge-success"> PHÒNG BAN</span></h6>
             @foreach($permission  as $permission1)
-                @if(strpos($permission1->permission_name,'department'))
+                @if(strpos($permission1->name,'department'))
                     <span><div class="form-check" >
-                        <input  type="checkbox" class="6" name="permission[]" value="{{ $permission1->id_permission }}">
-                        <label class="form-check-label" > {{trans('auth.'.$permission1->permission_name)}}</label>
+                        <input  type="checkbox" class="6" name="permission[]" value="{{ $permission1->id_roles }}">
+                        <label class="form-check-label" > {{trans('auth.'.$permission1->name)}}</label>
                     </div></span>
                 @endif
             @endforeach  
             </div>
 
-                 <button  style="margin-right: 800px; margin-top: 80px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Thêm vai trò</button>        
+                 <button  style="margin-right: 800px; margin-top: 80px;" type="submit" name="add_position" class=" float-left btn btn-success waves-effect waves-light">Cấp quyền</button>        
         </form>
         
         </div> 
