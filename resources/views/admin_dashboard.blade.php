@@ -118,7 +118,6 @@
                         <th>Người tham gia</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
-                        <th>Mô tả</th>
                         <th>File đính kèm</th>
                         <th>Trạng thái</th>
                     </tr>
@@ -157,7 +156,6 @@
 
                         <td>{{ $task->task_start}}</td>
                         <td>{{ $task->task_end}}</td>
-                        <td>{{ $task->task_note}}</td>
                         <td>
                             @foreach(explode(',', $task->task_file) as $dowloadfile)
                             <a href="{{URL::to('/download/'.$dowloadfile)}}">{{ $dowloadfile}}</a>
@@ -169,13 +167,13 @@
                             <?php
                             if($task->task_status==0){
                             ?>
-                                <a href="{{URL::to('/start-task/'.$task->task_id)}}"><button type="button"  style="width:130px;" class="btn btn-primary waves-effect waves-light">Chưa hoạt động</button></a>
+                                <a href="{{URL::to('/start-user-task/'.$task->task_id)}}"><button type="button"  style="width:130px;" class="btn btn-primary waves-effect waves-light">Chưa hoạt động</button></a>
                             <?php
                             }
 
                             if($task->task_status==1){
                             ?>
-                                <a href="{{URL::to('/submit-task/'.$task->task_id)}}"><button type="button" style="width:130px;" class="btn btn-info waves-effect waves-light">Đang làm</button></a>
+                                <a href="{{URL::to('/submit-user-task/'.$task->task_id)}}"><button type="button" style="width:130px;" class="btn btn-info waves-effect waves-light">Đang làm</button></a>
                             <?php
                             }
 
