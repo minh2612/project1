@@ -3,15 +3,30 @@
 
 <div class="page-content-wrapper ">
 <div class="row">
-    <?php $i1=0; $i2=0; $i3=0; $i4=0; $i5=0;
-                    foreach($task_all as $task){
+       <?php $i1=0; $i2=0; $i3=0; $i4=0; $i5=0;  $i6=0;
+                    foreach($task_user as $task){
                     if($task->task_status==1)  $i1++;  
                     if($task->task_status==2)  $i2++;  
                     if($task->task_status==4)  $i3++;  
                     if($task->task_status==0)  $i4++;
-                    if($task->task_status==3)  $i5++;  
+                    if($task->task_status==3)  $i5++;
+                    if($task->task_manager==Auth::id()) $i6++;  
                         }
                 ?>
+
+            <div style="margin-left: 23px; margin-top: 20px;" >
+                <div class="card bg-pink mini-stat text-white" style="width:255px;">
+                    <div class="p-3 mini-stat-desc" style="height:60px">
+                        <div class="clearfix" >
+                            <h6 class="text-uppercase mt-0 float-left text-white-50" style="color:black; ">Dự án đang quản lý</h6>
+                            <h4 class="mb-3 mt-0 float-right">{{$i6}}</h4>
+                        </div>                     
+                    </div>
+                    <div class="p-3" >
+                        <a href="{{URL::to('/my-project')}}" style="color:white" class="font-14 m-0">Xem các dự án đang quản lý</a>
+                    </div>
+                </div>
+            </div>
 
             <div style="margin-left: 30px; margin-top: 20px;">
                 <div class="card bg-primary mini-stat text-white" style="width:260px">
