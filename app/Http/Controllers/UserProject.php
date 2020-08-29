@@ -189,7 +189,13 @@ class UserProject extends Controller
          DB::table('tbl_task')->where('task_id',$task_id)->update(['task_status'=>2]);
          
         return Redirect::to('loading-task');
- }
+
+     }
+    //   public function submit_user_task2($task_id){
+    //     $this->AuthUser();
+    //     $task=DB::table('tbl_task')->where('task_id',$task_id);
+    //     return view('submit_task')->with('task',$task);
+    // }
 
 
 
