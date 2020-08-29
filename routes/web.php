@@ -128,7 +128,7 @@ Route::get('/stack-user-task','UserProject@stack_user_task')->name('user.task.st
 Route::get('/start-user-task/{task_id}','UserProject@start_user_task')->name('user.task.start');
 Route::get('/restart-user-task/{task_id}','UserProject@restart_user_task')->name('user.task.restart');
 Route::get('/submit-user-task/{task_id}','UserProject@submit_user_task')->name('user.task.submit');
-Route::get('/submit-user-task2/{task_id}','UserProject@submit_user_task2');
+// Route::get('/submit-user-task2/{task_id}','UserProject@submit_user_task2');
 //permission
 Route::get('/add-roles','RolesController@add_roles')->name('admin.roles.add');
 Route::post('/save-roles','RolesController@save_roles')->name('admin.roles.save');
