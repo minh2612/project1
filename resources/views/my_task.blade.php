@@ -8,22 +8,18 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="row">
-<<<<<<< Updated upstream
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-my-task/')}}" class="active styling-edit" ui-toggle-class="">
                             <button style="margin-left: 30px" type="button" class="btn btn-success waves-effect waves-light">Thêm dự án</button></a>
                             <h4 style="padding-left: 430px" class="page-title m-0">Danh sách công việc của tôi</h4> 
-=======
-                            <h4 class="page-title m-0">Danh sách công việc</h4>
                             <p>&nbsp;</p>
                             <a href="{{URL::to('/add-task/')}}" class="active styling-edit" ui-toggle-class="">
                             <button type="button" class="btn btn-success waves-effect waves-light">Dự án của tôi</button></a> 
->>>>>>> Stashed changes
                             <p>&nbsp;</p>
                             </div>
                                     
                         </div>
-                        <!-- end col -->
+                        <!-- end col
                     </div>
                     <!-- end row -->
                 </div>
@@ -31,8 +27,6 @@
             </div>
         </div> 
         <!-- end page title -->
-<<<<<<< Updated upstream
-=======
         <?php
             $message= Session::get('message');
              if($message){
@@ -40,7 +34,6 @@
                   Session::put('message', null);
                 }
         ?>
->>>>>>> Stashed changes
         <div class="row">
             <div class="col-12">
                 <div class="card m-b-30">
@@ -51,18 +44,15 @@
                                     <tr>
                                         <th>Tên công việc</th>
                                         <th>Tên dự án</th>
-<<<<<<< Updated upstream
                                         <th>Người làm</th>
                                         <th>Deadline</th>
                                         <th>Mức độ ưu tiên</th>
-=======
-                                         <th>Mức độ ưu tiên</th>
                                 
                                         <th>Người tham gia</th>
                                         <th>Ngày bắt đầu</th>
                                         <th>Ngày kết thúc</th>
                                        
->>>>>>> Stashed changes
+
                                         <th>File đính kèm</th>
                                         <th>Hành động</th>
                                         <th>Trạng thái</th>
@@ -74,7 +64,6 @@
                                     <tr>
                             
                                         <td>{{$task->task_name}}</td>
-<<<<<<< Updated upstream
                                         <td>@foreach($all_project as $key => $value) 
                                             @if($task->project_id==$value->project_id)
                                             {{$value->project_name}}<br>
@@ -115,8 +104,8 @@
                                                <a href="{{URL::to('/refuse-task/'.$task->task_id)}}"><button type="button" style="width:100px;" class="btn btn-danger waves-effect waves-light">Từ chối</button>
                                             <?php
                                             }
-
-=======
+                                            ?>
+                                        </td>
                                         <td>@foreach($all_project as $key => $value1) 
                                             @if($task->project_id==$value1->project_id)
                                             {{$value1->project_name}}<br>
@@ -176,23 +165,15 @@
                                             <?php
                                             }
 
->>>>>>> Stashed changes
                                             if($task->task_status==3){
                                             ?>
                                                 <button style="width:200px;" type="button" class="btn btn-success waves-effect waves-light">Hoàn tất</button>
                                             <?php
                                             }
-<<<<<<< Updated upstream
                                              if($task->task_status==4){
                                             ?>
                                                 <a href="{{URL::to('/start-task/'.$task->task_id)}}"><button type="button" style="width:200px;" class="btn btn-danger waves-effect waves-light">Bị từ chối</button></a>
                                                 <?php
-=======
-                                            if($task->task_status==4){
-                                            ?>
-                                                <button style="width:200px;" type="button" class="btn btn-secondary waves-effect waves-light">Làm lại </button>
-                                            <?php
->>>>>>> Stashed changes
                                             }
                                             ?>
                                             </span>
@@ -208,4 +189,4 @@
         </div>
     </div><!-- container fluid -->
 </div> <!-- Page content Wrapper -->
-@endsection
+@endsection -->
