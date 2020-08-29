@@ -132,16 +132,6 @@ function showPreview(event){
 		            </select>
 		        </div>
 		    </div>
-		      <div class="form-group row">
-		        <label class="col-sm-2 col-form-label">Chọn vai trò</label>
-		        <div class="col-sm-4">
-		            <select class="form-control select2 "  name="roles[]" multiple >
-                       	@foreach($roles as $key => $roles)
-	                    <option value="{{$roles->id_roles}}">{{$roles->name}}</option>
-	                    @endforeach  
-	                </select>
-		        </div>
-		    </div>
 		     <ul>
 		    	@foreach($errors->all() as $error)
 		    	     <li>{{$error}}</li>
