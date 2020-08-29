@@ -79,11 +79,8 @@ use Carbon\Carbon;
 
                                         <td>@foreach($all_employee as $key => $value) 
                                             @if($task->task_id==$value->task_id)
-<<<<<<< Updated upstream
                                             <img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$value->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$value->e_name}}"><br>
-=======
                                            <img src="{{ URL::to('/public/avatar/'.$value->e_avatar)}}" title="{{$value->e_name}}" height="35" width="35"  class="rounded-circle">
->>>>>>> Stashed changes
                                             @endif
                                             @endforeach</td>    
 
