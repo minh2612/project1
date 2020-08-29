@@ -130,12 +130,12 @@ Route::get('/restart-user-task/{task_id}','UserProject@restart_user_task')->name
 Route::get('/submit-user-task/{task_id}','UserProject@submit_user_task')->name('user.task.submit');
 
 //permission
-Route::get('/add-roles','RolesController@add_roles')->name('admin.roles.add')->middleware('permission:admin.roles.add');
+Route::get('/add-roles','RolesController@add_roles')->name('admin.roles.add');
 Route::post('/save-roles','RolesController@save_roles')->name('admin.roles.save');
-Route::get('/all-roles','RolesController@all_roles')->name('admin.roles.all')->middleware('permission:admin.roles.all');
+Route::get('/all-roles','RolesController@all_roles')->name('admin.roles.all');
 
-Route::get('/edit-roles/{id}','RolesController@edit_roles')->name('admin.roles.edit')->middleware('permission:admin.roles.edit');
-Route::get('/delete-roles/{id}','RolesController@delete_roles')->name('admin.roles.delete')->middleware('permission:admin.roles.delete');
+Route::get('/edit-roles/{id}','RolesController@edit_roles')->name('admin.roles.edit');
+Route::get('/delete-roles/{id}','RolesController@delete_roles')->name('admin.roles.delete');
 Route::post('/update-roles/{id}','RolesController@update_roles')->name('admin.roles.update');
 
 
