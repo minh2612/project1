@@ -49,83 +49,116 @@
                             <li>
                                 <a href="{{route('admin.dashboard')}}" class="waves-effect"><i class="dripicons-home"></i> Trang chủ </a>
                             </li>
+<<<<<<< Updated upstream
                     
+=======
+
+
+                            
+                            @hasrole(['employeee.admin.all'])
+>>>>>>> Stashed changes
                             <li class="has_sub">
+                                
+
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý nhân viên </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                           
                                 <ul class="list-unstyled">
-                                    <li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>
+                                    <li><a href="{{URL::to('/add-employee')}}">Thêm nhân viên</a></li>                 
                                     <li><a href="{{URL::to('/all-employee')}}">Danh sách nhân viên</a></li>
+                                   
                                 </ul>
                             </li>
+<<<<<<< Updated upstream
                           
+=======
+                            @endhasrole
+                     
+                         
+                           @hasrole(['admin.project.all'])
+>>>>>>> Stashed changes
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản lý dự án </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
                                     <li><a href="{{URL::to('/all-project')}}">Danh sách tất cả dự án</a></li>
+                                      
                                     <li><a href="{{URL::to('/my-project')}}">Danh sách dự án của tôi</a></li>
                                 </ul>
                            </li> 
+                           @endhasrole
                       
                           
                                       
 
 
-                           
+                           @hasrole(['admin.project.all'])
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-tasks"></i> <span> Quản lý công việc </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
                                     <li><a href="{{URL::to('/all-task')}}">Danh sách tất cả công việc</a></li>
+                                      
                                       <li><a href="{{URL::to('/my-task')}}">Danh sách công việc của tôi</a></li>
                                 </ul>
-                            </li>                              
+                            </li>   
+                            @endhasrole                           
 
                
                           
                             
                          
-                          
+                          @hasrole(['admin.department.all'])
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý phòng ban </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    
+                                     
                                     <li><a href="{{URL::to('/all-department')}}">Danh sách phòng ban</a></li>
+                                    
                                 </ul>
                             </li>
-                            
+                            @endhasrole
+
+                            @hasrole(['admin.position.all'])
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-id"></i> <span> Quản lý chức vụ </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
                                     <li><a href="{{URL::to('/all-position')}}">Danh sách chức vụ</a></li>
+                                    
                                 </ul>
 
                             </li> 
-                               
+                            @endhasrole
+
+                            @hasrole(['admin.customer.all'])
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user-group"></i> <span> Quản lý khách hàng </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     
                                     <li><a href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a></li>
+                                     
                                     <li><a href="{{URL::to('/all-customer-group')}}">Danh sách nhóm khách hàng</a></li>
+                                   
                                 </ul>
                             </li>
+                               @endhasrole
 
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="far fa-handshake"></i> <span> Quản lý dịch vụ </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{URL::to('/all-service')}}">Danh sách dịch vụ</a></li>
                                 </ul>
-                            </li>  
+                            </li>   
+                          
 
+                               @hasrole(['admin.roles.all'])
                              <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý vai trò </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                      <li><a href="{{URL::to('/all-roles')}}">Danh sách vai trò</a></li>
                                 </ul>
                             </li>
+                            @endhasrole
 
                             
                
