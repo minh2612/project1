@@ -90,7 +90,6 @@
                                     
                                     <li><a href="{{URL::to('/all-task')}}">Danh sách tất cả công việc</a></li>
                                       
-                                      <li><a href="{{URL::to('/my-task')}}">Danh sách công việc của tôi</a></li>
                                 </ul>
                             </li>   
                             @endhasrole                           
@@ -143,14 +142,13 @@
                             </li>   
                           
 
-                               @hasrole(['admin.roles.all'])
                              <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> Quản lý vai trò </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                      <li><a href="{{URL::to('/all-roles')}}">Danh sách vai trò</a></li>
                                 </ul>
                             </li>
-                            @endhasrole
+
 
                             
                
