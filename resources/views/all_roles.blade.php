@@ -41,44 +41,37 @@
                             <table id="datatable" class="table table-bordered " style="background-color: white;border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>STT</th>
-                                        <th>Tên vai trò</th>  
-                                        <th>Mô tả</th>
+                                      <!--   <th>STT</th> -->
+                                        <th>Tên nhân viên</th>  
+                                   
                                         <th>Quyền</th>   
-                                        <th>Nhân viên</th>               
+                                                     
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                    $i=0;
-                                    @endphp
-                                    @foreach($all_roles as $key => $roles)
-                                    @php
-                                    $i++;
-                                    @endphp
+                              
+                                     @foreach($all_employee as $key => $employee)
                                   <tr>
-                                    <td>{{$i}}</td>
+                               
 
-                                    <td >{{ $roles->name}}</td>
-                                    <td>{{$roles->roles_note}}</td>
-                                    <td style="width: 400px"> @foreach($all_permission as $permission)
-                                        @if($permission->roles_id_roles==$roles->id_roles)
-                                    
-                                          <p class="badge badge-success" style="font-size:85%;"> {{trans('auth.'.$permission->permission_name)}}</p>
+                                    <td width="300">
+
+                                           <img src="{{ URL::to('/public/avatar/'.$employee->e_avatar)}}" title="{{$employee->e_name}}" height="70" width="70"  class="rounded-circle">
+                                           {{$employee->e_name}}
+                                        </td>   
+                                    <td style="width: 400px"> 
+                                    @foreach($all_roles as $permission1)
+                                        @if($permission1->admin_e_id==$employee->e_id)
+                                          <p class="badge badge-success" style="font-size:85%;"> {{trans('auth.'.$permission1->name)}}</p>
                                         @endif
                                     @endforeach</td>
-                                    <td style="width: 200px"> @foreach($all_employee as $employee)
-                                        @if($employee->id_roles==$roles->id_roles)
-                                    
-                                          <p class="badge badge-success" style="font-size:85%;"> {{$employee->e_name}}</p>
-                                        @endif
-                                    @endforeach</td>
-                                    <td>
+                                   
+                                    <td width="200">
                                           
-                                        <a href="{{URL::to('/edit-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
+                                        <a href="{{URL::to('/edit-roles/'.$employee->e_id)}}" class="active styling-edit" ui-toggle-class="">
                                             <i class="fa fa-edit"></i>
-                                        <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-roles/'.$roles->id_roles)}}" class="active styling-edit" ui-toggle-class="">
+                                        <a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-roles/'.$employee->e_id)}}" class="active styling-edit" ui-toggle-class="">
                                             <i class="fa fa-trash-alt"></i>          
                                      </td>
                                   </tr>
