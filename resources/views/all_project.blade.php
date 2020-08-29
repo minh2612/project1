@@ -66,7 +66,13 @@
                                         <td>{{$project->project_name}}</td>
                                         <td>{{$project->service_name}}</td>
                                         <td>{{$project->customer_name}}</td>
+<<<<<<< Updated upstream
                                         <td><img style="border-radius: 50%" src="{{ URL::to('/public/avatar/'.$project->e_avatar)}}" height="50" width="50" class="img-thumbnail" title="{{$project->e_name}}"></td>                      
+=======
+                                        <td><img src="{{ URL::to('/public/avatar/'.$project->e_avatar)}}" title="{{$project->e_name}}" height="35" width="35"  class="rounded-circle"></td>
+                                            
+                                                           
+>>>>>>> Stashed changes
                                         <td>{{$project->project_start}}</td>
                                         <td>{{$project->project_end}}</td>
                                         <!-- @php
