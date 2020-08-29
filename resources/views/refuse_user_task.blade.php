@@ -164,35 +164,18 @@
                             
                             @endforeach
                         </td>
-                         <td>
+                             <td>
                             <span class="text-ellipsis">
                             <?php
-                            if($task->task_status==0){
+                            if($task->task_status==4){
                             ?>
-                                <a href="{{URL::to('/start-task/'.$task->task_id)}}"><button type="button"  style="width:130px;" class="btn btn-primary waves-effect waves-light">Chưa hoạt động</button></a>
+                                <a href="{{URL::to('/restart-user-task/'.$task->task_id)}}"><button type="button"  style="width:130px;" class="btn btn-pink waves-effect waves-light">Bắt đầu lại</button></a>
                             <?php
                             }
 
-                            if($task->task_status==1){
-                            ?>
-                                <a href="{{URL::to('/submit-task/'.$task->task_id)}}"><button type="button" style="width:130px;" class="btn btn-info waves-effect waves-light">Đang làm</button></a>
-                            <?php
-                            }
-
-                            if($task->task_status==2){
-                            ?>
-                               <button type="button" style="width:130px;" class="btn btn-danger waves-effect waves-light">Đang đợi duyệt</button>
-                            <?php
-                            }
-
-                            if($task->task_status==3){
-                            ?>
-                                <button style="width:130px;" type="button" class="btn btn-success waves-effect waves-light">Hoàn tất</button>
-                            <?php
-                            }
-                            ?>
+                           ?>
                             </span>
-                        </td>      
+                        </td>    
 
                         
                       
